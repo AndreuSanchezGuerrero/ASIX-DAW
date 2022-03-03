@@ -1,2 +1,6 @@
 # ASIX1
-croqueta
+croqueta 
+croquetaa
+hksabcs n
+df mwipefj,sas
+fsçfaw e
