@@ -1,0 +1,10 @@
+<!ELEMENT socis (soci+)>
+<!ELEMENT soci (((num, data) | clau)?, nom, cognom, cognom?, (datanaixement | edat), telefon+)>
+<!ELEMENT num (#PCDATA)>
+<!ELEMENT data (#PCDATA)>
+<!ELEMENT clau (#PCDATA)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT cognom (#PCDATA)>
+<!ELEMENT datanaixement (#PCDATA)>
+<!ELEMENT edat (#PCDATA)>
+<!ELEMENT telefon (#PCDATA)>

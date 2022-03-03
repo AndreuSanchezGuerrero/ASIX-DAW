@@ -1,0 +1,5 @@
+n = input("Introdueix el teu nom:")
+p = float(input("Introdueix el teu pes:"))
+a = float(input("introdueix la teva alçada"))
+IMC = p/(a*a)
+print(f"Hola {n} el teu índex de massa corporal és {IMC:.2f}")

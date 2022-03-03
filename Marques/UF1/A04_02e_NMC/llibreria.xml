@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE llibreria SYSTEM "llibreria.dtd">
+<llibreria>
+    <llibres>
+        <producte cat="Fantasia">
+            <autor>Suzanne Collins</autor>
+            <preu>19,99</preu>
+            <editor>Acantilado</editor>
+            <quantitat>6</quantitat>
+            <titol>The Hunger Games (The Hunger Games, #1)</titol>
+        </producte>
+        <producte cat="Fantasia">
+            <autor>J.K. Rowling</autor>
+            <preu>15</preu>
+            <editor>Impedimeta</editor>
+            <quantitat>9</quantitat>
+            <titol>Harry Potter and the Order of the Phoenix (Harry Potter, #5)</titol>
+        </producte>
+        <producte cat="Drama">
+            <autor>Harper Lee</autor>
+            <preu>18</preu>
+            <editor>Caro Raggio</editor>
+            <quantitat>7</quantitat>
+            <titol>To Kill a Mockingbird</titol>
+        </producte>
+        <producte cat="Drama">
+            <autor>Jane Austen</autor>
+            <preu>16</preu>
+            <editor>Atalaya</editor>
+            <quantitat>1</quantitat>
+            <titol>Pride and Prejudice</titol>
+        </producte>
+        <producte cat="Romantica">
+            <autor>Stephen Meyer</autor>
+            <preu>14</preu>
+            <editor>Sexto Piso</editor>
+            <quantitat>2</quantitat>
+            <titol>Twilight (The Twilight Saga, #1)</titol>
+        </producte>
+    </llibres>
+    <categories>
+        <categoria code="Fantasia" descripcio="Obras de la literatura que construyen nuevos mundos, espacios, personajes y situaciones, ajenas y diferentes a nuestro mundo y nuestras vidas."></categoria>
+        <categoria code="Drama" descripcio="Centan historias que mantienen en vilo al espectador. Historias de miedo, historias que atrapan, historias que en definitiva consiguen absorber al lector en sus redes."></categoria>
+        <categoria code="Romantica" descripcio="Cuentan historias maravillosas de amor, pasión y a veces también, desamor."></categoria>
+    </categories>
+</llibreria>

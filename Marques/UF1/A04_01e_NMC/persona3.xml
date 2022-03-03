@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE persones SYSTEM "persona3.dtd">
+<persones>
+    <persona NIF="778964567N" sexe="home">
+        <nomcomplet nom="Joan">
+            <cognom>Terradelles</cognom>
+        </nomcomplet>
+        <telefons>
+            <number>657478389</number>
+        </telefons>
+    </persona>
+</persones>

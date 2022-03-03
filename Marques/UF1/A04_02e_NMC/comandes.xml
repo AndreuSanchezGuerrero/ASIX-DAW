@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE comandes SYSTEM "comandes.dtd">
+<comandes>
+    <articles>
+        <article>
+            <nom tipus="A">llapis</nom>
+            <model referencia="LAP" tipus="blau"></model>
+        </article>
+        <article>
+            <nom tipus="C">boli</nom>
+            <model referencia="BOL" tipus="negre"></model>
+        </article>      
+        <article>
+            <nom tipus="C">goma</nom>
+            <model referencia="GOM" tipus="blanca"></model>
+        </article>
+        <article>
+            <nom tipus="B">tisores</nom>
+            <model referencia="TIS" tipus="llargues"></model>
+        </article>
+    </articles>
+    <sucursal codi="ABC">
+        <adreca>Carrer Maria Antonieta</adreca>
+        <treballador>Joan Carles</treballador>
+        <data>26/08/20</data>
+        <observacio>croquetas</observacio>
+        <nomarticle codi="TIS">
+            <unitats>8</unitats>
+            <preu>2</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+        <nomarticle codi="BOL">
+            <unitats>80</unitats>
+            <preu>1</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+        <nomarticle codi="GOM">
+            <unitats>5</unitats>
+            <preu>0,6</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+    </sucursal>
+    <sucursal codi="ZXC">
+        <adreca>Carrer Antoni Tapies</adreca>
+        <treballador>Joanet cateller</treballador>
+        <data>24/08/20</data>
+        <observacio>croquetas</observacio>
+        <nomarticle codi="GOM">
+            <unitats>5</unitats>
+            <preu>0,6</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+        <nomarticle codi="TIS">
+            <unitats>8</unitats>
+            <preu>2</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+        <nomarticle codi="BOL">
+            <unitats>80</unitats>
+            <preu>1</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+    </sucursal>
+    <sucursal codi="NMB">
+        <adreca>Placa concordia</adreca>
+        <treballador>Magnolia Tulipa</treballador>
+        <data>17/02/19</data>
+        <observacio>croquetas</observacio>
+        <nomarticle codi="BOL">
+            <unitats>80</unitats>
+            <preu>1</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+        <nomarticle codi="GOM">
+            <unitats>5</unitats>
+            <preu>0,6</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+        <nomarticle codi="TIS">
+            <unitats>8</unitats>
+            <preu>2</preu>
+            <observacions>croquetas</observacions>
+            <termini></termini>
+        </nomarticle>
+    </sucursal>
+</comandes>

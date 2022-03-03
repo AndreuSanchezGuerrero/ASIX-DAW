@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>A01 02e exercisis HTML - Forms: Qüestionari</title>
+    </head>
+
+    <body>
+        <img src="https://www.sapalomera.cat/wp-content/themes/SaPalomeraTheme/img/logo-institut-sapalomera.png" style="width: 200px;">
+        <h1 align="center">A01 02e exercisis HTML - Forms: Qüestionari</h1>
+        <!--aixo es la part previa al formulari, on hi ha tant el títol com el logo de l'institut-->
+        <form>
+            <table border="1" style="width:100%;"> <!--aqui establim les mides i bores del formulari-->
+                <tr>
+                    <td style="background-color: lightgrey;">Introdueix el teu nom:</td>
+                    <td><input type="text" name="nom" placeholder="El teu nom"></td>
+                    <td style="background-color: lightgrey;">i cognoms</td>
+                    <td><input type="text" name="cognom" placeholder="Els teus cognoms"></td>
+                </tr>
+                <!--Cada tr equival a una de les files i el td son les diferents columnes, també s'estableixen aquí els estils i continguts-->
+                <tr>
+                    <td style="background-color: lightgrey;">Introdueix el teu email</td>
+                    <td colspan="3"><input type="text" name="email" placeholder="@"></td>
+                </tr>
+
+                <tr>
+                    <td style="color: #0000FF; background-color: lightgrey;">Selecciona les teves aficions</td>
+                    <td colspan="3">
+                        <select name="aficions" multiple>
+                            <option>Informàtica</option>
+                            <option>Esport</option>
+                            <option>Bricolatge</option>
+                            <option>Fotografia</option>
+                            <option>Jardineria</option>
+                        </select>
+                    </td>
+                </tr>
+                <!--1. En aquest cas establim el color amb el se codi Hex tal i com es demana a l'exercici.
+                    2. Aquí el tipus de contenidor pera a mostrar el contingut es diferent per tant utilitzem l'etiqueta equivalent a aquest tipus de contenidor-->
+                </tr>
+                    <td style="background-color: lightgrey;">Selecciona l'esport que t'agrada més?</td>
+                    <td colspan="3">
+                    <!--Utilitzem el colspan per a marcar el numero de columnes q agafa aquella fila-->
+                        <select>
+                            <option>Tennis Taula</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color: chartreuse;color:crimson">Indica si el practiques</td>
+                    <td><input type="checkbox"></td>
+                    <td style="background-color: chartreuse;color:crimson">o si n'ets espectador</td>
+                    <td><input type="checkbox"></td>
+                    <!--Checkbox es l'etiqueta per a colocar la casella per a marcar, en cas de voler-la circular tal i com veurem mes endavant utilitzarem radio-->
+                </tr>
+
+                <tr>
+                    <td style="background-color: darkgreen;color: white;">Estàs federat</td>
+                    <td><input type="radio"></td>
+                    <td style="background-color: tomato;color:white;">No federat</td>
+                    <td><input type="radio"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" style="background-color: lightgrey;">Obserbacions:</td>
+                </tr>
+                
+                <tr>
+                    <td colspan="4"><textarea rows="13" cols="200" placeholder="Tens algun suggeriment?"></textarea></td>
+                </tr>
+                <!--Per a donar-li les mides demanades a la taula utilitzarem aquest camp per a marcar el numero de fies i columnes del camp de text i així establir les mides globals-->
+                <tr>
+                    <td colspan="4" style="color: green;background-color: lightgrey;">Escull un vídeo</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><iframe width="450" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                    <td colspan="2"><iframe width="450" height="315" src="https://www.youtube.com/embed/JfJYHfrOGgQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                </tr>
+                <!--Desde la pàgina de youtube a la hora de compartir-ho s'ens dona la opció de agafar el codi en html directament, nomes em de editar les mides per tenir-ho tal i com volem
+                    Per aconseguir q el video surti com a no disponible nomes n'hem de buscar un q no permeti ser "embed" normalment videos amb drets de autor, en el meu cas per no provar videos un per un he buscat a google algù q tingues el problema i he copiat el link-->
+                <tr>
+                    <td colspan="2" align="center"><input type="radio"></td>
+                    <td colspan="2" align="center"><input type="radio"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" style="color: chartreuse;background-color:lightgoldenrodyellow">Gràcies per participar!!</td>
+                    <td style="background-color:lightgoldenrodyellow"><input type="button" value="enviar"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

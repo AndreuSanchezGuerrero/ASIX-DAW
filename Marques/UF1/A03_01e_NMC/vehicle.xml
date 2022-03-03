@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<vehicle>
+    <marca>Renault</marca>
+    <model>Clio</model>
+    <pes>2T</pes>
+    <longitut>3,5m</longitut>
+    <lit100km>7l</lit100km>
+    <d0a60>8s</d0a60>
+</vehicle>

@@ -1,0 +1,12 @@
+<!ELEMENT cooperativa (soci+)>
+<!ELEMENT soci (nomcomplet, (edat?|data?), telefons)>
+<!ATTLIST soci
+          clau CDATA #REQUIRED>
+<!ELEMENT nomcomplet (cognom+)>
+<!ATTLIST nomcomplet
+          nom CDATA #REQUIRED>
+<!ELEMENT cognom (#PCDATA)>
+<!ELEMENT data (#PCDATA)>
+<!ELEMENT telefons (telefon+)>
+<!ELEMENT telefon (#PCDATA)>
+<!ELEMENT edat (#PCDATA)>

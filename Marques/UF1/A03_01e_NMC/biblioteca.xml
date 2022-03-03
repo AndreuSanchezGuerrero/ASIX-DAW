@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+    <llibre>
+        <titol>ULYSSES</titol>
+        <autor>James Joyce</autor>
+        <paginas>443</paginas>
+        <any>1998</any>
+        <secció>4</secció>
+        <fila>9</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE GREAT GATSBY</titol>
+        <autor>F. Scott Fitzgerald</autor>
+        <paginas>431</paginas>
+        <any>1942</any>
+        <secció>6</secció>
+        <fila>19</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A PORTRAIT OF THE ARTIST AS A YOUNG MAN</titol>
+        <autor>James Joyce</autor>
+        <paginas>713</paginas>
+        <any>1987</any>
+        <secció>5</secció>
+        <fila>4</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>LOLITA</titol>
+        <autor>Vladimir Nabokov</autor>
+        <paginas>312</paginas>
+        <any>1968</any>
+        <secció>7</secció>
+        <fila>10</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>BRAVE NEW WORLD</titol>
+        <autor>Aldous Huxley</autor>
+        <paginas>422</paginas>
+        <any>1993</any>
+        <secció>2</secció>
+        <fila>8</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE SOUND AND THE FURY</titol>
+        <autor>William Faulkner</autor>
+        <paginas>377</paginas>
+        <any>1958</any>
+        <secció>5</secció>
+        <fila>2</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>CATCH-22</titol>
+        <autor>Joseph Heller</autor>
+        <paginas>814</paginas>
+        <any>1999</any>
+        <secció>6</secció>
+        <fila>15</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>DARKNESS AT NOON</titol>
+        <autor>Arthur Koestler</autor>
+        <paginas>752</paginas>
+        <any>1958</any>
+        <secció>1</secció>
+        <fila>1</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>SONS AND LOVERS</titol>
+        <autor>D.H. Lawrence</autor>
+        <paginas>861</paginas>
+        <any>1996</any>
+        <secció>8</secció>
+        <fila>10</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE GRAPES OF WRATH</titol>
+        <autor>John Steinbeck</autor>
+        <paginas>669</paginas>
+        <any>1949</any>
+        <secció>6</secció>
+        <fila>14</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>UNDER THE VOLCANO</titol>
+        <autor>Malcolm Lowry</autor>
+        <paginas>775</paginas>
+        <any>1936</any>
+        <secció>8</secció>
+        <fila>2</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE WAY OF ALL FLESH</titol>
+        <autor>Samuel Butler</autor>
+        <paginas>633</paginas>
+        <any>1938</any>
+        <secció>4</secció>
+        <fila>7</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>1984</titol>
+        <autor>George Orwell</autor>
+        <paginas>510</paginas>
+        <any>1964</any>
+        <secció>4</secció>
+        <fila>8</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>I, CLAUDIUS</titol>
+        <autor>Robert Graves</autor>
+        <paginas>708</paginas>
+        <any>1977</any>
+        <secció>4</secció>
+        <fila>3</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>TO THE LIGHTHOUSE</titol>
+        <autor>Virginia Woolf</autor>
+        <paginas>377</paginas>
+        <any>1999</any>
+        <secció>3</secció>
+        <fila>19</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>AN AMERICAN TRAGEDY</titol>
+        <autor>Theodore Dreiser</autor>
+        <paginas>871</paginas>
+        <any>1943</any>
+        <secció>4</secció>
+        <fila>1</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE HEART IS A LONELY HUNTER</titol>
+        <autor>Carson McCullers</autor>
+        <paginas>786</paginas>
+        <any>1948</any>
+        <secció>1</secció>
+        <fila>17</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>SLAUGHTERHOUSE-FIVE</titol>
+        <autor>Kurt Vonnegut</autor>
+        <paginas>762</paginas>
+        <any>1942</any>
+        <secció>1</secció>
+        <fila>1</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>INVISIBLE MAN</titol>
+        <autor>Ralph Ellison</autor>
+        <paginas>467</paginas>
+        <any>1990</any>
+        <secció>4</secció>
+        <fila>9</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>NATIVE SON</titol>
+        <autor>Richard Wright</autor>
+        <paginas>459</paginas>
+        <any>1958</any>
+        <secció>2</secció>
+        <fila>1</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>HENDERSON THE RAIN KING</titol>
+        <autor>Saul Bellow</autor>
+        <paginas>895</paginas>
+        <any>1974</any>
+        <secció>2</secció>
+        <fila>9</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>APPOINTMENT IN SAMARRA</titol>
+        <autor>John OHara</autor>
+        <paginas>726</paginas>
+        <any>1978</any>
+        <secció>2</secció>
+        <fila>5</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>U.S.A.(trilogy)</titol>
+        <autor>John Dos Passos</autor>
+        <paginas>762</paginas>
+        <any>1951</any>
+        <secció>1</secció>
+        <fila>18</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>WINESBURG, OHIO</titol>
+        <autor>Sherwood Anderson</autor>
+        <paginas>803</paginas>
+        <any>1989</any>
+        <secció>7</secció>
+        <fila>18</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A PASSAGE TO INDIA</titol>
+        <autor>E.M. Forster</autor>
+        <paginas>591</paginas>
+        <any>1939</any>
+        <secció>6</secció>
+        <fila>17</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE WINGS OF THE DOVE</titol>
+        <autor>Henry James</autor>
+        <paginas>225</paginas>
+        <any>1989</any>
+        <secció>6</secció>
+        <fila>10</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE AMBASSADORS</titol>
+        <autor>Henry James</autor>
+        <paginas>757</paginas>
+        <any>1951</any>
+        <secció>3</secció>
+        <fila>12</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>TENDER IS THE NIGHT</titol>
+        <autor>F. Scott Fitzgerald</autor>
+        <paginas>771</paginas>
+        <any>1992</any>
+        <secció>5</secció>
+        <fila>4</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE STUDS LONIGAN TRILOGY</titol>
+        <autor>James T. Farrell</autor>
+        <paginas>603</paginas>
+        <any>1994</any>
+        <secció>4</secció>
+        <fila>15</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE GOOD SOLDIER</titol>
+        <autor>Ford Madox Ford</autor>
+        <paginas>488</paginas>
+        <any>1991</any>
+        <secció>3</secció>
+        <fila>3</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>ANIMAL FARM</titol>
+        <autor>George Orwell</autor>
+        <paginas>699</paginas>
+        <any>1946</any>
+        <secció>2</secció>
+        <fila>2</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE GOLDEN BOWL</titol>
+        <autor>Henry James</autor>
+        <paginas>216</paginas>
+        <any>1966</any>
+        <secció>5</secció>
+        <fila>18</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>SISTER CARRIE</titol>
+        <autor>Theodore Dreiser</autor>
+        <paginas>475</paginas>
+        <any>1946</any>
+        <secció>7</secció>
+        <fila>17</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A HANDFUL OF DUST</titol>
+        <autor>Evelyn Waugh</autor>
+        <paginas>203</paginas>
+        <any>1964</any>
+        <secció>7</secció>
+        <fila>2</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>AS I LAY DYING</titol>
+        <autor>William Faulkner</autor>
+        <paginas>523</paginas>
+        <any>1950</any>
+        <secció>2</secció>
+        <fila>18</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>ALL THE KINGS MEN</titol>
+        <autor>Robert Penn Warren</autor>
+        <paginas>595</paginas>
+        <any>1994</any>
+        <secció>8</secció>
+        <fila>13</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE BRIDGE OF SAN LUIS REY</titol>
+        <autor>Thornton Wilder</autor>
+        <paginas>522</paginas>
+        <any>1933</any>
+        <secció>7</secció>
+        <fila>20</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>HOWARDS END</titol>
+        <autor>E.M. Forster</autor>
+        <paginas>632</paginas>
+        <any>1966</any>
+        <secció>3</secció>
+        <fila>18</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>GO TELL IT ON THE MOUNTAIN</titol>
+        <autor>James Baldwin</autor>
+        <paginas>796</paginas>
+        <any>1985</any>
+        <secció>8</secció>
+        <fila>6</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE HEART OF THE MATTER</titol>
+        <autor>Graham Greene</autor>
+        <paginas>753</paginas>
+        <any>1958</any>
+        <secció>8</secció>
+        <fila>11</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>LORD OF THE FLIES</titol>
+        <autor>William Golding</autor>
+        <paginas>865</paginas>
+        <any>1985</any>
+        <secció>4</secció>
+        <fila>9</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>DELIVERANCE</titol>
+        <autor>James Dickey</autor>
+        <paginas>808</paginas>
+        <any>1948</any>
+        <secció>1</secció>
+        <fila>19</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A DANCE TO THE MUSIC OF TIME (series)</titol>
+        <autor>Anthony Powell</autor>
+        <paginas>448</paginas>
+        <any>1978</any>
+        <secció>6</secció>
+        <fila>12</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>POINT COUNTER POINT</titol>
+        <autor>Aldous Huxley</autor>
+        <paginas>458</paginas>
+        <any>1992</any>
+        <secció>5</secció>
+        <fila>14</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE SUN ALSO RISES</titol>
+        <autor>Ernest Hemingway</autor>
+        <paginas>659</paginas>
+        <any>1932</any>
+        <secció>1</secció>
+        <fila>17</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE SECRET AGENT</titol>
+        <autor>Joseph Conrad</autor>
+        <paginas>544</paginas>
+        <any>1949</any>
+        <secció>7</secció>
+        <fila>11</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>NOSTROMO</titol>
+        <autor>Joseph Conrad</autor>
+        <paginas>477</paginas>
+        <any>1986</any>
+        <secció>5</secció>
+        <fila>18</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE RAINBOW</titol>
+        <autor>D.H. Lawrence</autor>
+        <paginas>417</paginas>
+        <any>1988</any>
+        <secció>2</secció>
+        <fila>17</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>WOMEN IN LOVE</titol>
+        <autor>D.H. Lawrence</autor>
+        <paginas>326</paginas>
+        <any>1970</any>
+        <secció>1</secció>
+        <fila>2</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>TROPIC OF CANCER</titol>
+        <autor>Henry Miller</autor>
+        <paginas>444</paginas>
+        <any>1977</any>
+        <secció>7</secció>
+        <fila>16</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE NAKED AND THE DEAD</titol>
+        <autor>Norman Mailer</autor>
+        <paginas>679</paginas>
+        <any>1997</any>
+        <secció>1</secció>
+        <fila>20</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>PORTNOYS COMPLAINT</titol>
+        <autor>Philip Roth</autor>
+        <paginas>718</paginas>
+        <any>1942</any>
+        <secció>4</secció>
+        <fila>13</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>PALE FIRE</titol>
+        <autor>Vladimir Nabokov</autor>
+        <paginas>240</paginas>
+        <any>1945</any>
+        <secció>1</secció>
+        <fila>6</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>LIGHT IN AUGUST</titol>
+        <autor>William Faulkner</autor>
+        <paginas>584</paginas>
+        <any>1968</any>
+        <secció>4</secció>
+        <fila>7</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>ON THE ROAD</titol>
+        <autor>Jack Kerouac</autor>
+        <paginas>515</paginas>
+        <any>1954</any>
+        <secció>1</secció>
+        <fila>2</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE MALTESE FALCON</titol>
+        <autor>Dashiell Hammett</autor>
+        <paginas>660</paginas>
+        <any>1991</any>
+        <secció>8</secció>
+        <fila>3</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>PARADES END</titol>
+        <autor>Ford Madox Ford</autor>
+        <paginas>640</paginas>
+        <any>1959</any>
+        <secció>7</secció>
+        <fila>9</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE AGE OF INNOCENCE</titol>
+        <autor>Edith Wharton</autor>
+        <paginas>673</paginas>
+        <any>1943</any>
+        <secció>5</secció>
+        <fila>14</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>ZULEIKA DOBSON</titol>
+        <autor>Max Beerbohm</autor>
+        <paginas>884</paginas>
+        <any>1952</any>
+        <secció>8</secció>
+        <fila>18</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE MOVIEGOER</titol>
+        <autor>Walker Percy</autor>
+        <paginas>380</paginas>
+        <any>1992</any>
+        <secció>4</secció>
+        <fila>20</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>DEATH COMES FOR THE ARCHBISHOP</titol>
+        <autor>Willa Cather</autor>
+        <paginas>562</paginas>
+        <any>1974</any>
+        <secció>7</secció>
+        <fila>6</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>FROM HERE TO ETERNITY</titol>
+        <autor>James Jones</autor>
+        <paginas>239</paginas>
+        <any>1932</any>
+        <secció>4</secció>
+        <fila>1</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE WAPSHOT CHRONICLES</titol>
+        <autor>John Cheever</autor>
+        <paginas>876</paginas>
+        <any>1957</any>
+        <secció>2</secció>
+        <fila>13</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE CATCHER IN THE RYE</titol>
+        <autor>J.D. Salinger</autor>
+        <paginas>486</paginas>
+        <any>1951</any>
+        <secció>2</secció>
+        <fila>9</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A CLOCKWORK ORANGE</titol>
+        <autor>Anthony Burgess</autor>
+        <paginas>728</paginas>
+        <any>1967</any>
+        <secció>6</secció>
+        <fila>2</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>OF HUMAN BONDAGE</titol>
+        <autor>W. Somerset Maugham</autor>
+        <paginas>510</paginas>
+        <any>1956</any>
+        <secció>3</secció>
+        <fila>10</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>HEART OF DARKNESS</titol>
+        <autor>Joseph Conrad</autor>
+        <paginas>444</paginas>
+        <any>1937</any>
+        <secció>2</secció>
+        <fila>19</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>MAIN STREET</titol>
+        <autor>Sinclair Lewis</autor>
+        <paginas>826</paginas>
+        <any>1932</any>
+        <secció>7</secció>
+        <fila>11</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE HOUSE OF MIRTH</titol>
+        <autor>Edith Wharton</autor>
+        <paginas>543</paginas>
+        <any>1951</any>
+        <secció>4</secció>
+        <fila>5</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE ALEXANDRIA QUARTET</titol>
+        <autor>Lawrence Durrell</autor>
+        <paginas>224</paginas>
+        <any>1975</any>
+        <secció>2</secció>
+        <fila>8</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A HIGH WIND IN JAMAICA</titol>
+        <autor>Richard Hughes</autor>
+        <paginas>430</paginas>
+        <any>1932</any>
+        <secció>1</secció>
+        <fila>6</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A HOUSE FOR MR BISWAS</titol>
+        <autor>V.S. Naipaul</autor>
+        <paginas>679</paginas>
+        <any>1933</any>
+        <secció>5</secció>
+        <fila>19</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE DAY OF THE LOCUST</titol>
+        <autor>Nathanael West</autor>
+        <paginas>508</paginas>
+        <any>1995</any>
+        <secció>8</secció>
+        <fila>11</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A FAREWELL TO ARMS</titol>
+        <autor>Ernest Hemingway</autor>
+        <paginas>708</paginas>
+        <any>1959</any>
+        <secció>6</secció>
+        <fila>6</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>SCOOP</titol>
+        <autor>Evelyn Waugh</autor>
+        <paginas>634</paginas>
+        <any>1950</any>
+        <secció>1</secció>
+        <fila>13</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE PRIME OF MISS JEAN BRODIE</titol>
+        <autor>Muriel Spark</autor>
+        <paginas>656</paginas>
+        <any>1969</any>
+        <secció>1</secció>
+        <fila>20</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>FINNEGANS WAKE</titol>
+        <autor>James Joyce</autor>
+        <paginas>201</paginas>
+        <any>1947</any>
+        <secció>2</secció>
+        <fila>19</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>KIM</titol>
+        <autor>Rudyard Kipling</autor>
+        <paginas>250</paginas>
+        <any>1956</any>
+        <secció>4</secció>
+        <fila>16</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A ROOM WITH A VIEW</titol>
+        <autor>E.M. Forster</autor>
+        <paginas>619</paginas>
+        <any>1943</any>
+        <secció>4</secció>
+        <fila>11</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>BRIDESHEAD REVISITED</titol>
+        <autor>Evelyn Waugh</autor>
+        <paginas>854</paginas>
+        <any>1991</any>
+        <secció>7</secció>
+        <fila>16</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE ADVENTURES OF AUGIE MARCH</titol>
+        <autor>Saul Bellow</autor>
+        <paginas>440</paginas>
+        <any>1954</any>
+        <secció>4</secció>
+        <fila>18</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>ANGLE OF REPOSE</titol>
+        <autor>Wallace Stegner</autor>
+        <paginas>335</paginas>
+        <any>1943</any>
+        <secció>7</secció>
+        <fila>2</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>A BEND IN THE RIVER</titol>
+        <autor>V.S. Naipaul</autor>
+        <paginas>694</paginas>
+        <any>1994</any>
+        <secció>7</secció>
+        <fila>18</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE DEATH OF THE HEART</titol>
+        <autor>Elizabeth Bowen</autor>
+        <paginas>949</paginas>
+        <any>1935</any>
+        <secció>2</secció>
+        <fila>16</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>LORD JIM</titol>
+        <autor>Joseph Conrad</autor>
+        <paginas>834</paginas>
+        <any>1963</any>
+        <secció>4</secció>
+        <fila>18</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>RAGTIME</titol>
+        <autor>E.L. Doctorow</autor>
+        <paginas>735</paginas>
+        <any>1932</any>
+        <secció>1</secció>
+        <fila>18</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE OLD WIVES TALE</titol>
+        <autor>Arnold Bennett</autor>
+        <paginas>837</paginas>
+        <any>1989</any>
+        <secció>5</secció>
+        <fila>11</fila>
+        <prestatge>3</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE CALL OF THE WILD</titol>
+        <autor>Jack London</autor>
+        <paginas>655</paginas>
+        <any>1983</any>
+        <secció>4</secció>
+        <fila>13</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>LOVING</titol>
+        <autor>Henry Green</autor>
+        <paginas>420</paginas>
+        <any>1977</any>
+        <secció>8</secció>
+        <fila>4</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>MIDNIGHTS CHILDREN</titol>
+        <autor>Salman Rushdie</autor>
+        <paginas>639</paginas>
+        <any>1985</any>
+        <secció>4</secció>
+        <fila>14</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>TOBACCO ROAD</titol>
+        <autor>Erskine Caldwell</autor>
+        <paginas>236</paginas>
+        <any>1949</any>
+        <secció>7</secció>
+        <fila>13</fila>
+        <prestatge>4</prestatge>
+    </llibre>
+    <llibre>
+        <titol>IRONWEED</titol>
+        <autor>William Kennedy</autor>
+        <paginas>913</paginas>
+        <any>1986</any>
+        <secció>1</secció>
+        <fila>5</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE MAGUS</titol>
+        <autor>John Fowles</autor>
+        <paginas>829</paginas>
+        <any>1990</any>
+        <secció>6</secció>
+        <fila>11</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>WIDE SARGASSO SEA</titol>
+        <autor>Jean Rhys</autor>
+        <paginas>308</paginas>
+        <any>1961</any>
+        <secció>8</secció>
+        <fila>3</fila>
+        <prestatge>1</prestatge>
+    </llibre>
+    <llibre>
+        <titol>UNDER THE NET</titol>
+        <autor>Iris Murdoch</autor>
+        <paginas>225</paginas>
+        <any>1959</any>
+        <secció>8</secció>
+        <fila>16</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>SOPHIES CHOICE</titol>
+        <autor>William Styron</autor>
+        <paginas>575</paginas>
+        <any>1946</any>
+        <secció>4</secció>
+        <fila>20</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE SHELTERING SKY</titol>
+        <autor>Paul Bowles</autor>
+        <paginas>643</paginas>
+        <any>1970</any>
+        <secció>1</secció>
+        <fila>6</fila>
+        <prestatge>6</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE POSTMAN ALWAYS RINGS TWICE</titol>
+        <autor>James M. Cain</autor>
+        <paginas>488</paginas>
+        <any>1937</any>
+        <secció>3</secció>
+        <fila>8</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE GINGER MAN</titol>
+        <autor>J.P. Donleavy</autor>
+        <paginas>245</paginas>
+        <any>1968</any>
+        <secció>1</secció>
+        <fila>9</fila>
+        <prestatge>5</prestatge>
+    </llibre>
+    <llibre>
+        <titol>THE MAGNIFICENT AMBERSONS</titol>
+        <autor>Booth Tarkington</autor>
+        <paginas>824</paginas>
+        <any>1991</any>
+        <secció>8</secció>
+        <fila>6</fila>
+        <prestatge>2</prestatge>
+    </llibre>
+</biblioteca>

@@ -1,0 +1,60 @@
+
+tr {
+    padding: 30px;
+    border-collapse: 
+    collapse;border: 
+    5px groove grey;
+}
+
+.tr2 {
+    border-collapse: collapse;
+    border: 2px solid grey;
+}
+
+td {
+    padding: 30px;
+    border-collapse: 
+    collapse;border:
+    5px groove grey;
+}
+
+.td2 {
+    background-color:black;
+    color: white; 
+    text-align: center;
+    font-size:300%;
+    border: 5px groove black;
+}
+
+.td3 {
+    background-color:green;
+    color: white; 
+    text-align: center;
+    font-size:300%;
+    border: 5px groove black;
+}
+
+
+table {
+    border-collapse: collapse;
+    border: 5px groove grey;
+    width:30%;
+}
+
+.table2 {
+    width:100%;
+    border: 5px groove black;
+    border-spacing: 15px;
+}
+
+.fons {
+    background-color: grey;
+    padding: 30px;
+    border-collapse: collapse;
+    border: 5px groove grey;
+}
+
+.negre {
+    border: 5px groove black;
+}
+

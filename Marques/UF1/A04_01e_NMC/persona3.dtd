@@ -1,0 +1,11 @@
+<!ELEMENT persones (persona+)>
+<!ELEMENT persona (nomcomplet,(telefons*|emails*))>
+<!ATTLIST persona
+        NIF CDATA #REQUIRED
+        sexe CDATA #REQUIRED>
+<!ELEMENT nomcomplet (cognom+)>
+<!ATTLIST nomcomplet
+        nom CDATA #REQUIRED>
+<!ELEMENT cognom (#PCDATA)>
+<!ELEMENT telefons (number)>
+<!ELEMENT number (#PCDATA)>

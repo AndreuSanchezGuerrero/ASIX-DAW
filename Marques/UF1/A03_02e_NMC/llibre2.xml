@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<llibre titol="">
+    <llista_autors>
+        <autor nom="" cognoms=""></autor>
+        <autor nom="" cognoms=""></autor>
+    </llista_autors>
+    <estructura>
+        <seccio titol="">
+            <capitol titol="">
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+            <capitol titol="">
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+        </seccio>
+        <seccio titol="">
+            <capitol titol="">
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+            <capitol titol="">
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+        </seccio>
+    </estructura>
+</llibre>

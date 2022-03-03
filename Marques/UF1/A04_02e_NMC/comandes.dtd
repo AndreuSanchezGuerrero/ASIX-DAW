@@ -1,0 +1,20 @@
+<!ELEMENT comandes (articles+,sucursal+)>
+<!ELEMENT articles (article+)>
+<!ELEMENT article (nom,model)>
+<!ELEMENT nom (#PCDATA)> 
+<!ATTLIST nom  tipus (A | B | C) "A">
+<!ELEMENT model EMPTY>
+<!ATTLIST model referencia ID #REQUIRED>
+<!ATTLIST model tipus CDATA #REQUIRED>
+<!ELEMENT sucursal (adreca+,treballador,data,observacio?,nomarticle+)>
+<!ATTLIST sucursal codi ID #REQUIRED>
+<!ELEMENT adreca (#PCDATA)>
+<!ELEMENT treballador (#PCDATA)>
+<!ELEMENT data (#PCDATA)>
+<!ELEMENT observacio (#PCDATA)>
+<!ELEMENT nomarticle (unitats,preu,observacions?,termini)>
+<!ATTLIST nomarticle codi IDREF #REQUIRED> 
+<!ELEMENT unitats (#PCDATA)> 
+<!ELEMENT preu (#PCDATA)>
+<!ELEMENT observacions (#PCDATA)>
+<!ELEMENT termini (#PCDATA)>

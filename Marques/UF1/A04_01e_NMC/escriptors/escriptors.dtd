@@ -1,0 +1,15 @@
+<!ELEMENT escriptors (escriptor+)>
+<!ELEMENT escriptor (nomcomplet, idiomes, premis?, publicacions?)>
+<!ELEMENT nomcomplet (cognom,cognom?)>
+<!ATTLIST nomcomplet
+        nom CDATA #REQUIRED>
+<!ELEMENT cognom (#PCDATA)>
+<!ELEMENT idiomes (idioma+)>
+<!ELEMENT idioma (#PCDATA)>
+<!ELEMENT premis (premi*)>
+<!ELEMENT premi (#PCDATA)>
+<!ELEMENT publicacions (article+|llibre*)>
+<!ELEMENT article (#PCDATA)>
+<!ELEMENT llibre (#PCDATA)>
+<!ATTLIST llibre
+        data CDATA #REQUIRED>

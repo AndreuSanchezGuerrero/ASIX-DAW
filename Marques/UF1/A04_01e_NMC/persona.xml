@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE persones [
+<!ELEMENT persones (persona*)>
+<!ELEMENT persona EMPTY>
+<!ATTLIST persona NIF CDATA #REQUIRED>
+<!ATTLIST persona nom CDATA #REQUIRED>
+<!ATTLIST persona cognom1 CDATA #REQUIRED>
+<!ATTLIST persona cognom2 CDATA #IMPLIED>
+]>
+
+<persones>
+    <persona NIF="778964567N" nom="Josep" cognom1="Terradelles" cognom2=""></persona>
+</persones>

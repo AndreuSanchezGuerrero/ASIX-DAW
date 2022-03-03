@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<llibre>
+    <titol></titol>
+    <llista_autors>
+        <autor>
+            <nom></nom>
+            <cognoms></cognoms>
+        </autor>
+        <autor>
+            <nom></nom>
+            <cognoms></cognoms>
+        </autor>
+    </llista_autors>
+    <estructura>
+        <seccio>
+            <titol></titol>
+            <capitol>
+                <titol></titol>
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+            <capitol>
+                <titol></titol>
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+        </seccio>
+        <seccio>
+            <titol></titol>
+            <capitol>
+                <titol></titol>
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+            <capitol>
+                <titol></titol>
+                <paragraf></paragraf>
+                <paragraf></paragraf>
+            </capitol>
+        </seccio>
+    </estructura>
+</llibre>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE escriptors SYSTEM "escriptors.dtd">
+<escriptors>
+    <escriptor>
+        <nomcomplet nom="Kendall">
+            <cognom>Harmony</cognom>
+            <cognom>Lafayette</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>Russian</idioma>
+        </idiomes>
+        <premis>
+            <premi>Zbigniew Herbert International Literary Award</premi>
+            <premi>Paris Literary Prize</premi>
+            <premi>Ovid Prize</premi>
+        </premis>
+        <publicacions>
+            <article>Language through literature</article>
+        </publicacions>
+    </escriptor>
+    <escriptor>
+        <nomcomplet nom="Leander">
+            <cognom>Barry</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>English</idioma>
+            <idioma>Spanish</idioma>
+        </idiomes>
+        <premis>
+            <premi>KONS International Literary Award</premi>
+            <premi>Paris Literary Prize</premi>
+        </premis>
+        <publicacions>
+            <article>Language through literature</article>
+        </publicacions>
+    </escriptor>
+    <escriptor>
+        <nomcomplet nom="Kingston">
+            <cognom>Hartman</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>Portuguese</idioma>
+        </idiomes>
+        <premis>
+        </premis>
+        <publicacions>
+            <llibre data="1959">Saul Bellow</llibre>
+            <llibre data="1935">THE AGE OF INNOCENCE</llibre>
+            <llibre data="1952">Saul Bellow</llibre>
+        </publicacions>
+    </escriptor>
+    <escriptor>
+        <nomcomplet nom="Blair">
+            <cognom>Kent</cognom>
+            <cognom>Hilary</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>Portuguese</idioma>
+            <idioma>Russian</idioma>
+            <idioma>Indonesian</idioma>
+        </idiomes>
+        <premis>
+            <premi>Dayton Literary Peace Prize</premi>
+            <premi>Neustadt International Prize for Literature</premi>
+            <premi>The Bookseller/Diagram Prize for Oddest Title of the Year</premi>
+        </premis>
+        <publicacions>
+            <llibre data="1987">TROPIC OF CANCER</llibre>
+            <llibre data="1935">PORTNOY'S COMPLAINT</llibre>
+        </publicacions>
+    </escriptor>
+    <escriptor>
+        <nomcomplet nom="Kyle">
+            <cognom>Banning</cognom>
+            <cognom>Helga</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>Spanish</idioma>
+            <idioma>English</idioma>
+            <idioma>Arabic</idioma>
+        </idiomes>
+        <premis>
+            <premi>America Award</premi>
+        </premis>
+        <publicacions>
+            <article>Grey literature</article>
+            <article>Devolving English Literature</article>
+            <article>Literature evolution</article>
+        </publicacions>
+    </escriptor>
+    <escriptor>
+        <nomcomplet nom="Laurent">
+            <cognom>Hazel</cognom>
+            <cognom>Hearne</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>Portuguese</idioma>
+            <idioma>French</idioma>
+            <idioma>Hindi</idioma>
+        </idiomes>
+        <premis>
+            <premi>Common Wealth Award of Distinguished Service</premi>
+        </premis>
+        <publicacions>
+            <llibre data="1956">LORD OF THE FLIES</llibre>
+        </publicacions>
+    </escriptor>
+    <escriptor>
+        <nomcomplet nom="Autumn">
+            <cognom>Boris</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>Bengali</idioma>
+        </idiomes>
+        <premis>
+        </premis>
+        <publicacions>
+            <llibre data="1933">FROM HERE TO ETERNITY</llibre>
+        </publicacions>
+    </escriptor>
+    <escriptor>
+        <nomcomplet nom="Honore">
+            <cognom>Benoit</cognom>
+        </nomcomplet>
+        <idiomes>
+            <idioma>English</idioma>
+            <idioma>French</idioma>
+            <idioma>Spanish</idioma>
+        </idiomes>
+        <premis>
+        </premis>
+        <publicacions>
+            <article>History of Spanish literature</article>
+        </publicacions>
+    </escriptor>
+
+</escriptors>

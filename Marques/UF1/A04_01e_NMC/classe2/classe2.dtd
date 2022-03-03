@@ -1,0 +1,8 @@
+<!ELEMENT classe (tutor, alumne+)>
+<!ELEMENT tutor (NIF, nom, cognom+, telefon*, email*)>
+<!ELEMENT NIF (#PCDATA)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT cognom (#PCDATA)>
+<!ELEMENT telefon (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT alumne (NIF, nom, cognom+, telefon*, email*)>

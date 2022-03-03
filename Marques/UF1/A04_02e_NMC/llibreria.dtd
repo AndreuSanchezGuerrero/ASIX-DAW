@@ -1,0 +1,16 @@
+<!ELEMENT llibreria (llibres, categories)>
+<!ELEMENT llibres (producte+)>
+<!ELEMENT producte (autor*, preu*, editor*, quantitat*, titol*)>
+<!ATTLIST producte
+        cat CDATA #REQUIRED>
+<!ELEMENT autor (#PCDATA)>
+<!ELEMENT preu (#PCDATA)>
+<!ELEMENT editor (#PCDATA)>
+<!ELEMENT quantitat (#PCDATA)>
+<!ELEMENT titol (#PCDATA)>
+<!ELEMENT categories (categoria+)>
+<!ELEMENT categoria EMPTY>
+<!ATTLIST categoria
+        code CDATA #REQUIRED
+        descripcio CDATA #REQUIRED
+        nota CDATA #IMPLIED>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE persones [
+<!ELEMENT persones (persona+)>
+<!ELEMENT persona (nomcomplet,telefons)>
+<!ATTLIST persona NIF CDATA #REQUIRED>
+<!ATTLIST persona sexe CDATA #IMPLIED>
+<!ATTLIST nomcomplet nom CDATA #REQUIRED>
+<!ELEMENT nomcomplet (cognom+)>
+<!ELEMENT cognom (#PCDATA)>
+<!ELEMENT telefons (number+)>
+<!ELEMENT number (#PCDATA)>
+]>
+
+<persones>
+    <persona NIF="778964567N" sexe="home">
+        <nomcomplet nom="Joan">
+            <cognom>Terradelles</cognom>
+        </nomcomplet>
+        <telefons>
+            <number>657478389</number>
+        </telefons>
+    </persona>
+</persones>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="socis">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="soci"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="soci">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:choice>
+            <xs:sequence>
+              <xs:element ref="num"/>
+              <xs:element ref="data"/>
+            </xs:sequence>
+            <xs:element ref="clau"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:element ref="nom"/>
+        <xs:element ref="cognom"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="cognom"/>
+        </xs:sequence>
+        <xs:choice>
+          <xs:element ref="datanaixement"/>
+          <xs:element ref="edat"/>
+        </xs:choice>
+        <xs:sequence maxOccurs="unbounded">
+          <xs:element ref="telefon"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="num" type="xs:string"/>
+
+  <xs:element name="data" type="xs:string"/>
+
+  <xs:element name="clau" type="xs:string"/>
+
+  <xs:element name="nom" type="xs:string"/>
+
+  <xs:element name="cognom" type="xs:string"/>
+
+  <xs:element name="datanaixement" type="xs:string"/>
+
+  <xs:element name="edat" type="xs:string"/>
+
+  <xs:element name="telefon" type="xs:string"/>
+
+</xs:schema>

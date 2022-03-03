@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <html>
+        <body>
+            <h1>INCIDÈNCIES</h1>
+            <form action="mailto:n.masso@sapalomera.cat" autocomplete="on">
+                <label>Nom:</label><br>
+                <input type="text" required><br>
+                <label>Cognoms:</label><br>
+                <input type="text" required><br>
+                <label>Email</label><br>
+                <input type="email"required><br>
+                <label>Ubicacio:(aula)</label><br>
+                <select required>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select><br>
+                <label>Categoria</label><br>
+                <select required>
+                    <option>Documents</option>
+                    <option>Atenció</option>
+                    <option>Qualitat</option>
+                    <option>Mida</option>
+                    <option>Cobrament</option>
+                </select><br>
+                <label>Explicat:</label><br>
+                <textarea rows="4" required>Descriu aquí la teva incidencia...</textarea><br>
+                <label>Urgencia</label><br>
+                <select required>
+                    <option>No corre pressa</option>
+                    <option>Urgent</option>
+                    <option>Molt urgent</option>
+                </select required><br>
+                <label>Estat:</label><br>
+                <ul>
+                    <li><u>Pendent</u></li>
+                    <li>Resolta</li>
+                </ul><br>
+                <input type="submit" value="Submit">
+            </form>
+        </body>
+    </html>

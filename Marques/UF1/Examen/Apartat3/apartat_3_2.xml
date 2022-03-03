@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cartes>
+    <carta tipus="baralla">
+        <pal>cors</pal>
+        <numero>6</numero>
+    </carta>
+    <carta tipus="baralla">
+        <pal>diamant</pal>
+        <numero>K</numero>
+    </carta>
+    <carta tipus="baralla">
+        <pal>trèvol</pal>
+        <numero>8</numero>
+    </carta>
+    <carta tipus="restaurant">
+        <plat tipus="entrant">
+            <nom>croquetes</nom>
+            <preu>5</preu>
+        </plat>
+        <plat tipus="postre">
+            <nom>flam</nom>
+            <preu>3</preu>
+        </plat>
+        <plat tipus="segon">
+            <nom>carrillada</nom>
+            <preu>12</preu>
+        </plat>
+    </carta>
+</cartes>

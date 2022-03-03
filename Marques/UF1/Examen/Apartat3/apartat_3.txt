@@ -1,0 +1,6 @@
+Tots els elements XML s'han de niuar(ns si està be, em refereixo a "nested") correctament.
+Tots els documents XML han de tenir un element arrel.
+Tots els elements XML han de tenir una etiqueta de tancament.
+Les etiquetes XML distingeixen entre majúscules i minúscules.
+Els valors dels atributs sempre s'han de citar.
+Alguns caràcters tenen un significat especial.

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE cooperativa SYSTEM "coop.dtd">
+<cooperativa>
+    <soci clau="VQO0JRCJ">
+        <nomcomplet nom="Lawley">
+            <cognom>Kerwin</cognom>
+        </nomcomplet>
+        <data>26/07/1987</data>
+        <telefons>
+            <telefon>680076743</telefon>
+        </telefons>
+    </soci>
+    <soci clau="JI3FAVHL">
+        <nomcomplet nom="Heida">
+            <cognom>Hartwood</cognom>
+            <cognom>Kelby</cognom>
+        </nomcomplet>
+        <edat>37</edat>
+        <telefons>
+            <telefon>622721258</telefon>
+            <telefon>687405164</telefon>
+            <telefon>680274299</telefon>
+        </telefons>
+    </soci>
+    <soci clau="NDTHXEPO">
+        <nomcomplet nom="Harriet">
+            <cognom>Kacia</cognom>
+            <cognom>Iona</cognom>
+        </nomcomplet>
+        <telefons>
+            <telefon>689673971</telefon>
+        </telefons>
+    </soci>
+    <soci clau="S1FRQCY6">
+        <nomcomplet nom="Harford">
+            <cognom>Hartwood</cognom>
+        </nomcomplet>
+        <data>29/09/1977</data>
+        <telefons>
+            <telefon>669851058</telefon>
+            <telefon>616248106</telefon>
+        </telefons>
+    </soci>
+    <soci clau="295_2020-01-08">
+        <nomcomplet nom="Langley">
+            <cognom>Holda</cognom>
+        </nomcomplet>
+        <edat>37</edat>
+        <telefons>
+            <telefon>675739611</telefon>
+        </telefons>
+    </soci>
+    <soci clau="307_2020-01-08">
+        <nomcomplet nom="Idelle">
+            <cognom>Huela</cognom>
+            <cognom>Baird</cognom>
+        </nomcomplet>
+        <telefons>
+            <telefon>657071854</telefon>
+            <telefon>644524424</telefon>
+            <telefon>664929993</telefon>
+        </telefons>
+    </soci>
+</cooperativa>

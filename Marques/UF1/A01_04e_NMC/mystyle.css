@@ -1,0 +1,109 @@
+table{
+    border-collapse: collapse;
+}
+
+.blue {
+    color: darkblue;
+    font-family: Helvetica;
+    font-size: 30px;
+    border-bottom-style: dashed;
+}
+
+h2{
+    font-size: 20px;
+}
+
+h3 {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: white;
+    text-align: center;
+}
+
+td, th{
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+}
+
+.td1 {
+    margin:auto;
+    background-color: red;
+    color: white;
+    padding: 5px;
+}
+
+.gris {
+    background-color: lightgray;
+}
+
+a.peu {
+    color: salmon;
+}
+
+th {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-family: Helvetica;
+    text-align: left;
+}
+
+div.error {
+    background-color: red;
+    padding: 10px;
+    color: white;
+    font-family: helvetica;
+    width: 80%;
+    margin: auto;
+}
+
+p.error {
+    color: red;
+}
+
+.peu {
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+/* Aqui començen les configuracions de la altra web */
+
+li a {
+    text-decoration: none;
+}
+
+.toc {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    width: 35%;
+    border-radius: 15px;
+    background-color: #0276e3;
+}
+
+.tocnumber {
+    color: black;
+}
+
+.toctext {
+    text-decoration: underline;
+    color: white;
+}
+
+.titoltaulacontinguts {
+    color: white;
+}
+
+.tauladecontinguts {
+    background-color: #5bd4ff;
+    width: 70%;
+    border-radius: 15px;
+}
+
+.mw-headline {
+    border-bottom-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
