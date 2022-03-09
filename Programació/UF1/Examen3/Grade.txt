@@ -1,0 +1,18 @@
+Bàsquet: 9
+Bàsquet Millora: 4
+Lletres:  10
+Lletres Millora: 10
+Palíndromos: 6
+Palíndromos Millora: 10
+Lliga: 0
+
+Nota examen: 6,3
+Palíndromos:
+Has llegit l'enunciat, s'ha de fer per 10 paraules. Nom´s els fas per una
+
+Lliga: El que fas no té res a veure al el que demano
+
+Marcador bàsquet:
+Falta fer bé el format de dades, quan passes a puntuacions de  dues xifres el marcador es decontrola
+
+Millora bàsquet: bon intent però no corntroles puntiuacions diferents de 1, 2 o 3

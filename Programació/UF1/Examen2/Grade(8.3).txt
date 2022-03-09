@@ -1,0 +1,26 @@
+Feedback
+ex1:(7,5)
+Hauria d'enumerar els inputs, com l'exemple
+Llegeix 11 paraules
+ex1M1(8,5)
+Ha de ser quit()
+Quan poses la paraula d'aturada, ha de mostrar el resultat, la frase. Així que en aquest cas millor fer servir altra tècnica break o sentinella
+No té en comptes les majúscules.
+
+Ex2:(9,5)
+print(taula()), aquest print sobra, ja el tens a la funció taula
+Les alineacions no és lo teu
+Enlloc del for podies haver fet servir un "in"
+
+Ex2M1:(8)
+Fas el doble recorregut d'una llista, això és ineficient, aquest exercici es pot fer amb un únic recorregut
+
+Ex3:(7)
+I el bucle que ha de parar quan una de les dades sigui buida?
+
+if neg == False ha de ser un elif, ja que sinó quan la llista sigui buida mostrarà la taula
+
+Ex3M1:(10)
+sobra el print a print(taula), per això e surt el none
+Points
+8.3 / 10

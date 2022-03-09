@@ -1,0 +1,22 @@
+Feedback
+Ex1(9): En el mes petit i mes gran has de fer reserva en columna per l'alineació a la dreta 20.3f millor
+El elif podria ser un else sense condició i així et podrien e trar els 2 números iguals
+
+Ex2(9,5)
+IMC <= 18.5 hauria de ser <
+
+Ex2M2(10)
+
+Ex3(8)
+No demanava 2 decimals a les Lbs i no s'han de truncar les polzades
+Curiosa manera de posar " per les polzades amb \" es pot o amb el seu codi chr(34) o chr(ord('"')) o ....
+
+Ex3M1(10)
+n == "" or p1[0] == "-" or a2[0] == "-" 
+
+més elegant, ja que p i a són numeros, fer p<0 or a<0
+
+Tens un 9,2 a la Av. Inicial et sortirà un 9
+
+Points
+9.2 / 10
