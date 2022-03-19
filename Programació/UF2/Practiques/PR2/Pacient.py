@@ -7,5 +7,5 @@ class pacient:
     iniciContagi:date 
     fiContagi:date 
     def __init__(self,codi:int): 
-        self.codi = codi 
+        self.Codi = codi 
 

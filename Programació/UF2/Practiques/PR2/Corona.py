@@ -1,10 +1,10 @@
 #el codi autoincrmen tal coincideix amb les altres variables codi, sh'ha de canviar
 from datetime import *
 import re
-from pacient import *
+from Pacient import *
 from os import system, name
 
-def escullOpcio(n):
+def escullOpció(n):
     patro = "^\d{1,}$"
     while True:
         o = input("Opció: ")
@@ -25,8 +25,8 @@ def cap():
     print("-"*65)
 
 def printda(p):
-    espai = (" "*(5-len(str((p.codi)))))
-    print(f"{p.codi}{espai}-   {p.dataNaixement}   -  {p.sexe}   -  {p.estat} -  {p.iniciContagi}   -   {p.fiContagi}")
+    espai = (" "*(5-len(str((p.Codi)))))
+    print(f"{p.Codi}{espai}-   {p.dataNaixement}   -  {p.sexe}   -  {p.estat} -  {p.iniciContagi}   -   {p.fiContagi}")
 
 #Metodes Pacients
 def nouPacient(codi):    
@@ -49,21 +49,31 @@ def nouPacient(codi):
     pacients.append(p)
     cercarPacient(pacients,codi)
 
-def canviEstatPacient(p:pacient,estat:str): #estic AMB AQEUST
-    estat = int(input("Estat (0=Lleu 1=Greu 2=UCI 3=Mort): ")) #afegir try except per a opcions fora de la llista i de les dates
-    p.estat = estats[estat]
-
 def mostrarPacients(l:list):
     cap()
     for p in l:
         printda(p)
 
-def cercarPacient(l:list,codi):
+def cercarPacient(l:list,codi,opcio):
     for p in l:
-        if p.codi == codi:
-            cap()
-            printda(p)
-            return p
+        if p.Codi == codi:
+            if opcio == 0:
+                cap()
+                printda(p)
+            elif opcio == 1:
+                canviEstatPacient(p)
+            elif opcio == 2:
+                edat(p,input("Data Naixement (diamesany): ")
+    print("Aquest pacient no existeix") #fer q no faci un print per cada pacient no trobat(potser una variable q retorni none?)
+
+def canviEstatPacient(p:pacient):
+    estat = int(input("Estat (0=Lleu 1=Greu 2=UCI 3=Mort): ")) #afegir try except per a opcions fora de la llista i de les dates
+    p.estat = estats[estat]
+
+def edat(p:pacient,dataStr:date):
+    data = datetime.strptime(dataStr,'%d%m%Y').date()
+    edat = data.year - p.dataNaixement.year - ((data.month, data.day) < (p.dataNaixement.month, p.dataNaixement.day))
+    print(f"el pacient {p.Codi} tenia {edat} anys el {data}")
 
 #Codi per omplenar la llista de pacients aleatoriament
 pacients = []
@@ -82,7 +92,6 @@ for i in range(0, 40):
     datenaix = inicio + (final - inicio) * random.random()
     datecontagi = inicio1 + (final1 - inicio1) * random.random()
     p = pacient(codi)
-    p.codi = codi
     p.dataNaixement = datenaix.date()
     p.sexe = random.choice(sexes)
     p.estat = random.choice(estats)
@@ -105,23 +114,14 @@ while not fi:
         #mostrar tots els pacients
         mostrarPacients(pacients)
     elif opcio == "2":
-        cercarPacient(pacients,int(input("Introdueix el codi: ")))
+        cercarPacient(pacients,int(input("Introdueix el codi: ")),0)
     elif opcio == "3":
         #Afegir Pacient"
         p = nouPacient(codi)
     elif opcio == "4":
-        #Modificar Pacient
-        codi = input("Codi pacient que li vols canviar l'estat: ")
-        p = cercarPacient(pacients,codi)
-        if p:
-            #mostrar pacient
-            estat = input("Nou Estat: ")
-            canviEstatPacient(p,estat)
+        #Modificar Estat
+        cercarPacient(pacients,int(input("Introdueix el codi: ")),1)
     elif opcio == "5":
-        codi = input("Codi pacient que li vols calcular la edat: ")
+        cercarPacient(pacients,int(input("Introdueix el codi: ")),2)
     elif opcio == "6":
         fi = True
-        
-cap(codi)
-espai = (" "*(5-len(str((p.codi)))))
-print(f"{p.codi}{espai}-   {p.dataNaixement}   -  {p.sexe}   -  {p.estat} -  {p.iniciContagi}   -   {p.fiContagi}")
