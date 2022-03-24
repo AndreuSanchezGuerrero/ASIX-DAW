@@ -1,3 +1,4 @@
+# Els cosis s'ha de fer q si selimina un el seguent afegit vaigi alla i tal
 from datetime import *
 from omplir import X
 
@@ -6,9 +7,12 @@ from omplir import X
 alumnes = {}
 # materies és un diccionari que tindrà com a Key el codi de la materia i com a value la pròpia matèria
 materies = {}
-codi = 0
+codia = 0
+codim = 0
 
 # Classes
+
+
 class alumne:
     def __init__(self, Codia: str, Nom: str, Cognom: str, DataNaixement: date):
         self.Codia = Codia
@@ -30,30 +34,32 @@ class materia:
 
 
 def nouAlumne():
-    global codim 
+    global codia
     Nom = input("Nom: ")
     Cognom = input("Cognom: ")
     # es podria fer graficament la seleccio de dates
     dataStr = input("Data Naixement (diamesany): ")
     DataNaixement = datetime.strptime(dataStr, '%d%m%Y').date()
-    a = alumne(codi, Nom, Cognom, DataNaixement)
-    codi = codi + 1
+    a = alumne(codia, Nom, Cognom, DataNaixement)
+    codia = codia + 1
     return a
 
 
 def novaMateria():
-    m = 
-    pass
+    global codim
+    m = materia(codim, Nom)
+    codim = codim + 1
+    return m
 
 
 def afegirAlumne(a: Alumne):
-    alumnes[a.codi] = a
-
+    # Afegirà l'alumne a al diccionaru alumnes
+    alumnes.update({a.codia: a})
 
 
 def afegirMateria(m: Materia):
     # Afegirà la materia m al diccionaru materies
-    pass
+    materies.update({m.codim: m})
 
 
 def eliminarAlumne(codiAlumne: str):
@@ -77,7 +83,8 @@ def matriculaAlumne(codiAlumne: str, codiMateria: str):
     # afegirà el coidiMateria a alumne a, per tant, l'afegirà al diccionai a.Materies, amb value buit, el value serà la nota
     # afegirà l'alumne a la materia m, l'afegirà a la llista m.Alumnes
     # Tot l'anterior sempre comprovant que existeixen l'alumne i la materia
-    pass
+    a = alumnes[codiAlumne]
+    a.materies.update({input("aaa"): "No avaluat"})
 
 
 def desmatriculaAlumne(codiAlumne: str, codiMateria: str):
