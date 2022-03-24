@@ -4,8 +4,9 @@ from tkinter import ttk
 root = Tk()
 root.title('SaPalomera')
 root.geometry('600x400+50+50')
-root.resizable(False, False)#treureho si ajustantla no passa res
-root.iconbitmap('/logo-institut-sapalomera.ico')
+root.resizable(False, False)#treureho si ajustantla no es descuadra
+icon=PhotoImage('Programació/UF2/Practiques/PR3.Institut/sapa.ico')#no funciona
+root.iconphoto(True,icon)
 
 root.mainloop()
 
