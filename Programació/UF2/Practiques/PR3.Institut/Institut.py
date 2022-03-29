@@ -47,9 +47,10 @@ def nouAlumne():
 
 def novaMateria():
     global codim
-    m = materia(codim, Nom)
+    m = materia(codim, input("Nom de la materia"))
     codim = codim + 1
     return m
+
 
 
 def afegirAlumne(a: Alumne):
