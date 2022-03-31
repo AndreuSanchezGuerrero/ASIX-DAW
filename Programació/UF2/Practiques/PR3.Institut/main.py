@@ -8,6 +8,7 @@ root.resizable(False, False)#treureho si ajustantla no es descuadra
 icon=PhotoImage('Programació/UF2/Practiques/PR3.Institut/sapa.ico')#no funciona
 root.iconphoto(True,icon)
 
+
 root.mainloop()
 
 
