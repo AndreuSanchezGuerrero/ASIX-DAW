@@ -65,7 +65,7 @@ def afegirMateria(m: Materia):
 def eliminarAlumne(codiAlumne: str):
     # Elimina del diccionary alumnes, l'alumne que té com a codi codiAlumne
     # Ha de eliminar-lo també de totes les materies que estigui matriculat
-
+    # Deletes the alumn from the dictionary and delete him from all the subjects he is enrolled
     # shuara de eliminar el codi tmb i per tant fer un buscador de codis vuits o be canviar el codi de tots els alumnes a un menys
     # tmb es podria fer un metoide per afegir un alumne a un codi q ja exiteix movent tots els sltres una posicio
     pass
