@@ -1,6 +1,8 @@
-# Els cosis s'ha de fer q si selimina un el seguent afegit vaigi alla i tal
+# Els codis s'ha de fer q si selimina un el seguent afegit vaigi alla i tal
+
 from datetime import *
-from omplir import X
+from omplir import *
+from clases import *
 
 # Variables Globals
 # alumnes és un diccionari que tindrà com a Key el codi de l'alumne, i com a Value al propi alumne
@@ -10,28 +12,7 @@ materies = {}
 codia = 0
 codim = 0
 
-# Classes
-
-
-class alumne:
-    def __init__(self, Codia: str, Nom: str, Cognom: str, DataNaixement: date):
-        self.Codia = Codia
-        self.Nom = Nom
-        self.Cognom = Cognom
-        self.DataNaixement = DataNaixement
-        # self.Materies és un diccionari que tindrà com a Key el codi de MAtèria, i com a value la nota que ha tret l'alumnes de la matèria
-        self.Materies = {}
-
-
-class materia:
-    def __init__(self, Codim: str, Nom: str):
-        self.Codim = Codim
-        self.Nom = Nom
-        # self.Alumnes és una llista que contindrà els alumnes que estan matriculats de cada matèria. Han de ser els alumnes(Clss Alumne), no els codis d'alumnes
-        self.Alumnes = []
-
 # Funcions que heu de programar
-
 
 def nouAlumne():
     global codia
@@ -47,76 +28,119 @@ def nouAlumne():
 
 def novaMateria():
     global codim
-    m = materia(codim, input("Nom de la materia"))
+    m = materia(codim, input("Nom de la materia: "))
     codim = codim + 1
     return m
 
-
-
-def afegirAlumne(a: Alumne):
+#potser aquestes dos es poden incloure en una funció perque no es necessari repetir
+def afegirAlumne(a: alumne):
     # Afegirà l'alumne a al diccionaru alumnes
     alumnes.update({a.codia: a})
 
 
-def afegirMateria(m: Materia):
+def afegirMateria(m: materia):
     # Afegirà la materia m al diccionaru materies
     materies.update({m.codim: m})
 
 
-def eliminarAlumne(codiAlumne: str):
+def eliminarAlumne(codiAlumne: int):
     # Elimina del diccionary alumnes, l'alumne que té com a codi codiAlumne
     # Ha de eliminar-lo també de totes les materies que estigui matriculat
     # Deletes the alumn from the dictionary and delete him from all the subjects he is enrolled
     # shuara de eliminar el codi tmb i per tant fer un buscador de codis vuits o be canviar el codi de tots els alumnes a un menys
     # tmb es podria fer un metoide per afegir un alumne a un codi q ja exiteix movent tots els sltres una posicio
-    pass
+    if codiAlumne in alumnes:
+        a = alumnes[codiAlumne]
+        for m in a.materies:
+            materies[m].Alumnes.remove(a)
+        alumnes.pop(codiAlumne)
+    else:
+        print("No existeix aquest alumne")
 
 
-def eliminarMateria(codiMateria: str):
+def eliminarMateria(codiMateria: int):
     # Eliminar la materia amb codiMateria del diccionari materies,
     # i també del diccionari a.materies de tots els alumnes que estaven matriculats d'aquella matèria
-    pass
+    if codiMateria in materies:
+        m = materies[codiMateria]
+        for a in m.Alumnes:
+            a.materies.pop(codiMateria)
+        materies.pop(codiMateria)
 
 
-def matriculaAlumne(codiAlumne: str, codiMateria: str):
+def matriculaAlumne(codiAlumne: int, codiMateria: int):
     # agafarà l'alumne a, que té com a codi codiAlumne del dicc alumnes
     # agafarà la materia m, que té com a codi codiMateria del dicc materies
     # afegirà el coidiMateria a alumne a, per tant, l'afegirà al diccionai a.Materies, amb value buit, el value serà la nota
     # afegirà l'alumne a la materia m, l'afegirà a la llista m.Alumnes
     # Tot l'anterior sempre comprovant que existeixen l'alumne i la materia
-    a = alumnes[codiAlumne]
-    a.materies.update({input("aaa"): "No avaluat"})
+    if codiexists(codiAlumne,codiMateria) != False:
+        #mirar si ja esta matriculat
+        a = alumnes[codiAlumne]
+        m = materies[codiMateria] #amb tkinter potser posar q surti al costat de la pantalla
+        a.materies.update({codiMateria: "No avaluat"})
+        m.Alumnes.append(a) #potser reduir a nomes codi per estalviar espai (mitrar mostrar notes)
 
 
-def desmatriculaAlumne(codiAlumne: str, codiMateria: str):
+def desmatriculaAlumne(codiAlumne: int, codiMateria: int):
     # Ha de fer el contrari que el métode anterior
-    pass
+    if codiexists(codiAlumne,codiMateria) != False:
+        a = alumnes[codiAlumne]
+        m = materies[codiMateria]
+        a.materies.pop(codiMateria)
+        m.Alumnes.remove(a)
 
 
-def estaMatriculat(codiAlumne: str, codiMateria: str):
+def estaMatriculat(codiAlumne: int, codiMateria: int):
     # retornarà True si l'alumne ja està matriculat de la materia i false sinó està matriculat
-    pass
+    if codiexists(codiAlumne,codiMateria) != False:
+        a = alumnes[codiAlumne]
+        m = materies[codiMateria]
+        if m in a.materies:
+            return True
+        else:
+            return False
 
 
-def posarNota(codiAlumne: str, codiMateria: str, nota: int):
+def posarNota(codiAlumne: int, codiMateria: int, nota: int):
     # Servirà per posar nota a l'alumne a
     # Comprovarà que l'alumne està matriculat de la materia, i després li possarà nota
     # a[codiMateria]=nota
-    pass
+    if codiexists(codiAlumne,codiMateria) != False:
+        if estaMatriculat(codiAlumne,codiMateria) == True:
+            a = alumnes[codiAlumne]
+            a.materies[codiMateria] = input("Nota: ") #potser posar nota de: materia
 
 
-def mostrarNotesMateria(codiMateria: str):
+
+def mostrarNotesMateria(codiMateria: int):
     # Li passarem el codi d'una Matèria i ens mostrarà per pantalla un llistat amb les següents columnes:
-    # Nom Materia    CodiAlumne  NomAlumne Nota
+    # Nom Materia  CodiAlumne  NomAlumne Nota
     # Si l'alumne no té nota, mostrarà 2 guionets --
-    pass
+    if codiMateria in materies:
+        m = materies[codiMateria]
+        for a in m.Alumnes:
+            print(m.nom, a.codia, a.nom, a.materies[codiMateria])
+    else:
+        print("No existeix aquesta materia")
 
 
-def mostrarNotesAlumne(codiAlumne: str):
+def mostrarNotesAlumne(codiAlumne: int):
     # Li passarem el codi d'un alumne i ens mostrarà per pantalla un llistat amb les següents columnes:
     # Nom Materia  Nota
     # Si l'alumne no té nota, mostrarà 2 guionets --
-    pass
+    if codiAlumne in alumnes:
+        a = alumnes[codiAlumne]
+        for m in a.materies:
+            print(materies[m].nom, a.materies[m].nota)
+    else:
+        print("No existeix aquest alumne")
 
 
-codi = 0
+def codiexists(codia: int,codim: int):
+        if codia not in materies:
+            print("l'alumne no existeix")
+            return False
+        elif codim not in materies:
+            print("la materia no existeix")
+            return False
