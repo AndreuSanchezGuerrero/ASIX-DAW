@@ -13,7 +13,7 @@ alumnes = {}
 # materies és un diccionari que tindrà com a Key el codi de la materia i com a value la pròpia matèria
 materies = {}
 
-inicio = datetime(1967, 1, 1) 
+inicio = datetime(1996, 1, 1) 
 final = datetime(2003, 12, 31) 
 
 codia = 0
@@ -23,12 +23,13 @@ for i in range(0,len(materies)):
     m = materia(i,nomsmateries[i])
     materies.update({i:m})
 
-for i in noms:
-    datanaix: ((inicio + (final - inicio) * random()).date())
+for i in range(0,20):
+    datanaix = ((inicio + (final - inicio) * random()).date())
     a = alumne(i,choice(noms),choice(cognoms),datanaix)
-    for i in range(0,randint(4,len(nomsmateries))):
+    for y in range(0,randint(4,len(nomsmateries))):
         a.Materies.update({choice(nomsmateries) : randint(0,10)})
     alumnes.update({i:a})
 
-for i in range(0,len(alumnes)):
+for i in alumnes:
+    a = alumnes[i]
     print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)

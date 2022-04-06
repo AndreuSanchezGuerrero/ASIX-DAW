@@ -4,15 +4,15 @@ from datetime import *
 from omplir import *
 from clases import *
 
-# Variables Globals
-# alumnes és un diccionari que tindrà com a Key el codi de l'alumne, i com a Value al propi alumne
-alumnes = {}
-# materies és un diccionari que tindrà com a Key el codi de la materia i com a value la pròpia matèria
-materies = {}
-codia = 0
-codim = 0
+codia = len(alumnes)
+codim = len(materies)
 
 # Funcions que heu de programar
+
+def mostrarAlumnes():
+    for i in alumnes:
+        a = alumnes[i]
+        print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
 
 def nouAlumne():
     global codia
