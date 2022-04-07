@@ -14,18 +14,6 @@ def mostrarAlumnes():
         a = alumnes[i]
         print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
 
-def nouAlumne():
-    global codia
-    Nom = input("Nom: ")
-    Cognom = input("Cognom: ")
-    # es podria fer graficament la seleccio de dates
-    dataStr = input("Data Naixement (diamesany): ")
-    DataNaixement = datetime.strptime(dataStr, '%d%m%Y').date()
-    a = alumne(codia, Nom, Cognom, DataNaixement)
-    codia = codia + 1
-    return a
-
-
 def novaMateria():
     global codim
     m = materia(codim, input("Nom de la materia: "))
@@ -35,6 +23,8 @@ def novaMateria():
 #potser aquestes dos es poden incloure en una funció perque no es necessari repetir
 def afegirAlumne(a: alumne):
     # Afegirà l'alumne a al diccionaru alumnes
+    global codia
+    a = alumne()
     alumnes.update({a.codia: a})
 
 
