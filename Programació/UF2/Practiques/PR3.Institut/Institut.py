@@ -1,55 +1,25 @@
 from tkinter import *
 from tkinter import ttk
 from datetime import *
-from tkinter.scrolledtext import ScrolledText
 from omplir import *
 from clases import *
 
-#Finestra amb el formulari per crear nous alumnes
-class NewA(Toplevel): 
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=2)
-        a = ""
-        c = Label(self, text="Codi:").grid(row=0, column=0)
-        Codia = Entry(self).grid(row=0, column=1)
-        n = Label(self, text="Nom:").grid(row=1, column=0)
-        Nom= Entry(self).grid(row=1, column=1)
-        co = Label(self, text="Cognom:").grid(row=2, column=0)
-        Cognom= Entry(self).grid(row=2, column=1)
-        #desegable per triar la data de naixement
-        d = Label(self, text="Data de naixement:").grid(row=3, column=0)
-        d2= Entry(self).grid(row=3, column=1)
-        a = alumne(Codia,Nom,Cognom,d2)
-        e = Button(self, text="Acceptar", command = alumnes.update({Codia:a})).grid(row=4, column=0)
-
-#Finestra amb el formulari per crear noves materies
-class NewM(Toplevel):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=2)
-        m = ""
-        global codim
-        n = Label(self, 
-                text="Nom:").grid(row=0, column=0)
-        Nom = Entry(self).grid(row=0, column=1)
-        m = materia(codim, Nom)
-        e = Button(self,
-                    text="Acceptar", 
-                    command = materies.update({codim:m})).grid(row=1, column=0)
-
+#Menu
 class Menu(Tk):
     def __init__(self):
         super().__init__()
-        self.geometry("1000x500")
+        self.geometry("500x600")
         self.resizable(0, 0)
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
-        self.columnconfigure(2, weight=3)
-        self.columnconfigure(3, weight=1)
-        self.scrollbar = Scrollbar(self).grid(row=0, column=3)
+        self.columnconfigure(2, weight=4)
+        self.rowconfigure(0, weight=1)
+        self.title("Sa Palomera")
+        Button(self, 
+                text="Nou Alumne", 
+                command = self.newA).grid(row=0, column=0,sticky=NS)
+        Button(self, 
+                text="Nova Materia", 
+                command = self.newM).grid(row=0, column=1,sticky=NS)
+        self.scrollbar = Scrollbar(self).grid(row=0, column=3, sticky=W)
         self.listbox = Listbox(self)
         for i in alumnes:
             a = alumnes[i]
@@ -59,14 +29,7 @@ class Menu(Tk):
                                 "Cognom: " + str(a.Cognom), 
                                 "Data Naixement: " + str(a.DataNaixement),
                                 "="*20)
-        self.listbox.grid(row=0, column=2)
-        self.title("Sa Palomera")
-        Button(self, 
-                text="Nou Alumne", 
-                command = self.newA).grid(row=0, column=0)
-        Button(self, 
-                text="Nova Materia", 
-                command = self.newM).grid(row=0, column=1)
+        self.listbox.grid(row=0, column=2, sticky=NSEW)
     def newA(self):
         window = NewA(self)
         window.grab_set()
@@ -74,24 +37,45 @@ class Menu(Tk):
         window = NewM(self)
         window.grab_set()
 
+#Finestra amb el formulari per crear nous alumnes
+class NewA(Toplevel): 
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.columnconfigure(1, weight=2)
+        a = ""
+        Label(self, text="Codi:").grid(row=0, column=0,sticky=N)
+        Codia = Entry(self).grid(row=0, column=1,sticky=N)
+        Label(self, text="Nom:").grid(row=1, column=0)
+        Nom = Entry(self).grid(row=1, column=1)
+        Label(self, text="Cognom:").grid(row=2, column=0)
+        Cognom = Entry(self).grid(row=2, column=1)
+        #desegable per triar la data de naixement
+        Label(self, text="Data de naixement:").grid(row=3, column=0)
+        d2= Entry(self).grid(row=3, column=1)
+        a = alumne(Codia,Nom,Cognom,d2)
+        e = Button(self, text="Acceptar", command = alumnes.update({Codia:a})).grid(row=4, column=0)
+
+#Finestra amb el formulari per crear noves materies
+class NewM(Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.columnconfigure(1, weight=2)
+        m = ""
+        global codim
+        Label(self, 
+                text="Nom:").grid(row=0, column=0,sticky=N)
+        Nom = Entry(self).grid(row=0, column=1,sticky=N)
+        m = materia(codim, Nom)
+        e = Button(self,
+                    text="Acceptar", 
+                    command = materies.update({codim:m})).grid(row=1, column=0)
+
 if __name__ == "__main__":
     menu = Menu()
     menu.mainloop()
 
 
-# Els codis s'ha de fer q si selimina un el seguent afegit vaigi alla i tal
-
-codia = len(alumnes)
-codim = len(materies)
-
 # Funcions que heu de programar
-
-def mostrarAlumnes():
-    llistaAlumnes = Listbox(menu)
-    for i in alumnes:
-        a = alumnes[i]
-        llistaAlumnes.insert(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
-
 def novaMateria():
     global codim
     m = materia(codim, input("Nom de la materia: "))

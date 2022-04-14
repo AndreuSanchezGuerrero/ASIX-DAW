@@ -19,9 +19,10 @@ final = datetime(2003, 12, 31)
 codia = 0
 datanaix = 0
 
-for i in range(0,len(materies)):
+for i in range(0,len(nomsmateries)):
     m = materia(i,nomsmateries[i])
     materies.update({i:m})
+    print(m.Codim,m.Nom)
 
 for i in range(0,20):
     datanaix = ((inicio + (final - inicio) * random()).date())
@@ -29,7 +30,9 @@ for i in range(0,20):
     for y in range(0,randint(4,len(nomsmateries))):
         a.Materies.update({choice(nomsmateries) : randint(0,10)})
     alumnes.update({i:a})
-
-for i in alumnes:
-    a = alumnes[i]
     print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
+
+# Els codis s'ha de fer q si selimina un el seguent afegit vaigi alla i tal
+
+codia = len(alumnes)
+codim = len(materies)

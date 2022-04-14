@@ -2,7 +2,7 @@
 from datetime import date
 
 class alumne:
-    def __init__(self, Codia: str, Nom: str, Cognom: str, DataNaixement: date):
+    def __init__(self, Codia: int, Nom: str, Cognom: str, DataNaixement: date):
         self.Codia = Codia
         self.Nom = Nom
         self.Cognom = Cognom
@@ -12,7 +12,7 @@ class alumne:
 
 
 class materia:
-    def __init__(self, Codim: str, Nom: str):
+    def __init__(self, Codim: int, Nom: str):
         self.Codim = Codim
         self.Nom = Nom
         # self.Alumnes és una llista que contindrà els alumnes que estan matriculats de cada matèria. Han de ser els alumnes(Clss Alumne), no els codis d'alumnes
