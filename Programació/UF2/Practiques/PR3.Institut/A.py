@@ -15,30 +15,6 @@ def eliminarAlumne(codiAlumne: int):
         print("No existeix aquest alumne")
 
 
-def eliminarMateria(codiMateria: int):
-    # Eliminar la materia amb codiMateria del diccionari materies,
-    # i també del diccionari a.materies de tots els alumnes que estaven matriculats d'aquella matèria
-    if codiMateria in materies:
-        m = materies[codiMateria]
-        for a in m.Alumnes:
-            a.materies.pop(codiMateria)
-        materies.pop(codiMateria)
-
-
-def matriculaAlumne(codiAlumne: int, codiMateria: int):
-    # agafarà l'alumne a, que té com a codi codiAlumne del dicc alumnes
-    # agafarà la materia m, que té com a codi codiMateria del dicc materies
-    # afegirà el coidiMateria a alumne a, per tant, l'afegirà al diccionai a.Materies, amb value buit, el value serà la nota
-    # afegirà l'alumne a la materia m, l'afegirà a la llista m.Alumnes
-    # Tot l'anterior sempre comprovant que existeixen l'alumne i la materia
-    if codiexists(codiAlumne,codiMateria) != False:
-        #mirar si ja esta matriculat
-        a = alumnes[codiAlumne]
-        m = materies[codiMateria] #amb tkinter potser posar q surti al costat de la pantalla
-        a.materies.update({codiMateria: "No avaluat"})
-        m.Alumnes.append(a) #potser reduir a nomes codi per estalviar espai (mitrar mostrar notes)
-
-
 def desmatriculaAlumne(codiAlumne: int, codiMateria: int):
     # Ha de fer el contrari que el métode anterior
     if codiexists(codiAlumne,codiMateria) != False:
