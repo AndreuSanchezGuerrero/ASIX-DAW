@@ -15,5 +15,5 @@ class materia:
     def __init__(self, Codim: int, Nom: str):
         self.Codim = Codim
         self.Nom = Nom
-        # self.Alumnes és una llista que contindrà els alumnes que estan matriculats de cada matèria. Han de ser els alumnes(Clss Alumne), no els codis d'alumnes
+        # self.Alumnes és una nalumne que contindrà els alumnes que estan matriculats de cada matèria. Han de ser els alumnes(Clss Alumne), no els codis d'alumnes
         self.Alumnes = []

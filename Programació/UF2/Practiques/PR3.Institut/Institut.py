@@ -22,6 +22,8 @@ def nouAlumne(Nom, Cognom, d2):
         else:
             alumnes.update({Codia: a})
             showinfo(title="Info", message="Alumne creat")
+        for j in materies:
+            a.Materies.update({j: "Null"})
     Nom.delete(0, END)
     Cognom.delete(0, END)
     d2.delete(0, END)
@@ -91,7 +93,8 @@ def eliminarMateria(Codii):
     Codi = int(Codii.get())
     if Codi in materies:
         for a in alumnes:
-            alumnes[a].Materies.pop(Codi)
+            if Codi in alumnes[a].Materies:
+                alumnes[a].Materies.pop(Codi)
         materies.pop(Codi)
         showinfo(title="Info", message="Alumne eliminat")
     else:
@@ -185,12 +188,33 @@ def DesmatA():
             command=lambda: desmatricular(Codia, Codim)).grid(row=2, column=0)
 
 
+#Finestra de les notes Alumnes
+def NotesA():
+    #sha de fer el cercador de alumnes
+    window = Toplevel()
+    Scrollbar(menu).grid(row=0, column=3, rowspan=4, sticky=NSEW)
+    nalumne = Text(window)
+    nalumne.configure(state=NORMAL)
+    nalumne.delete(1.0, END)
+    for i in alumnes:
+        a = alumnes[i]
+        for j in a.Materies:
+            m = materies[j]
+            nalumne.insert(INSERT, materies[j])
+    nalumne.configure(state=DISABLED)
+    nalumne.grid(row=0, column=2, rowspan=4, sticky=NS)
+
+
+#Finestra de les notes Materies
+def NotesM():
+    pass
+
+
 # Menu
 
 menu = Tk()
-menu.geometry("550x600")
 menu.resizable(0, 0)
-menu.columnconfigure(2, weight=4)
+menu.geometry("550x400")
 menu.title("Sa Palomera")
 
 
@@ -213,26 +237,33 @@ ma = Button(
 dma = Button(
         text="Desmatricular Alumne",
         command=DesmatA).grid(row=2, column=1, sticky=NSEW)
+noa = Button(
+        text="Notes Alumne",
+        command=NotesA).grid(row=3, column=0, sticky=NSEW)
+nom = Button(
+        text="Notes Materia",
+        command=NotesM).grid(row=3, column=1, sticky=NSEW)
 
-# Scrollbar
-scrollbar = Scrollbar(menu).grid(row=0, column=3, sticky=W)
+
+#llista autoactualitzable de alumnes (lo ideal seria que s'actualitzes a cada instant pero dona erors al fer scroll)
+scrollbar = Scrollbar(menu).grid(row=0, column=3, rowspan=4, sticky=NSEW)
 llista = Text(menu)
 
 
 def update():
+    #potser posar aqui les altres llistes
     llista.configure(state=NORMAL)
     llista.delete(1.0, END)
     for i in alumnes:
         a = alumnes[i]
         llista.insert(INSERT, ("Codi: " + str(a.Codia) +
-                               "\nNom: " + str(a.Nom) +
-                               "\nCognom: " + str(a.Cognom) +
-                               "\nData Naixement: " + str(a.DataNaixement) +
-                               "\n" + "="*28 + "\n"))
+                                "\nNom: " + str(a.Nom) +
+                                "\nCognom: " + str(a.Cognom) +
+                                "\nData Naixement: " + str(a.DataNaixement) +
+                                "\n" + "="*28 + "\n"))
     llista.configure(state=DISABLED)
-    llista.grid(row=0, column=2, rowspan=4, sticky=NSEW)
-    menu.after(1000, update)
-
+    llista.grid(row=0, column=2, rowspan=4, sticky=NS)
+    menu.after(5000, update)
 
 update()
 
