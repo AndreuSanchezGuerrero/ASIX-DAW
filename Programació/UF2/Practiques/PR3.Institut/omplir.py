@@ -19,11 +19,13 @@ final = datetime(2003, 12, 31)
 codia = 0
 datanaix = 0
 
+#bucle per crear materies
 for i in range(0,len(nomsmateries)):
     m = materia(i,nomsmateries[i])
     materies.update({i:m})
     print(m.Codim,m.Nom)
 
+#bucle per a crear alumnes
 for i in range(0,20):
     datanaix = ((inicio + (final - inicio) * random()).date())
     a = alumne(i,choice(noms),choice(cognoms),datanaix)
@@ -31,6 +33,16 @@ for i in range(0,20):
         a.Materies.update({choice(nomsmateries) : randint(0,10)})
     alumnes.update({i:a})
     print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
+
+#bucle per matricular aleatoriament alumnes a materies
+for i in range(0,60):
+    a = choice(list(alumnes.keys()))
+    m = choice(list(materies.keys()))
+    if m not in alumnes[a].Materies.keys():
+        alumnes[a].Materies.update({m:0})
+        materies[m].Alumnes.append(a)
+for i in materies:
+    print(materies[i].Alumnes)
 
 # Els codis s'ha de fer q si selimina un el seguent afegit vaigi alla i tal
 
