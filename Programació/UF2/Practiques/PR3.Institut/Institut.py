@@ -7,6 +7,7 @@ from clases import *
 
 
 # Finestra amb el formulari per crear nous alumnes
+
 def nouAlumne(Nom, Cognom, d2):
     Codia = len(alumnes) + 1
     N = str(Nom.get())
@@ -24,7 +25,6 @@ def nouAlumne(Nom, Cognom, d2):
     Nom.delete(0, END)
     Cognom.delete(0, END)
     d2.delete(0, END)
-    update()
 
 
 def NewA():
@@ -45,16 +45,15 @@ def NewA():
 
 # Finestra per eliminar alumnes
 
-
 def eliminarAlumne(Codii):
     Codi = int(Codii.get())
     if Codi in alumnes:
         for m in materies:
-            m = materies[m]
-            m.Alumnes.pop(Codi)
+            if Codi in materies[m].Alumnes:
+                m = materies[m]
+                m.Alumnes.pop(Codi)
         alumnes.pop(Codi)
         showinfo(title="Info", message="Alumne eliminat")
-        update()
     else:
         showerror(title="ERROR", message="No s'ha trobat aquest codi")
     Codii.delete(0, END)
@@ -66,11 +65,11 @@ def delAl():
     Codi = Entry(window)
     Codi.grid(row=0, column=2, sticky=N)
     Button(window,
-           text="Eliminar",
-           command=lambda: eliminarAlumne(Codi)).grid(row=1, column=0)
+            text="Eliminar",
+            command=lambda: eliminarAlumne(Codi)).grid(row=1, column=0)
+
 
 # Finestra amb el formulari per crear noves materies
-
 
 def NewM():
     window = Toplevel()
@@ -78,15 +77,15 @@ def NewM():
     m = ""
     global codim
     Label(window,
-          text="Nom:").grid(row=0, column=0, sticky=N)
+            text="Nom:").grid(row=0, column=0, sticky=N)
     Nom = Entry(window).grid(row=0, column=1, sticky=N)
     m = materia(codim, Nom)
     Button(window,
-           text="Acceptar",
-           command=materies.update({codim: m})).grid(row=1, column=0)
+            text="Acceptar",
+            command=materies.update({codim: m})).grid(row=1, column=0)
+
 
 # Finestra per eliminar materies
-
 
 def eliminarMateria(Codii):
     Codi = int(Codii.get())
@@ -95,7 +94,6 @@ def eliminarMateria(Codii):
             alumnes[a].Materies.pop(Codi)
         materies.pop(Codi)
         showinfo(title="Info", message="Alumne eliminat")
-        update()
     else:
         showerror(title="ERROR", message="No s'ha trobat aquest codi")
     Codii.delete(0, END)
@@ -107,11 +105,11 @@ def delM():
     Codi = Entry(window)
     Codi.grid(row=0, column=2, sticky=N)
     Button(window,
-           text="Eliminar",
-           command=lambda: eliminarMateria(Codi)).grid(row=1, column=0)
+            text="Eliminar",
+            command=lambda: eliminarMateria(Codi)).grid(row=1, column=0)
+
 
 # Finestra per a matricular alumnes a les materies
-
 
 def matricular(Codia, Codim):
     Codi = int(Codia.get())
@@ -123,13 +121,12 @@ def matricular(Codia, Codim):
             if a not in materies[Codi2].Alumnes:
                 materies[Codi2].Alumnes.append(Codi)
                 showinfo(title="Info", message="Alumne matriculat")
-                update()
             else:
                 showwarning(
                     title="WARNING", message="Aquest alumne ja esta matriculat a aquesta materia")
         else:
             showerror(title="ERROR",
-                      message="No s'ha trobat aquest codi de materia")
+                        message="No s'ha trobat aquest codi de materia")
     else:
         showerror(title="ERROR", message="No s'ha trobat aquest codi de Alumne")
     Codia.delete(0, END)
@@ -146,11 +143,12 @@ def matA():
     Codim = Entry(window)
     Codim.grid(row=1, column=1, sticky=N)
     Button(window,
-           text="Matricular",
-           command=lambda: matricular(Codia, Codim)).grid(row=2, column=0)
+            text="Matricular",
+            command=lambda: matricular(Codia, Codim)).grid(row=2, column=0)
 
 
-# finestra per desmatricular alumnes de les materies
+# Finestra per desmatricular alumnes de les materies
+
 def desmatricular(Codia, Codim):
     Codi = int(Codia.get())
     Codi2 = int(Codim.get())
@@ -158,7 +156,7 @@ def desmatricular(Codia, Codim):
         if Codi2 in materies:
             if Codi not in materies[Codi2].Alumnes or Codi2 not in alumnes[Codi].Materies:
                 showwarning(title="WARNING",
-                            message="Aquest alumne no esta matriculat a aquesta materia")
+                                message="Aquest alumne no esta matriculat a aquesta materia")
             else:
                 alumnes[Codi].Materies.pop(Codi2)
                 materies[Codi2].Alumnes.remove(Codi)
@@ -166,7 +164,7 @@ def desmatricular(Codia, Codim):
                 update()
         else:
             showerror(title="ERROR",
-                      message="No s'ha trobat aquest codi de materia")
+                        message="No s'ha trobat aquest codi de materia")
     else:
         showerror(title="ERROR", message="No s'ha trobat aquest codi de Alumne")
     Codia.delete(0, END)
@@ -183,8 +181,8 @@ def DesmatA():
     Codim = Entry(window)
     Codim.grid(row=1, column=1, sticky=N)
     Button(window,
-           text="Desmatricular",
-           command=lambda: desmatricular(Codia, Codim)).grid(row=2, column=0)
+            text="Desmatricular",
+            command=lambda: desmatricular(Codia, Codim)).grid(row=2, column=0)
 
 
 # Menu
@@ -198,25 +196,25 @@ menu.title("Sa Palomera")
 
 # Botons
 na = Button(
-    text="Nou Alumne",
-    command=NewA).grid(row=0, column=0, sticky=NSEW)
+        text="Nou Alumne",
+        command=NewA).grid(row=0, column=0, sticky=NSEW)
 ea = Button(
-    text="Eliminar Alumne",
-    command=delAl).grid(row=0, column=1, sticky=NSEW)
+        text="Eliminar Alumne",
+        command=delAl).grid(row=0, column=1, sticky=NSEW)
 nm = Button(
-    text="Nova Materia",
-    command=NewM).grid(row=1, column=0, sticky=NSEW)
+        text="Nova Materia",
+        command=NewM).grid(row=1, column=0, sticky=NSEW)
 em = Button(
-    text="Eliminar Materia",
-    command=delM).grid(row=1, column=1, sticky=NSEW)
+        text="Eliminar Materia",
+        command=delM).grid(row=1, column=1, sticky=NSEW)
 ma = Button(
-    text="Matricular Alumne",
-    command=matA).grid(row=2, column=0, sticky=NSEW)
+        text="Matricular Alumne",
+        command=matA).grid(row=2, column=0, sticky=NSEW)
 dma = Button(
-    text="Desmatricular Alumne",
-    command=DesmatA).grid(row=2, column=1, sticky=NSEW)
+        text="Desmatricular Alumne",
+        command=DesmatA).grid(row=2, column=1, sticky=NSEW)
 
-# Scrollbar (no he trobat com fer q es recarregui amb els canvis)
+# Scrollbar
 scrollbar = Scrollbar(menu).grid(row=0, column=3, sticky=W)
 llista = Text(menu)
 
@@ -233,6 +231,7 @@ def update():
                                "\n" + "="*28 + "\n"))
     llista.configure(state=DISABLED)
     llista.grid(row=0, column=2, rowspan=4, sticky=NSEW)
+    menu.after(1000, update)
 
 
 update()
