@@ -6,7 +6,7 @@ from datetime import *
 #llista amb noms catalans:
 noms = ["Abel","Adam","Adrià","Aidé","Aimar","Aitor","Alan","Albà","Aleix","Aleu","Aniol","Aram","Aran","Aria","Arnau","Artal","Artur","Asier","Benet","Biel","Blai","Boi","Bru","Cai","Cesc","Damià","Dan","David","Drac","Dídac","Edgar","Elian","Elm","Eloi","Eneko","Enric","Enzo","Feliu","Garbí","Gaël","Genís","Gerai","Gil","Grau","Guim","Guiu","Hug","Ian","Iol","Isaac","Iu","Izan","Jan","Joan","Joel","Jofre","Josep","Juli","Jòrdi","Júlia","Lleó","Llop","Lluc","Magí","Manel","Marc","Maria","Martí","Matèu","Max","Nel","Nico","Nil","Noel","Nofre","Olau","Oriol","Ot","Otger","Oto","Oña","Pau","Pep","Pere","Pol","Quel","Quer","Quim","Roc","Roger","Sam","Sergi","Sol","Tom","Ton","Uriel","Xavi","Àlex","Àxel","Èric"]
 cognoms = ["Bladé","Blanquer","Bobé","Bober","Boher","Boter","Bové","Bover","Bubé","Fabra","Fàbraga","Fabre","Fabré","Fàbrega","Fàbregas","Fàbregues","Fabrer","Farré","Farrer","Febre","Febrer","Ferré","Ferrer","Mercadé","Mercader","Moliner","Ollé","Oller","Ollers","Ollés","Sastre","Ullé","Uller","Ullés"]
-nomsmateries = ["Matemàtiques","Ciències","Llenguatge","Idiomes","Socials","Art","Música","Teatre","Tecnologia","Física","Informàtica"]
+nomsmateries = ["Matemàtiques","Ciències","Llenguatge","Idiomes","Socials","Art","Música","Tecnologia","Física","Informàtica"]
 
 # alumnes és un diccionari que tindrà com a Key el codi de l'alumne, i com a Value al propi alumne
 alumnes = {}
@@ -32,10 +32,11 @@ for i in range(0,20):
     for j in range(0,len(materies)):
         m = materies[j]
         if j%randint(1,len(materies)) != 0:
-            a.Materies.update({m.Codim:randint(0,9)})
+            a.Materies.update({m.Codim:float(randint(0,9))})
             m.Alumnes.append(a)
         else:
-            a.Materies.update({m.Codim:"No matriculat"})
+            #per alinear he posat 3 guions enlloc de dos
+            a.Materies.update({m.Codim:"---"})
     alumnes.update({i:a})
     print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
 

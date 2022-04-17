@@ -189,28 +189,58 @@ def DesmatA():
 
 
 #Finestra de les notes Alumnes
-def updateNotes(window, nalumne):
+def updateNotes(nalumne):
     nalumne.configure(state=NORMAL)
     nalumne.delete(1.0, END)
     for i in alumnes:
         a = alumnes[i]
-        nalumne.insert(INSERT, a.Nom + " " + a.Cognom + " "*(17-len(a.Nom)-len(a.Cognom)) + "Notes" + "\n")
+        nalumne.insert(INSERT,str(a.Codia)+ " " + a.Nom + " " + a.Cognom + " "*(17-len(a.Nom)-len(a.Cognom)) + "Notes" + "\n"+ "="*28 + "\n")
         for j in a.Materies:
             m = materies[j]
-            if a.Materies[j] == "No matriculat":
-                nalumne.insert(INSERT, m.Nom + ":" + " "*(13-len(m.Nom)) + str(a.Materies[j]) + "\n")
-            else:
-                nalumne.insert(INSERT, m.Nom + ":" + " "*(19-len(m.Nom)) + str(a.Materies[j]) + "\n")
+            nalumne.insert(INSERT, str(m.Codim)+ " " + m.Nom + ":" + " "*(18-len(m.Nom)) + str(a.Materies[j]) + "\n")
         nalumne.insert(INSERT, "="*28 + "\n") 
     nalumne.configure(state=DISABLED)
-    window.after(5000, update)
+
+def confirmNota(ca,cm,nota,window,nalumne):
+    codia = int(ca.get())
+    codim = int(cm.get())
+    nota1 = float(nota.get())
+    if codia in alumnes:
+        if codim in materies:
+            a = alumnes[codia]
+            if a in materies[codim].Alumnes:
+                alumnes[codia].Materies[codim] = nota1
+                showinfo(title="Info", message="Nota modificada")
+            else:
+                showwarning(title="WARNING", message="Aquest alumne no esta matriculat a aquesta materia")
+        else:
+            showerror(title="ERROR", message="No s'ha trobat aquest codi de materia")
+    else:
+        showerror(title="ERROR", message="No s'ha trobat aquest codi de alumne")
+    ca.delete(0, END)
+    cm.delete(0, END)
+    nota.delete(0, END)
+    updateNotes(window, nalumne)
+
 
 
 def NotesA():
     #sha de fer el cercador de alumnes
     window = Toplevel()
-    nalumne = Text(window)
-    updateNotes(window, nalumne)
+    Label(window, text="CodiAlumne:").grid(row=0, column=0, sticky=N)
+    ca = Entry(window)
+    ca.grid(row=0, column=1, sticky=N)
+    Label(window, text="Codi Materia").grid(row=1, column=0, sticky=N)
+    cm = Entry(window)
+    cm.grid(row=1, column=1, sticky=N)
+    Label(window, text="Nota:").grid(row=2, column=0, sticky=N)
+    nota = Entry(window)
+    nota.grid(row=2, column=1, sticky=N)
+    Button(window,
+            text="Confirmar",
+            command=lambda: confirmNota(ca,cm,nota,window,nalumne)).grid(row=3, column=0, columnspan=2, sticky=NSEW)
+    nalumne = Text(window, width=30)
+    updateNotes(nalumne)
     nalumne.grid(row=0, column=2, rowspan=4, sticky=NS)
     scrollbar = Scrollbar(window, orient=VERTICAL, command=nalumne.yview)
     scrollbar.grid(row=0, column=3, rowspan=4, sticky=NSEW)
@@ -227,7 +257,7 @@ def NotesM():
 
 menu = Tk()
 menu.resizable(0, 0)
-menu.geometry("700x400")
+menu.geometry("580x400")
 menu.title("Sa Palomera")
 
 
@@ -259,7 +289,7 @@ nom = Button(
 
 
 #llista autoactualitzable de alumnes (lo ideal seria que s'actualitzes a cada instant pero dona erors al fer scroll)
-llista = Text(menu)
+llista = Text(menu, width=30)
 llista.grid(row=0, column=2, rowspan=4, sticky=NS)
 scrollbar = Scrollbar(menu, orient=VERTICAL, command=llista.yview)
 scrollbar.grid(row=0, column=3, rowspan=4, sticky=NSEW)
