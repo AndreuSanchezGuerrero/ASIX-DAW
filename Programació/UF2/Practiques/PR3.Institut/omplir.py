@@ -29,17 +29,22 @@ for i in range(0,len(nomsmateries)):
 for i in range(0,20):
     datanaix = ((inicio + (final - inicio) * random()).date())
     a = alumne(i,choice(noms),choice(cognoms),datanaix)
-    for i in range(0,len(materies)):
-        if i%3 != 0:
-            a.Materies.update({i : randint(0,10)})
+    for j in range(0,len(materies)):
+        m = materies[j]
+        if j%randint(1,len(materies)) != 0:
+            a.Materies.update({m.Codim:randint(0,9)})
+            m.Alumnes.append(a)
         else:
-            a.Materies.update({i : "No matriculat"})
-    #mal
-    if a.Materies[i] != "No matriculat":
-        materies[i].Alumnes.append(a)
-        print(materies[i].Alumnes)
+            a.Materies.update({m.Codim:"No matriculat"})
     alumnes.update({i:a})
     print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
+
+#Codi per fer un print dels alumnes de cada materia
+for i in range(0,len(materies)):
+    m = materies[i]
+    print(m.Codim,m.Nom)
+    for j in range(0,len(m.Alumnes)):
+        print(m.Alumnes[j].Codia)
 
 
 

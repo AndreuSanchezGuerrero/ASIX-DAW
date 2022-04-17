@@ -189,20 +189,33 @@ def DesmatA():
 
 
 #Finestra de les notes Alumnes
-def NotesA():
-    #sha de fer el cercador de alumnes
-    window = Toplevel()
-    Scrollbar(menu).grid(row=0, column=3, rowspan=4, sticky=NSEW)
-    nalumne = Text(window)
+def updateNotes(window, nalumne):
     nalumne.configure(state=NORMAL)
     nalumne.delete(1.0, END)
     for i in alumnes:
         a = alumnes[i]
+        nalumne.insert(INSERT, a.Nom + " " + a.Cognom + " "*(17-len(a.Nom)-len(a.Cognom)) + "Notes" + "\n")
         for j in a.Materies:
             m = materies[j]
-            nalumne.insert(INSERT, materies[j])
+            if a.Materies[j] == "No matriculat":
+                nalumne.insert(INSERT, m.Nom + ":" + " "*(13-len(m.Nom)) + str(a.Materies[j]) + "\n")
+            else:
+                nalumne.insert(INSERT, m.Nom + ":" + " "*(19-len(m.Nom)) + str(a.Materies[j]) + "\n")
+        nalumne.insert(INSERT, "="*28 + "\n") 
     nalumne.configure(state=DISABLED)
+    window.after(5000, update)
+
+
+def NotesA():
+    #sha de fer el cercador de alumnes
+    window = Toplevel()
+    nalumne = Text(window)
+    updateNotes(window, nalumne)
     nalumne.grid(row=0, column=2, rowspan=4, sticky=NS)
+    scrollbar = Scrollbar(window, orient=VERTICAL, command=nalumne.yview)
+    scrollbar.grid(row=0, column=3, rowspan=4, sticky=NSEW)
+    nalumne["yscrollcommand"] = scrollbar.set
+
 
 
 #Finestra de les notes Materies
@@ -214,7 +227,7 @@ def NotesM():
 
 menu = Tk()
 menu.resizable(0, 0)
-menu.geometry("550x400")
+menu.geometry("700x400")
 menu.title("Sa Palomera")
 
 
@@ -246,9 +259,11 @@ nom = Button(
 
 
 #llista autoactualitzable de alumnes (lo ideal seria que s'actualitzes a cada instant pero dona erors al fer scroll)
-scrollbar = Scrollbar(menu).grid(row=0, column=3, rowspan=4, sticky=NSEW)
 llista = Text(menu)
-
+llista.grid(row=0, column=2, rowspan=4, sticky=NS)
+scrollbar = Scrollbar(menu, orient=VERTICAL, command=llista.yview)
+scrollbar.grid(row=0, column=3, rowspan=4, sticky=NSEW)
+llista["yscrollcommand"] = scrollbar.set
 
 def update():
     #potser posar aqui les altres llistes
@@ -262,7 +277,6 @@ def update():
                                 "\nData Naixement: " + str(a.DataNaixement) +
                                 "\n" + "="*28 + "\n"))
     llista.configure(state=DISABLED)
-    llista.grid(row=0, column=2, rowspan=4, sticky=NS)
     menu.after(5000, update)
 
 update()
