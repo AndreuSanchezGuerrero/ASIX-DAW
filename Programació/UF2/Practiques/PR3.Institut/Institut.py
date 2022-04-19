@@ -1,3 +1,4 @@
+from curses import window
 from tkinter import *
 from tkinter import ttk
 from tkinter.messagebox import showerror, showwarning, showinfo
@@ -189,19 +190,19 @@ def DesmatA():
 
 
 #Finestra de les notes Alumnes
-def updateNotes(nalumne):
-    nalumne.configure(state=NORMAL)
-    nalumne.delete(1.0, END)
+def updateNotes(nalumnes):
+    nalumnes.configure(state=NORMAL)
+    nalumnes.delete(1.0, END)
     for i in alumnes:
         a = alumnes[i]
-        nalumne.insert(INSERT,str(a.Codia)+ " " + a.Nom + " " + a.Cognom + " "*(17-len(a.Nom)-len(a.Cognom)) + "Notes" + "\n"+ "="*28 + "\n")
+        nalumnes.insert(INSERT,str(a.Codia)+ " " + a.Nom + " " + a.Cognom + " "*(17-len(a.Nom)-len(a.Cognom)) + "Notes" + "\n"+ "="*28 + "\n")
         for j in a.Materies:
             m = materies[j]
-            nalumne.insert(INSERT, str(m.Codim)+ " " + m.Nom + ":" + " "*(18-len(m.Nom)) + str(a.Materies[j]) + "\n")
-        nalumne.insert(INSERT, "="*28 + "\n") 
-    nalumne.configure(state=DISABLED)
+            nalumnes.insert(INSERT, str(m.Codim)+ " " + m.Nom + ":" + " "*(18-len(m.Nom)) + str(a.Materies[j]) + "\n")
+        nalumnes.insert(INSERT, "="*28 + "\n") 
+    nalumnes.configure(state=DISABLED)
 
-def confirmNota(ca,cm,nota,window,nalumne):
+def confirmNota(ca,cm,nota,window,nalumnes):
     codia = int(ca.get())
     codim = int(cm.get())
     nota1 = float(nota.get())
@@ -220,37 +221,80 @@ def confirmNota(ca,cm,nota,window,nalumne):
     ca.delete(0, END)
     cm.delete(0, END)
     nota.delete(0, END)
-    updateNotes(window, nalumne)
+    updateNotes(nalumnes)
+
+#Finestra per mostrar les notes d'un alumne concret
+def cercaA(ca, nalumnes):
+    codia = int(ca.get())
+    window = Toplevel()
+    nalumne = Text(window, width=30, height=10)
+    nalumne.grid(row=0, column=0, sticky=NSEW)
+    nalumne.configure(state=NORMAL)
+    nalumne.delete(1.0, END)
+    a = alumnes[codia]
+    nalumne.insert(INSERT,str(a.Codia)+ " " + a.Nom + " " + a.Cognom + " "*(17-len(a.Nom)-len(a.Cognom)) + "Notes" + "\n"+ "="*28 + "\n")
+    for j in a.Materies:
+        m = materies[j]
+        nalumne.insert(INSERT, str(m.Codim)+ " " + m.Nom + ":" + " "*(18-len(m.Nom)) + str(a.Materies[j]) + "\n") 
+    nalumne.configure(state=DISABLED)
+    nalumne.grid(row=0, column=2, sticky=NS)
+    scrollbar = Scrollbar(window, orient=VERTICAL, command=nalumnes.yview)
+    scrollbar.grid(row=0, column=3, sticky=NSEW)
+    nalumne["yscrollcommand"] = scrollbar.set
+    ca.delete(0, END)
+    updateNotes(nalumnes)
+
+#Finestra per mostrar les notes per cada materia
+def cercaM(cm, nalumnes):
+    codim = int(cm.get())
+    window = Toplevel()
+    nmateria = Text(window, width=30, height=20)
+    nmateria.grid(row=0, column=0, sticky=NSEW)
+    nmateria.configure(state=NORMAL)
+    nmateria.delete(1.0, END)
+    m = materies[codim]
+    nmateria.insert(INSERT,str(m.Codim)+ " " + m.Nom + " "*(18-len(m.Nom)) + "Notes" + "\n" + "="*28 + "\n")
+    for j in alumnes:
+        a = alumnes[j]
+        if a in m.Alumnes:
+            nmateria.insert(INSERT, str(a.Codia)+ " " + a.Nom + " " + a.Cognom + " "*(19-len(a.Nom)-len(a.Cognom)-len(str(a.Codia))) + str(a.Materies[codim]) + "\n")
+    nmateria.configure(state=DISABLED)
+    nmateria.grid(row=0, column=2, sticky=NS)
+    scrollbar = Scrollbar(window, orient=VERTICAL, command=nalumnes.yview)
+    scrollbar.grid(row=0, column=3, sticky=NSEW)
+    nmateria["yscrollcommand"] = scrollbar.set
+    cm.delete(0, END)
+    updateNotes(nalumnes)
 
 
-
-def NotesA():
+def Notes():
     #sha de fer el cercador de alumnes
     window = Toplevel()
-    Label(window, text="CodiAlumne:").grid(row=0, column=0, sticky=N)
+    window.rowconfigure(6, weight=3)
+    Label(window, text="CodiAlumne:").grid(row=0, column=0, sticky=S)
     ca = Entry(window)
-    ca.grid(row=0, column=1, sticky=N)
-    Label(window, text="Codi Materia").grid(row=1, column=0, sticky=N)
+    ca.grid(row=0, column=1, sticky=S)
+    Button(window,
+            text="Cercar Alumne",
+            command=lambda: cercaA(ca, nalumnes)).grid(row=1, column=1, sticky=N)
+    Label(window, text="Codi Materia").grid(row=2, column=0, sticky=S)
     cm = Entry(window)
-    cm.grid(row=1, column=1, sticky=N)
-    Label(window, text="Nota:").grid(row=2, column=0, sticky=N)
+    cm.grid(row=2, column=1, sticky=S)
+    Button(window,
+            text="Cercar Materia",
+            command=lambda: cercaM(cm, nalumnes)).grid(row=3, column=1, sticky=N)
+    Label(window, text="Nota:").grid(row=4, column=0, sticky=N)
     nota = Entry(window)
-    nota.grid(row=2, column=1, sticky=N)
+    nota.grid(row=4, column=1, sticky=N)
     Button(window,
             text="Confirmar",
-            command=lambda: confirmNota(ca,cm,nota,window,nalumne)).grid(row=3, column=0, columnspan=2, sticky=NSEW)
-    nalumne = Text(window, width=30)
-    updateNotes(nalumne)
-    nalumne.grid(row=0, column=2, rowspan=4, sticky=NS)
-    scrollbar = Scrollbar(window, orient=VERTICAL, command=nalumne.yview)
-    scrollbar.grid(row=0, column=3, rowspan=4, sticky=NSEW)
-    nalumne["yscrollcommand"] = scrollbar.set
-
-
-
-#Finestra de les notes Materies
-def NotesM():
-    pass
+            command=lambda: confirmNota(ca,cm,nota,window,nalumnes)).grid(row=5, column=0, columnspan=2, sticky=NSEW)
+    nalumnes = Text(window, width=30)
+    updateNotes(nalumnes)
+    nalumnes.grid(row=0, column=2, rowspan=6, sticky=NS)
+    scrollbar = Scrollbar(window, orient=VERTICAL, command=nalumnes.yview)
+    scrollbar.grid(row=0, column=3, rowspan=6, sticky=NSEW)
+    nalumnes["yscrollcommand"] = scrollbar.set
 
 
 # Menu
@@ -281,11 +325,8 @@ dma = Button(
         text="Desmatricular Alumne",
         command=DesmatA).grid(row=2, column=1, sticky=NSEW)
 noa = Button(
-        text="Notes Alumne",
-        command=NotesA).grid(row=3, column=0, sticky=NSEW)
-nom = Button(
-        text="Notes Materia",
-        command=NotesM).grid(row=3, column=1, sticky=NSEW)
+        text="Notes",
+        command=Notes).grid(row=3, column=0, columnspan=2, sticky=NSEW)
 
 
 #llista autoactualitzable de alumnes (lo ideal seria que s'actualitzes a cada instant pero dona erors al fer scroll)
@@ -307,7 +348,7 @@ def update():
                                 "\nData Naixement: " + str(a.DataNaixement) +
                                 "\n" + "="*28 + "\n"))
     llista.configure(state=DISABLED)
-    menu.after(5000, update)
+    menu.after(5000, update) #en cas de ser molest a la hora de fer scroll, es borraria aqueta linea i s'afegiria el update() als metodes q actualitzan la llista
 
 update()
 

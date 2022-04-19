@@ -20,7 +20,7 @@ codia = 0
 datanaix = 0
 
 #bucle per crear materies
-for i in range(0,len(nomsmateries)):
+for i in range(1,len(nomsmateries)):
     m = materia(i,nomsmateries[i])
     materies.update({i:m})
     print(m.Codim,m.Nom)
@@ -29,7 +29,7 @@ for i in range(0,len(nomsmateries)):
 for i in range(0,20):
     datanaix = ((inicio + (final - inicio) * random()).date())
     a = alumne(i,choice(noms),choice(cognoms),datanaix)
-    for j in range(0,len(materies)):
+    for j in range(1,len(materies)):
         m = materies[j]
         if j%randint(1,len(materies)) != 0:
             a.Materies.update({m.Codim:float(randint(0,9))})
@@ -41,7 +41,7 @@ for i in range(0,20):
     print(a.Codia,a.Nom,a.Cognom,a.DataNaixement)
 
 #Codi per fer un print dels alumnes de cada materia
-for i in range(0,len(materies)):
+for i in range(1,len(materies)):
     m = materies[i]
     print(m.Codim,m.Nom)
     for j in range(0,len(m.Alumnes)):
