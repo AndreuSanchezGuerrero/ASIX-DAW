@@ -96,7 +96,7 @@ Expressa el resultat en mesos i arrodonint el resultat a 0 decimals
 +-------+*/
 
 SELECT min(round(DATEDIFF(data_fi, data_inici), 0)) as mesos  
-FROM reserves
+FROM reserves;
 
 /*De l'Hotel 'Catalonia Ramblas' de Barcelona mostra la quantitat de nits disponibles (teòriques) que tindria l'hotel per cada mes de l'any 2016
 
@@ -112,14 +112,47 @@ FROM reserves
 ...
 |   11 |   ? |
 |   12 |   ? |
-
 +------+------+*/
 
-SELECT month(data_inici) as mes, count(*) as nits
+
+#Inclou coma a no disponibles les reserves sense nit
+WITH 
+
+/*Digues els noms dels hotels que els seus noms acabin amb la lletra 'c'. Aquesta 'c' ha d'anar precedida de dues vocals seguides.
+
+    No tinguis en compte majúcules i minúscules
+    Ordena el resultat per nom de l'hotel de forma ascendent.
+
++------------+
+| nom        |
++------------+*/
+
+SELECT nom
+FROM hotels
+WHERE nom RLIKE '[aeiou]+[aeiou]+c$'
+ORDER BY nom;
+
+/*Mostra la quantitat de reserves per cada mes per l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015. Considerem que una reserva pertany a un any si la seva data_inici hi pertany.
+
+    Una reserva es comptabilitza en un mes si la seva data_inici hi pertany.
+    Ordena per número de mes de forma ascendent
+
++------+--------------+
+| mes  | num_reserves |
++------+--------------+
+|    1 |           ?  |
+|    2 |           ?  |
+|    3 |           ?  |
+|    4 |           ?  |
+...
+|   12 |           ? |
++------+--------------+*/
+
+SELECT month(data_inici) as mes, count(*) as num_reserves
 FROM reserves r
 INNER JOIN habitacions h ON (r.hab_id = h.hab_id)
 INNER JOIN hotels ht ON (h.hotel_id = ht.hotel_id)
-WHERE ht.nom = 'Catalonia Ramblas'
-    AND year(r.data_inici) = 2016
+WHERE ht.nom = 'Catalonia Ramblas' 
+    AND year(r.data_inici) = 2015
 GROUP BY month(data_inici)
 ORDER BY month(data_inici);
