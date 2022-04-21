@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sucursals>
+	<sucursal telefon="972570050" codi="SUC1">
+		<director>Basil Fawlty</director>
+		<poblacio>Torquay</poblacio>
+		<compte tipus="ESTALVIS">
+			<nom>Antonio Garc�a</nom>
+			<numero>123456</numero>
+			<saldohaver>21000</saldohaver>
+			<saldodeure>200</saldodeure>
+		</compte>
+		<compte tipus="ESTALVIS">
+			<nom>Polly Sherman</nom>
+			<numero>1111456</numero>
+			<saldohaver>12000</saldohaver>
+			<saldodeure>0</saldodeure>
+		</compte>
+		<compte tipus="ESTALVIS">
+			<nom>Sybil Fawlty</nom>
+			<numero>223344</numero>
+			<saldohaver>13000</saldohaver>
+			<saldodeure>0</saldodeure>
+		</compte>
+		<compte tipus="ESTALVIS">
+			<nom>Major Gowen</nom>
+			<numero>667788</numero>
+			<saldohaver>3000</saldohaver>
+			<saldodeure>100</saldodeure>
+		</compte>
+		<compte tipus="PENSIONS">
+			<nom>Major Gowen</nom>
+			<numero>99667788</numero>
+			<aportacio>23000</aportacio>
+		</compte>
+		<compte tipus="PENSIONS">
+			<nom>Manuel</nom>
+			<numero>99112200</numero>
+			<aportacio>30000</aportacio>
+		</compte>
+	</sucursal>
+	<sucursal telefon="972575757" codi="SUC2">
+		<director>Llu�s Gavald�</director>
+		<poblacio>Constant�</poblacio>
+		<compte tipus="ESTALVIS">
+			<nom>Joan Reig</nom>
+			<numero>30303036</numero>
+			<saldohaver>15000</saldohaver>
+			<saldodeure>12000</saldodeure>
+		</compte>
+		<compte tipus="ESTALVIS">
+			<nom>Falin C�ceres</nom>
+			<numero>4444222</numero>
+			<saldohaver>5000</saldohaver>
+			<saldodeure>0</saldodeure>
+		</compte>
+	</sucursal>
+	<sucursal telefon="972584073" codi="SUC3">
+		<director>Jerzei Balowsky</director>
+		<poblacio>Bristol</poblacio>
+		<compte tipus="ESTALVIS">
+			<nom>Rick Mayall</nom>
+			<numero>2023424</numero>
+			<saldohaver>12000</saldohaver>
+			<saldodeure>0</saldodeure>
+		</compte>
+		<compte tipus="ESTALVIS">
+			<nom>Neil Pye</nom>
+			<numero>1606778</numero>
+			<saldohaver>31000</saldohaver>
+			<saldodeure>1000</saldodeure>
+		</compte>
+		<compte tipus="PENSIONS">
+			<nom>Vyvyan Bastard</nom>
+			<numero>99123788</numero>
+			<aportacio>23000</aportacio>
+		</compte>
+		<compte tipus="PENSIONS">
+			<nom>Mike Coolperson</nom>
+			<numero>99002200</numero>
+			<aportacio>15000</aportacio>
+		</compte>
+	</sucursal>
+</sucursals >

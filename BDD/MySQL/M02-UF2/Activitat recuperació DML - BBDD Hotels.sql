@@ -49,12 +49,9 @@ WHERE data_inici = data_fi;
 
 SELECT c.client_id, c.nom, c.cognom1
 FROM clients c
-    INNER JOIN reserves r ON (r.client_id = c.client_id)
-    WHERE year(r.data_inici) = 2014
-        OR year(r.data_inici) = 2015
-        OR year(r.data_inici) = 2016
-    GROUP BY  r.client_id
-    HAVING count(*) > 1
+    WHERE   c.client_id In (SELECT client_id FROM reserves WHERE year(data_inici) = 2014)
+        AND c.client_id In (SELECT client_id FROM reserves WHERE year(data_inici) = 2015)
+        AND c.client_id In (SELECT client_id FROM reserves WHERE year(data_inici) = 2016)
     ORDER BY c.client_id;
 
 /*Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot l’any 2015?
@@ -98,7 +95,8 @@ Expressa el resultat en mesos i arrodonint el resultat a 0 decimals
 SELECT min(round(DATEDIFF(data_fi, data_inici), 0)) as mesos  
 FROM reserves;
 
-/*De l'Hotel 'Catalonia Ramblas' de Barcelona mostra la quantitat de nits disponibles (teòriques) que tindria l'hotel per cada mes de l'any 2016
+/*De l'Hotel 'Catalonia Ramblas' de Barcelona mostra la quantitat de nits disponibles (teòriques) que 
+tindria l'hotel per cada mes de l'any 2016
 
     Ordena per número de mes de forma ascendent
 
@@ -113,6 +111,7 @@ FROM reserves;
 |   11 |   ? |
 |   12 |   ? |
 +------+------+*/
+
 
 
 #Inclou coma a no disponibles les reserves sense nit
