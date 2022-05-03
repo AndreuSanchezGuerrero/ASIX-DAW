@@ -1,5 +1,5 @@
 from datetime import datetime
-class Alumne:
+class alumne:
     def __init__(self,Codi:int,Nom:str,Cognom:str,DataNaixement:datetime):
         self.Codi=Codi
         self.Nom=Nom
@@ -9,6 +9,6 @@ class Alumne:
         self.Materies={}
 
 llistaAlumnes=[]
-for i in range(10000):
-    a = Alumne(i,f"Nom{i}","Cognoms{i}",datetime(2000,1,1))
+for i in range(100000):
+    a = alumne(i,f"Nom{i}","Cognoms{i}",datetime(2000,1,1))
     llistaAlumnes.append(a)
