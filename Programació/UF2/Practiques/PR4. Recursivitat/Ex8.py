@@ -4,6 +4,8 @@ Iteratiu: Bubble Sort o Insert Sort
 Recursiu: Merge Sort o QuickSort, el que vulguis
 Comprova cronometrant el temps quin és més ràpid, compara’ls amb el sort de python que fa servir el TrimSort
 """
+from time import *
+from random import randint
 
 def bubbleSort(llista):
     for i in range(len(llista)-1):
