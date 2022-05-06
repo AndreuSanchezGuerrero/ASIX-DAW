@@ -16,7 +16,9 @@ Enrique,Cido,Dudoso,04/04/1994
 Carmen,Tolado,Fresa,05/05/2005
 
 '''
-with open("./alumnes.csv") as f:
+import os
+os.chdir(os.path.dirname(__file__))
+with open("alumnes.csv") as f:
     #Muntem un lector sobre el fitxer, que tractarà cada fila del csv com un diccionari
     ''' cada element del reader(llista d'elements) serà un diccionari com el següent
 
@@ -25,6 +27,6 @@ with open("./alumnes.csv") as f:
        Les claus seran les propietats dels csv, primera fila ( Nom, Cognom1, ...) i els valors seran les dades de
        cada alumne, un alumne per fila del reader.
     '''
-    reader = csv.DictReader(f,delimiter=";")#Indiquem el delimintardor de camps, per defecte es la coma.
+    reader = csv.DictReader(f,delimiter=",")#Indiquem el delimintardor de camps, per defecte es la coma.
     for alumne in reader:
         print(alumne["Nom"]) #Mostrem el nom de cada alumne
