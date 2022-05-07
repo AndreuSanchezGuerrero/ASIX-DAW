@@ -17,24 +17,11 @@ def generaCompte(alumne):
 Mètode que genera un password segur, li passem la longitud
 '''
 def generaPassword(longitud):
-    letters = string.ascii_letters
-    simbols ='()/^?¿[]{}\-=+*'
-    numbers ='0123456789'
     if longitud < 8:
         longitud = 8
-    password = []
-    for i in range(longitud-4):
-        password.append(choice(letters.lower() + letters.upper() + numbers + simbols))
-    password.append(choice(letters.lower())+choice(letters.upper())+choice(numbers)+choice(simbols))
-    password = shuffle(password)
-    #convert the list to a string
-    password = 
+    all = string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation
+    password = "".join(sample(all,longitud))
     return password
-
-
-#print de varies passwords genrades
-for i in range(10):
-    print(generaPassword(randint(5,10)))
 
 #Generem un nou fitxer amb els comptes d'usuaris en format csv
 with open("usuaris.csv","w",newline="") as usuaris, open("crearComptes.ps1","w",newline="") as nousComptes:
