@@ -1,5 +1,6 @@
 #Prova de csv, necessitem el modul csv
 import csv
+import re
 import string
 from unicodedata import normalize
 from random import *
@@ -24,12 +25,20 @@ def generaPassword(longitud):
     return password
 
 #Generem un nou fitxer amb els comptes d'usuaris en format csv
-with open("usuaris.csv","w",newline="") as usuaris, open("crearComptes.ps1","w",newline="") as nousComptes:
+with open("Gmail.csv","w",newline="") as Gmail, open('ASIX1.csv',"w",newline="") as ASIX1, open('ASIX2.csv',"w",newline="") as ASIX2, open("usuaris.csv","w",newline="") as usuaris, open("crearComptes.ps1","w",newline="") as nousComptes:
     camps = ["usuari","password"]
-    writer = csv.DictWriter(usuaris, fieldnames=camps)#Obrim el escriptor amb format DictWriter
-    writer.writeheader()#Escribim la primera línia del fitxer csv, la dels noms dels camps
+    camps1 = ["Grup","Cognom1","Cognom2","Nom","NomCompte","Password"]
+    camps2 = ["Email Address","First name","Last Name","Password","Org Unit Path"]
+    writer = csv.DictWriter(usuaris, fieldnames=camps)
+    writer.writeheader()
+    writer1 = csv.DictWriter(ASIX1, fieldnames=camps1)
+    writer1.writeheader()
+    writer2 = csv.DictWriter(ASIX2, fieldnames=camps1)
+    writer2.writeheader()
+    writer3 = csv.DictWriter(Gmail, fieldnames=camps)
     
     #Obrim el fitxer d'alumnes per consultar les seves dades
+    
     with open("alumnes.csv") as alumnes:
         reader = csv.DictReader(alumnes,delimiter=",")#Indiquem el delimintardor de camps, per defecte es la coma.
         for alumne in reader:
@@ -39,6 +48,25 @@ with open("usuaris.csv","w",newline="") as usuaris, open("crearComptes.ps1","w",
             cognoms = f'{alumne["Cognom1"]} {alumne["Cognom2"]}'
             securePassword = f'ConvertTo-SecureString -String "{password}" -AsPlainText -Force'                                         
             crearCompteAD = f'New-ADuser -Name {nomCompte} -GivenName "{nom}" -SurName "{cognoms}" -AccountPassword ({securePassword})\n' 
-            nousComptes.write(crearCompteAD)
             writer.writerow({'usuari':nomCompte,'password':password})
-
+            #Utilitzem regex per comprobar si l'alumne és de l'ASIX1 o ASIX2 sense importar la llletra del final
+            if re.search("^ASIX1",alumne["Grup"]):
+                writer1.writerow({"Grup":alumne["Grup"],
+                                "Cognom1":alumne["Cognom1"],
+                                "Cognom2":alumne["Cognom2"],
+                                "Nom":alumne["Nom"],
+                                "NomCompte":nomCompte,
+                                "Password":password})
+            if re.search("^ASIX2",alumne["Grup"]):
+                writer2.writerow({"Grup":alumne["Grup"],
+                                "Cognom1":alumne["Cognom1"],
+                                "Cognom2":alumne["Cognom2"],
+                                "Nom":alumne["Nom"],
+                                "NomCompte":nomCompte,
+                                "Password":password})
+    """
+    Un únic  fitxer CSV per crear els comptes d’usuari a gmail ha de tenir 
+    un format com el següent
+    Email Address,First name,Last Name,Password,Org Unit Path
+    e.colero@sapalomera.cat, Colero Lleno,Esther, qEQuff¿gNa,/alumnes/asix1a
+    """
