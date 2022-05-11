@@ -1,2 +1,0 @@
-No se si està fet expressament però els delimiters no anaven i els he canviat per comes enlloc de ;
-A banda tmb he fet lo mateix de l'anterior practica per a configurar els paths

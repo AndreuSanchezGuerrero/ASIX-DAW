@@ -11,7 +11,7 @@ Mètode que genera un nom  de compte d'alumne, no comprova la existencia
 '''
 def generaCompte(alumne):
     aleatori = randint(100,999)
-    compte = (alumne["Nom"][0]+"."+str(normalize('NFKD', alumne["Cognom1"]).encode('ASCII', 'ignore'))+str(aleatori)).replace(" ","").lower()
+    compte = (alumne["Nom"][0]+"."+str(normalize('NFKD', alumne["Cognom1"]).encode('ASCII', 'ignore'))[2:-1]+str(aleatori)).replace(" ","").lower()
     return compte
 
 '''
@@ -48,21 +48,7 @@ with open("Gmail.csv","w",newline="") as Gmail, open('ASIX1.csv',"w",newline="")
             nom = alumne["Nom"]
             cognoms = f'{alumne["Cognom1"]} {alumne["Cognom2"]}'
             securePassword = f'ConvertTo-SecureString -String "{password}" -AsPlainText -Force'                                         
-            """
-            Un fitxer ps1 per crear els comptes d’usuari a l’Active Directory. A 
-            New-ADUser afegeix els paràmetres Path, Description, DisplayName, 
-            Enabled
-            Description, serà la data de naixement de l’alumne
-            Path serà la ruta on crearà l’alumne, en el nostre cas serà de la 
-            forma
-            “ou=asix1a, ou=alumnes, dc=sapalomera, dc=net” la primera ou 
-            depèn del grup.
-            DisplayName, serà el nom complet en format “Cognom1 
-            Cognom2, Nom”
-            Enabled, serà $true, en Powershell true és una constant i va 
-            precedida de $
-            """
-            crearCompteAD = f'New-ADuser -Name {nomCompte} -GivenName "{nom}" -SurName "{cognoms}" -AccountPassword ({securePassword})\n'
+            crearCompteAD = f'New-ADuser -Name {nomCompte} -GivenName "{nom}" -SurName "{cognoms}" -AccountPassword ({securePassword}) -DisplayName "{alumne["Cognom1"]},{alumne["Cognom2"]},{nom}" -Path "OU={"Grup".lower()}, OU=alumnes, DC=sapalomera, DC=net" -Description "{alumne["DataNaixement"]}" -Enabled $true `\n'
             nousComptes.write(crearCompteAD)
             writer.writerow({'usuari':nomCompte,'password':password})
             #Utilitzem regex per comprobar si l'alumne és de l'ASIX1 o ASIX2 sense importar la llletra del final
@@ -80,7 +66,6 @@ with open("Gmail.csv","w",newline="") as Gmail, open('ASIX1.csv',"w",newline="")
                                 "Nom":alumne["Nom"],
                                 "NomCompte":nomCompte,
                                 "Password":password})
-            
             writer3.writerow({"Email Address":nomCompte+"@sapalomera.cat",
                                 "First name":nom,
                                 "Last Name":alumne["Cognom1"],
