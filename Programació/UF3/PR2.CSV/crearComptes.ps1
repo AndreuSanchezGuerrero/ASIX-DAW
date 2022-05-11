@@ -1,0 +1,5 @@
+New-ADuser -Name d.b'fuertes'192 -GivenName "Dolores" -SurName "Fuèrtes De Cabeza" -AccountPassword (ConvertTo-SecureString -String "0&Mfw5gZ*n" -AsPlainText -Force)
+New-ADuser -Name e.b'collero'825 -GivenName "Ether" -SurName "Col·lero Lleno" -AccountPassword (ConvertTo-SecureString -String "`pcFP-UE!J" -AsPlainText -Force)
+New-ADuser -Name e.b'illan'984 -GivenName "Esther" -SurName "Illañ de Caba" -AccountPassword (ConvertTo-SecureString -String "PVy,C6`k[." -AsPlainText -Force)
+New-ADuser -Name e.b'cido'886 -GivenName "Enrique" -SurName "Cido Dudoso" -AccountPassword (ConvertTo-SecureString -String "NirF.6\dtg" -AsPlainText -Force)
+New-ADuser -Name c.b'tolado'171 -GivenName "Carmen" -SurName "Tolado Fresa" -AccountPassword (ConvertTo-SecureString -String "dU}W.kC&*E" -AsPlainText -Force)

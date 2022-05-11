@@ -35,7 +35,8 @@ with open("Gmail.csv","w",newline="") as Gmail, open('ASIX1.csv',"w",newline="")
     writer1.writeheader()
     writer2 = csv.DictWriter(ASIX2, fieldnames=camps1)
     writer2.writeheader()
-    writer3 = csv.DictWriter(Gmail, fieldnames=camps)
+    writer3 = csv.DictWriter(Gmail, fieldnames=camps2)
+    writer3.writeheader()
     
     #Obrim el fitxer d'alumnes per consultar les seves dades
     
@@ -47,7 +48,22 @@ with open("Gmail.csv","w",newline="") as Gmail, open('ASIX1.csv',"w",newline="")
             nom = alumne["Nom"]
             cognoms = f'{alumne["Cognom1"]} {alumne["Cognom2"]}'
             securePassword = f'ConvertTo-SecureString -String "{password}" -AsPlainText -Force'                                         
-            crearCompteAD = f'New-ADuser -Name {nomCompte} -GivenName "{nom}" -SurName "{cognoms}" -AccountPassword ({securePassword})\n' 
+            """
+            Un fitxer ps1 per crear els comptes d’usuari a l’Active Directory. A 
+            New-ADUser afegeix els paràmetres Path, Description, DisplayName, 
+            Enabled
+            Description, serà la data de naixement de l’alumne
+            Path serà la ruta on crearà l’alumne, en el nostre cas serà de la 
+            forma
+            “ou=asix1a, ou=alumnes, dc=sapalomera, dc=net” la primera ou 
+            depèn del grup.
+            DisplayName, serà el nom complet en format “Cognom1 
+            Cognom2, Nom”
+            Enabled, serà $true, en Powershell true és una constant i va 
+            precedida de $
+            """
+            crearCompteAD = f'New-ADuser -Name {nomCompte} -GivenName "{nom}" -SurName "{cognoms}" -AccountPassword ({securePassword})\n'
+            nousComptes.write(crearCompteAD)
             writer.writerow({'usuari':nomCompte,'password':password})
             #Utilitzem regex per comprobar si l'alumne és de l'ASIX1 o ASIX2 sense importar la llletra del final
             if re.search("^ASIX1",alumne["Grup"]):
@@ -64,9 +80,9 @@ with open("Gmail.csv","w",newline="") as Gmail, open('ASIX1.csv',"w",newline="")
                                 "Nom":alumne["Nom"],
                                 "NomCompte":nomCompte,
                                 "Password":password})
-    """
-    Un únic  fitxer CSV per crear els comptes d’usuari a gmail ha de tenir 
-    un format com el següent
-    Email Address,First name,Last Name,Password,Org Unit Path
-    e.colero@sapalomera.cat, Colero Lleno,Esther, qEQuff¿gNa,/alumnes/asix1a
-    """
+            
+            writer3.writerow({"Email Address":nomCompte+"@sapalomera.cat",
+                                "First name":nom,
+                                "Last Name":alumne["Cognom1"],
+                                "Password":password,
+                                "Org Unit Path":"/alumnes/"+alumne["Grup"].lower()})
