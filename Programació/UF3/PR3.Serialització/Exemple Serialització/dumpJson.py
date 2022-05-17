@@ -1,13 +1,13 @@
 from datetime import * 
 
 class pacient: 
-    dataNaixement:date 
-    sexe:str  #H,D 
-    estat:str #Lleu,Greu,UCI,mort 
-    iniciContagi:date 
-    fiContagi:date 
-    def __init__(self,codi:int): 
-        self.Codi = codi 
+    def __init__(self,codi:int,dataNaixement:str,sexe:str ,estat:str,iniciContagi:str,fiContagi:str ): 
+        self.codi = codi 
+        self.dataNaixement = dataNaixement
+        self.sexe = sexe
+        self.estat = estat
+        self.iniciContagi = iniciContagi
+        self.fiContagi = fiContagi
 
 
 def convert_to_dict(obj):
