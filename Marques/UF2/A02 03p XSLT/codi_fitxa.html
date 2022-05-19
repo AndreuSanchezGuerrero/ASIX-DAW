@@ -1,38 +1,41 @@
-<P><TABLE WIDTH='90%' BORDER='1' CELLPADDING='2' CELLSPACING='0' HEIGHT=  '39'>
-<TR>
-<TD BGCOLOR='#b8cbfa' HEIGHT='36'> &nbsp;<B>
-<FONT FACE='Arial,Helvetica'>GALENA</B></TD>
-<TD BGCOLOR='#b9cbf9'> <FONT FACE='Arial,Helvetica'>GALENA</TD>
-<TD BGCOLOR='#b9cbf9'> <FONT FACE='Arial,Helvetica'>Pb S</TD>
-<TD BGCOLOR='#b8cbfa'> &nbsp;<B><FONT FACE='Arial,Helvetica'>Grup: </B>
-<FONT FACE='Arial,Helvetica'>Sulfurs</TD>
-</TR>
-</TABLE>
-</P>
-<P><TABLE WIDTH='90%' BORDER='1' BGCOLOR='#d0ddfb' CELLPADDING='4' CELLSPACING=  '0'>
-<TR>
-<TD BGCOLOR='#b9cbf9'> <B><FONT FACE='Arial,Helvetica'>Pes espec&iacute;fic: </B>7,2 a 7,6</TD>
-<TD ROWSPAN='9'> <P ALIGN=CENTER>  <IMG SRC='m09.jpg' ALIGN='BOTTOM' BORDER=''0'' WIDTH='244'  HEIGHT='158' NATURALSIZEFLAG='3'>
-<br><br><br><SMALL><halign=right>Joaquim Sanz</align> </TD>
-</TR>
-<TR>
-<TD BGCOLOR='#b9cbf9'><B><FONT FACE='Arial,Helvetica'>Duresa: </B>2,5 a 3</TD>
-</TR>
-<TR>
-<TD BGCOLOR='#b9cbf9'><B><FONT FACE='Arial,Helvetica'>Exfoliaci&oacute;: </B>Bona, cúbica.</TD>
-</TR>
-<TR>
-<TD BGCOLOR='#b9cbf9'> <B><FONT FACE='Arial,Helvetica'>Color: </B>Gris plom <B> Ratlla:  </B>Negra grisa </TD>
-</TR>
-<TR>
-<TD BGCOLOR='#b9cbf9'> <B><FONT FACE='Arial,Helvetica'>Llu&iuml;ssor: </B>metàl.lica</TD>
-</TR>
-<TR>
-<TD ROWSPAN='3' BGCOLOR='#b9cbf9'><B><FONT FACE='Arial,Helvetica'>Cristal.litzaci&oacute;: </B>Cúbica o octaèdrica.</TD>
-</TR>
-<TR></TR>
-<TR></TR>
-<TR>
-<TD WIDTH='50%' BGCOLOR='#b9cbf9'> <B><FONT FACE='Arial,Helvetica'>Aspecte: </B>Cristalls cúbics de color gris plom.</TD>
-</TR>
-</TABLE>
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+
+<table width='90%' border='1' cellpadding='2' cellspacing='0' height=  '39'>
+<tr>
+<td bgcolor='#b8cbfa' height='36'><b><xsl:value-of select="Taller_XML/minerals/nom"/></b></td>
+<td bgcolor='#b9cbf9'> <xsl:value-of select="Taller_XML/minerals/nom"/></td>
+<td bgcolor='#b9cbf9'><xsl:value-of select="Taller_XML/minerals/Id"/></td>
+<td bgcolor='#b8cbfa'><b>grup: </b>
+    <xsl:value-of select="Taller_XML/minerals/grup"/></td>
+</tr>
+</table>
+<table width='90%' border='1' bgcolor='#d0ddfb' cellpadding='4' cellspacing=  '0'>
+<tr>
+<td bgcolor='#b9cbf9'> <b>pes especacute;fic: </b>7,2 a 7,6</td>
+<td rowspan='9'><img src='m09.jpg' align='bottom' border='0' width='244'  height='158' naturalsizeflag='3'/></td>
+</tr>
+<tr>
+<td bgcolor='#b9cbf9'><b>duresa: </b><xsl:value-of select="Taller_XML/minerals/duressa"/></td>
+</tr>
+<tr>
+<td bgcolor='#b9cbf9'><b>densitat;: </b><xsl:value-of select="Taller_XML/minerals/densitat"/></td>
+</tr>
+<tr>
+<td bgcolor='#b9cbf9'> <b>color: </b><xsl:value-of select="Taller_XML/minerals/color"/></td>
+</tr>
+<tr>
+<td bgcolor='#b9cbf9'> <b>composició</b><xsl:value-of select="Taller_XML/minerals/composicio"/></td>
+</tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+</table>
+
+</xsl:template>
+
+</xsl:stylesheet>

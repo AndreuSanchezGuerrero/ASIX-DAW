@@ -3,7 +3,7 @@ import random
 from datetime import *
 import re
 from os import system, name
-from json import *
+from pickle import *
 
 class pacient: 
     def __init__(self,codi:int,dataNaixement:str,sexe:str ,estat:str,iniciContagi:str,fiContagi:str ): 
@@ -13,26 +13,6 @@ class pacient:
         self.estat = estat
         self.iniciContagi = iniciContagi
         self.fiContagi = fiContagi
-
-
-def convert_to_dict(obj):
-    obj_dict = {
-        "__class__": obj.__class__.__name__,
-        "__module__": obj.__module__
-    }
-    obj_dict.update(obj.__dict__)
-    return obj_dict
-
-def dict_to_obj(our_dict):
-    if "__class__" in our_dict:
-        class_name = our_dict.pop("__class__")
-        module_name = our_dict.pop("__module__")
-        module = __import__(module_name)
-        class_ = getattr(module, class_name)
-        obj = class_(**our_dict)
-    else:
-        obj = our_dict
-    return obj
 
 
 def escullOpcio(n):
@@ -76,11 +56,11 @@ def nouPacient(codi):
     pacients.append(p)
     cercarPacient(pacients,codi,0)
     codi += 1
-    data = open("Programació/UF3/PR3.Serialització/Exemple Serialització/data.json","w")
+    data = open("Programació/UF3/PR3.Serialització/data.pkl","wb")
     fpacients = []
     for p in pacients:
-        fpacients.append(convert_to_dict(p))
-    dump(fpacients, data, sort_keys=True, indent=4)
+        fpacients.append(p)
+    dump(fpacients, data, -1)
     data.close()
 
 def cap():
@@ -97,7 +77,7 @@ def mostrarPacients(pacients:list):
         printda(p)
 
 def cercarPacient(l:list,codi,opcio):
-    if codi > len(l)+1:
+    if codi > len(l):
         print("Aquest pacient no existeix") 
     else:
         n = 0
@@ -114,20 +94,20 @@ def cercarPacient(l:list,codi,opcio):
         if n == 0:
             print("Aquest pacient no existeix") 
 
-def canviEstatPacient(p:pacient,l):
+def canviEstatPacient(p:pacient,pacients):
     estat = int(input("Estat (0=Lleu 1=Greu 2=UCI 3=Mort): ")) #TE opcions fora de la llista
     p.estat = estats[estat]
-    data = open("Programació/UF3/PR3.Serialització/Exemple Serialització/data.json","w")
+    data = open("Programació/UF3/PR3.Serialització/data.pkl","wb")
     fpacients = []
     for p in pacients:
-        fpacients.append(convert_to_dict(p))
-    dump(fpacients, data, sort_keys=True, indent=4)
+        fpacients.append(p)
+    dump(fpacients, data, -1)
     data.close()
-    cercarPacient(pacients,codi,0)
+    cercarPacient(pacients,p.codi,0)
 
 def edat(p:pacient,dataStr:date): #TE per a possibles edats negatives i per a dates mes grans a l'actual canviar el temps del verb
     data = datetime.strptime(dataStr,'%d%m%Y').date().strftime(format_code)
-    edat = data.year - dataNaixement.year - ((data.month, data.day) < (dataNaixement.month, dataNaixement.day))
+    edat = data.year - p.dataNaixement.year - ((data.month, data.day) < (p.dataNaixement.month, p.dataNaixement.day))
     if data > date.today():
         verb = "tindrà"
     elif data < date.today():
@@ -153,7 +133,7 @@ def pacientsData(l:list):
     data = datetime.strptime(input("Data Naixement (diamesany): "),'%d%m%Y').date().strftime(format_code)
     cap()
     for p in l:
-        if iniciContagi == data:
+        if p.iniciContagi == data:
             printda(p)
             n=1
     if n == 0:
@@ -166,7 +146,7 @@ def pacientsEstatData(l:list):#Es pot simplificar molt fent us dels altres dos m
     data = datetime.strptime(input("Data Naixement (diamesany): "),'%d%m%Y').date().strftime(format_code)
     cap()
     for p in l:
-        if iniciContagi == data and estat == estat:
+        if p.iniciContagi == data and estat == estat:
                 printda(p)
                 n=1
     if n == 0:
@@ -184,7 +164,7 @@ def CPacient():
     final = datetime(2003, 12, 31) 
     inicio1 = datetime(2020, 1, 1) 
     final1 = datetime(2022, 12, 31) 
-    data = open("Programació/UF3/PR3.Serialització/Exemple Serialització/data.json","w")
+    data = open("Programació/UF3/PR3.Serialització/data.pkl","wb")
     for i in range(0, 4000):
         datenaix = inicio + (final - inicio) * random.random()
         datecontagi = inicio1 + (final1 - inicio1) * random.random()
@@ -195,24 +175,25 @@ def CPacient():
         fiContagi = "NULL"
         p = pacient(codi, dataNaixement, sexe, estat, iniciContagi, fiContagi)
         pacients.append(p)
-        fpacients.append(convert_to_dict(p))
+        fpacients.append(p)
         codi += 1
-    dump(fpacients, data, sort_keys=True, indent=4)
+    dump(fpacients, data, -1)
     data.close()
 
 opcions = ("Mostrar Pacients","Cercar Pacient","Afegir","Canviar l'estat","Calcular edat","Pacients en estat X","Pacients Contagiats dia X","Pacients en Estat i Data","Sortir","Autogenrear Pacients")
 fi = False
 codi = 0
 try:
-    data = open("Programació/UF3/PR3.Serialització/Exemple Serialització/data.json","r")
+    data = open("Programació/UF3/PR3.Serialització/data.pkl","rb")
     fpacients = load(data)
+    data.close()
 except:
     fpacients = []
 
 pacients = []
 for p in fpacients:
-    pacients.append(dict_to_obj(p))
-data.close()
+    pacients.append(p)
+
 
 while not fi:
     input("Presiona enter per continuar")
