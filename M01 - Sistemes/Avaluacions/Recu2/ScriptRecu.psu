@@ -1,0 +1,41 @@
+#Script de l'exercisi 3
+#Primer creem els grups demanats (el grup administradors no cal crearlo perque ja existeix)
+New-ADGroup -Name "Futur" -GroupScope Global -Path "OU=Super3,DC=nmasso,DC=cat"
+New-ADGroup -Name "robot" -GroupScope Global -Path "OU=Super3,DC=nmasso,DC=cat"
+New-ADGroup -Name "ClubSuper3" -GroupScope Global -Path "OU=Super3,DC=nmasso,DC=cat"
+
+#Afegim els usuaris als seus grups
+Add-ADGroupMember -Identity Futur -Member doraemon,sisq
+Add-ADGroupMember -Identity robot -Member doraemon
+Add-ADGroupMember -Identity ClubSuper3 -Member spla
+Add-ADGroupMember -Identity Administrator -Member sisqu
+
+#Canviem la contrasenya de doraemon
+Set-ADAccountPassword -Identity doraemon `
+-NewPassword (ConvertTo-SecureString “N0b1t@_b@rç@” -AsPlainText -Force) `
+-OldPassword (ConvertTo-SecureString “Aa12345678” -AsPlainText -Force)
+
+#Bloquejem el canvi de password de spla
+Set-ADUser -Identity spla `
+-CannotChangePassword $true
+
+#Forçem el canvi de password de sisq
+Set-ADUser -Identity sisq `
+-PasswordNeverExpires $false `
+-ChangePasswordAtLogon $true
+
+#Creem i afegim l'script d'inici de sessió
+New-Item -Name rarets.js `
+-ItemType file `
+-Path \\PRINCIPAL\netlogon\ `
+-Value WScript.Echo("Tots són rarets")
+
+#Primer creem la carpeta de l'user
+New-Item -Name sisq -ItemType directory -Path \\PRINCIPAL\UnitatsPersonals\
+Set-ADUser -Identity sisq -HomeDrive t: -HomeDirectory \\PRINCIPAL\UnitatsPersonals\sisq
+
+#Script de l'exercisi 4
+#Primer creem el grup que haurem de utilitzar
+New-ADGroup -Name "personatges" -GroupScope Global -Path "OU=Super3,DC=nmasso,DC=cat"
+Add-ADGroupMember -Identity personatges `
+-Member (Get-ADUser -Filter * -SearchBase "OU=Super3,DC=nmasso,DC=cat")
