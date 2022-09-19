@@ -1,9 +1,9 @@
-from multiprocessing import Pool, cpu_count
+import multiprocessing as mp
 x = 2
 def random_calculation(x):
     while True:
-        x = x * x
+        x = x * 2  
         print(x)
 
-p = Pool(processes=cpu_count())
-p.map(random_calculation(x), range(cpu_count()))
+p = mp.Pool(processes=mp.cpu_count())
+p.map(random_calculation(x), range(mp.cpu_count()))
