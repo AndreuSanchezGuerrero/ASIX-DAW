@@ -1,0 +1,154 @@
+Exercici 1. Permisos de Linux amb ACLs. (4,5 punts)
+
+        1.1. Crea els següents grups i usuaris que els tenen com a grups principals: (0,5 punts)
+Grup alumnes
+<alumne1>
+<alumne2>
+
+Grup professors
+jpou
+jbasso
+jcata
+ipuli
+
+Grup administradors
+dbancells
+jmoreno
+
+
+        1.2. Crea el grup m11 amb alguns alumnes i el professor del mòdul 11. Posa les comandes i les captures de pantalla. (0,5 punts)
+
+
+        1.3. Crea el grup m09 amb els alumnes i professor del mòdul 09, de manera que no siguin exactament els mateixos que els del mòdul 11. Posa les comandes i les captures de pantalla. (0,5 punts)
+
+
+        1.4. Crea la següent estructura de carpetes i permisos utilitzant ACLs. /institut crea’l al home del teu usuari. Vigila perquè hi ha ACLs per defecte al directori. Mostra totes les comandes : (1 punts)
+
+Directori
+Permisos
+/institut
+ACL per defecte: Administradors: rwx, Professors: rx
+          /professors
+Professors: rwx, jcata:rx
+          /alumnes
+Professors:rwx, alumnes:rwx, Administradors:rx, jmoreno:rwx
+          /documents
+Administradors:rx, dbancells: rwx
+                    /m11
+Alumnes: rx, m11:rwx, Professors: rwx
+                    /m09
+Alumnes: rx, m09:rwx, Professors: rwx
+
+        1.5. Amb un usuari del grup administradors crea un fitxer dins de la carpeta institut. Quina ACL té el fitxer que has creat? Mostra-la. (0,5 punts)
+
+        1.6. Amb un usuari del grup alumnes crea un fitxer en la carpeta m11. Quin alumne ho pot fer? Quina ACL té el fitxer que has creat? Justifica-ho i mostra-ho. (0,5 punts)
+
+        1.7. Afegeix a les ACLs del directori ./institut i de tots els seus subdirectoris el permís de lectura i d'escriptura per al teu usuari, utilitzant l'opció d'aplicar ACLs de forma recursiva. Mostra-ho. (0,5 punts)
+
+        1.8. Mostra per pantalla les ACLs de tots els directoris. (0,5 punts)
+
+1.1
+Creem els grups i usuaris
+groupadd alumnes
+useradd alumne2
+useradd alumne3
+useradd alumne4
+groupadd professors
+useradd jpou
+useradd jbasso
+useradd jcata
+useradd ipuli
+groupadd administradors
+useradd dbancells
+useradd jmoreno
+usermod -g alumnes alumne1
+usermod -g alumnes alumne2
+usermod -g alumnes alumne3
+usermod -g alumnes alumne4
+usermod -g professors jpou
+usermod -g professors jbasso
+usermod -g professors jcata
+usermod -g professors ipuli
+usermod -g administradors dbancells
+usermod -g administradors jmoreno
+
+Mostram els grups i usuaris creats
+cat /etc/group
+cat /etc/passwd
+Mostram els membres dels grups
+getent group alumnes
+getent group professors 
+getent group administradors
+
+1.2
+Creem el grup m11 amb els alumnes i el professor del mòdul 11
+groupadd m11
+usermod -a -G m11 alumne1
+usermod -a -G m11 alumne2
+usermod -a -G m11 jpou
+
+1.3
+Creem el grup m09 amb els alumnes i el professor del mòdul 09
+groupadd m09
+usermod -a -G m09 alumne3
+usermod -a -G m09 alumne4
+usermod -a -G m09 jbasso
+
+1.4
+Creem la següent estructura de carpetes i permisos utilitzant ACLs. /institut crea’l al home del teu usuari. Vigila perquè hi ha ACLs per defecte al directori. Mostra totes les comandes
+mkdir /home/alumne1/institut
+setfacl -b /home/alumne1/institut
+setfacl -m g:administradors:rwx /home/alumne1/institut
+setfacl -m g:professors:rx /home/alumne1/institut
+
+mkdir /home/alumne1/institut/professors
+setfacl -m g:professors:rwx /home/alumne1/institut/professors
+setfacl -m u:jcata:rx /home/alumne1/institut/professors
+
+mkdir /home/alumne1/institut/alumnes
+setfacl -m g:professors:rwx /home/alumne1/institut/alumnes
+setfacl -m g:alumnes:rwx /home/alumne1/institut/alumnes
+setfacl -m g:administradors:rx /home/alumne1/institut/alumnes
+setfacl -m u:jmoreno:rwx /home/alumne1/institut/alumnes
+
+mkdir /home/alumne1/institut/documents
+setfacl -m g:administradors:rx /home/alumne1/institut/documents
+setfacl -m u:dbancells:rwx /home/alumne1/institut/documents
+
+mkdir /home/alumne1/institut/m11
+setfacl -m g:alumnes:rx /home/alumne1/institut/m11
+setfacl -m g:m11:rwx /home/alumne1/institut/m11
+setfacl -m g:professors:rwx /home/alumne1/institut/m11
+
+mkdir /home/alumne1/institut/m09
+setfacl -m g:alumnes:rx /home/alumne1/institut/m09
+setfacl -m g:m09:rwx /home/alumne1/institut/m09
+setfacl -m g:professors:rwx /home/alumne1/institut/m09
+
+1.5
+Afegim una password a l'usuari q utilitzarem
+passwd jpou
+login 
+touch /home/alumne1/institut/test.txt
+getfacl /home/alumne1/institut/test.txt
+
+1.6
+login alumne1
+touch /home/alumne1/institut/m11/test.txt
+getfacl /home/alumne1/institut/m11/test.txt
+
+1.7
+setfacl -R -m u:alumne1:rwx /home/alumne1/institut
+getfacl -R /home/alumne1/institut
+
+1.8
+getfacl -R /home/alumne1/institut
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+Consulta documentació sobre la comanda ROBOCOPY i contesta les següents preguntes:
+
+    1. Amb robocopy configura una comanda per copiar tot el contingut de les carpetes d’usuaris (les unitats Z:) del teu servidor principal a una carpeta situada en altra partició. La còpia haurà d’incloure paràmetres per copiar les carpetes buides i tots els marcadors de seguretat d’arxius i de carpetes (propietari, llista ACL, data i hora,...)
+    2. Volem modificar la comanda de Pr1 per fer que a la carpeta on es guarda la còpia de seguretat desapareguin els fitxers que s’han esborrat de l’origen des de l’última còpia realitzada.
+    3. Volem modificar els paràmetres de la Pr2 i fer que la comanda copiï la informació a una partició ubicada en altre PC.
+    4. Comprova el paràmetre /Z amb la comanda de Pr3. Posa exemples i captures on es vegi clarament el seu resultat
+    5. Afegeix a la comanda de Pr4 el paràmetre /RH. Per a què aprofita? Si arriba al temps límit i no ha acabat encara de fer la còpia, acaba de copiar-ho o ho suspèn? Demostra-ho
+    6. Afegeix a la comanda de Pr4 els paràmetres /MON i /MOT. Explica com funcionen aquests modificadors. Quin ús pots trobar a ells? Posa un exemple.
+    7. Sobre els paràmetres anteriors, per saber a què es consideren “canvi” i a què no, emplena la següent taula:
+Accions
+Considerat canvi?
+Llegir el fitxer
+
+Canviar nom del fitxer
+
+Canviar longitud del fitxer
+
+Canviar data/hora de modificació
+
+Canviar llista ACL
+
+Canviar propietari del fitxer
+
+Canviar atributs del sistema
+
+Canviar atributs estesos
+
+Sobreescriure el fitxer
+
+
+1. Amb robocopy copiem C:Users/Unitats a D:
+robocopy \\UF4NMASSO\Unitats D:\Unitats /E /COPYALL /DCOPY:DAT
+
+2. Amb robocopy copiem C:Users/Unitats a D: i esborrem els arxius que no hi són a C:
+robocopy \\UF4NMASSO\Unitats D:\Unitats /E /COPYALL /DCOPY:DAT /PURGE
+
+3. Amb robocopy copiem C:Users/Unitats a D: i esborrem els arxius que no hi són a C: i copiem els arxius a un altre PC
+robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE
+
+4. Amb robocopy copiem C:Users/Unitats a D: i esborrem els arxius que no hi són a C: i copiem els arxius a un altre PC i copiem els arxius que no hi són a C: i esborrem els arxius que no hi són a C: i copiem els arxius a un altre PC
+robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z
+Cancelem la comanda anterior:
+robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z /R:0 /W:0
+
+Afegeix a la comanda de Pr4 el paràmetre /RH. Per a què aprofita? Si arriba al temps límit i no ha acabat encara de fer la còpia, acaba de copiar-ho o ho suspèn? Demostra-ho
+robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z /RH
