@@ -43,4 +43,19 @@ Cancelem la comanda anterior:
 robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z /R:0 /W:0
 
 Afegeix a la comanda de Pr4 el paràmetre /RH. Per a què aprofita? Si arriba al temps límit i no ha acabat encara de fer la còpia, acaba de copiar-ho o ho suspèn? Demostra-ho
-robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z /RH
+Posem el rh de 23 a 23:20
+robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z /RH:23:00-23:20 
+
+Sobre els paràmetres anteriors, per saber a què es consideren “canvi” i a què no, emplena la següent taula:
+
+Accions
+Considerat canvi?
+Llegir el fitxer: No
+Canviar nom del fitxer: No
+Canviar longitud del fitxer: No
+Canviar data/hora de modificació: Si
+Canviar llista ACL: Si
+Canviar propietari del fitxer: Si
+Canviar atributs del sistema: Si
+Canviar atributs estesos: Si
+Sobreescriure el fitxer: Si
