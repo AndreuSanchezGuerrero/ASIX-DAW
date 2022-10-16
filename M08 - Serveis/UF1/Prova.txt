@@ -1,56 +1,70 @@
-A nivell de Windows Server, seguint la línia anterior, configurarem el servidor perquè sigui autoritatiu del domini cognomnom.edu (en el meu cas doncs, bancellsdavid.edu). Si hi ha coincidències o caràcters estranys, seguiu els mateixos canvis que heu fet amb el domini de la Ubuntu Server. 
-La zona haurà de tenir configurat: 
-    • Els seus servidors autoritatius seran A.cognomnom.edu i B.cognomnom.edu, on A és el hostname del servidor Windows, i primari del domini, i B el hostname de la Ubuntu Server. (exemple A.cognomnom.edu -> ws-dbt.bancellsdavid.edu).  
-    • L’adreça de gestió del domini és el vostre correu @sapalomera.cat.  
-    • Dos servidors de correu, amb prioritats 25 i 50 respectivament, que seran mail.cognomnom.edu i correu.cognomnom.edu.
-    • Les entrades de :
-        ◦ www.cognomnom.edu: 172.25.X.200
-        ◦ figueres.cognomnom.edu: 172.25.X.199
-        ◦ ripoll.cognomnom.edu: 172.25.X.166
-        ◦ olot.cognomnom.edu: 172.25.X.133
-        ◦ blanes.cognomnom.edu: ALIAS de www.cognomnom.edu.
-Pel SOA i el TTL general, si el vostre cognom acaba en vocal, els valors han de ser un múltiple de 3, i si acaba en consonant, de 2. Igualment però, han de ser uns valors mínimament coherents (no val 2 o 3 segons, per exemple), i diferents dels valors que venen per defecte. 
-S’han de poder resoldre totes les entrades DNS vinculades al domini. Si en alguna no s’ha especificat IP, us la inventeu sempre dins del vostre rang. 
-Recordeu que teniu a disposició les diferents eines de comandes per comprovar, ja siguin sota Windows o Linux, que tot funciona correctament. 
-Per demostrar i entregar aquesta darrera part responeu les següents preguntes:
-    g Captura del SOA configurat pel domini dins del Windows Server i també una altra del SOA consultat amb la comanda client nslookup. 1,5 punts.
+Seguim amb el projecte i en aquesta segona etapa ens basarem principalment a la configuració d’una zona reversa pel vostre rang particular d’IPs, fer-hi comprovacions i treballar amb alguns modes de configuració del servei DNS. 
+Així doncs, el primer que caldrà fer és definir la reversa per la vostra zona 172.25.X.0/16, i com servidor DNS autoritatiu on crear-la utilitzarem la Ubuntu Server. 
+    a) Per tal que funcioni, haureu d’indicar-li al BIND que sigui autoritatiu i primari per la zona DNS corresponent pel vostre rang de xarxa. Adjunteu una captura amb el valor d’executar la comanda [sudo cat /etc/bind/named.conf.local | grep . | grep -v ^// ]. 1 punt. 
+Un cop fet, caldrà preparar el fitxer de zona amb el seu corresponent contingut. Per això caldrà que tingueu en compte que haureu de configurar el SOA, excepte la part de option-slaves, que la podeu deixar amb els valors numèrics per defecte. 
+Pel SOA, el seu autoritatiu ha de ser ns1.nomcognom.edu i el correu el vostre, i com a NS també només ha de constar ns1.nomcognom.edu. 
+A nivell d’entrades PTR cal que genereu les següents: 
+    •  www.nomcognom.edu: 172.25.X.5 
+    • webmail.nomcognom.edu: 172.25.X.20 
+    • mail.nomcognom.edu: 172.25.X.55 
+    • olot.cognomnom.edu: 172.25.X.133 
+    • ripoll.cognomnom.edu: 172.25.X.166 
+    • figueres.cognomnom.edu: 172.25.X.199 
+on evidentment substituïu la X pel vostre rang assignat, i nomcognom, i cognomnom pels vostres en cada cas. 
+    b) Adjunteu una captura amb els valors del fitxer de zona reversa. 2 punts. 
+Un cop activat, tocarà fer comprovacions de funcionament. 
+    c) Adjunteu una captura de la consulta del registre SOA  per la vostra reversa utilitzant la comanda ‘dig’. 1 punt.  
 
-    h Captura de la zona DNS des del Windows DNS Server. 2 punts. 
+    d) També adjunteu una captura de la consulta del valor 172.25.X.199. Utilitzeu la comanda que vulgueu. 1 punt. 
+Ara treballarem amb el Windows. No té massa sentit que allà hi hagi la zona inversa novament creada, i ara mateix només hem definit un únic NS pel que no pot actuar de secundari. Així doncs, quan se li facin peticions sobre la reversa, no les resoldrà. 
+No obstant, cal que configureu el Windows perquè tingui el servei DNS de la Ubuntu Server com a forwarding i així les consultes que rebi sobre les reserves les passarà al Linux i hauria d’obtenir-ne resposta.  
+    e) Adjunteu doncs una captura del Windows Server conforme té la IP de la Ubuntu Server com a servidor on reenviar les peticions DNS. 1 punt. 
+Per demostrar que funciona correctament, caldrà que feu una comprovació en dos parts. Per una banda activeu el tcpdump a la Ubuntu Server per tal que faci d’sniffer sobre el port DNS i per l’altra feu una consulta DNS al Windows Server. 
+    f) Així doncs, adjunteu dues captures: la primera, des de la Ubuntu Server, llançant la comanda [sudo tcpdump -i any -n port 53 and udp], que permetrà veure el trànsit DNS que passi per la Ubuntu, i l’altra, un nslookup al Windows Server per tal de consultar la IP 172.25.X.166. Evidentment, la de Linux ha de mostrar el contingut de dades que genera la consulta client al Windows. 1,5 punts. 
 
-    i Captura amb la comanda ‘DIG’ des de consola per saber els autoritatius del vostre domini cognomnom.edu. 0,5 punts. 
+    g) Tot seguit, adjunteu una captura de la comanda ‘dig’ consultant el nom DNS ns1.nomcognom.edu a la Ubuntu Server. 1 punt.  
+Per acabar, heu de configurar el Windows Server i la Ubuntu Server per tal que no responguin peticions que no tinguin ells com autoritatives (per tant als dominis actius i la reversa si), com per exemple, si pregunteu sobre sapalomera.cat. Us adjunto un parell de captures conforme el que us hauria de sortir quan ho tingueu realitzat. 
 
-    j Captura de la consulta dels servidors de correu pel vostre domini utilitzant una comanda client per consola. 0,5 punts.
 
-    k Captura de la consulta sobre blanes.cognomnom.edu utilitzant una comanda client per consola. 0,5 punts.
+    h) Adjunteu les explicacions i captures corresponents del que heu canviat, configurat, activat, etc. per tal de que els servidors DNS es comportin de la manera indicada. 1,5 punts. 
 
+nomcognom = nilmasso
 cognomnom = massonil
-X = 34
+x = 35
 
-Desde powershell afegim totes les configuracions:
-    
-        Add-DnsServerResourceRecord -ZoneName massonil.edu -Name www -A -IPv4Address 172.25.35.200
-        Add-DnsServerResourceRecord -ZoneName massonil.edu -Name figueres -A -IPv4Address 172.25.35.199
-        Add-DnsServerResourceRecord -ZoneName massonil.edu -Name ripoll -A -IPv4Address 172.25.35.166
-        Add-DnsServerResourceRecord -ZoneName massonil.edu -Name olot -A -IPv4Address 172.25.35.133
-  
-blanes.cognomnom.edu: ALIAS de www.cognomnom.edu.
+a)
+nano /etc/bind/named.conf.local
 
-    Add-DnsServerResourceRecord -ZoneName massonil.edu -Name blanes -Alias -Target www
+zone "172.25.35.in-addr.arpa" {
+        type master;
+        file "/var/cache/db.172.25.35.in-addr.arpa";
+        allow-transfer { none; };
+};
 
-    Add-DnsServerResourceRecord -ZoneName massonil.edu -Name mail -MX -Preference 25 -MailExchange correu
+nano /var/cache/db.172.25.35.in-addr.arpa
 
-    Add-DnsServerResourceRecord -ZoneName massonil.edu -Name correu -MX -Preference 50 -MailExchange correu
+$TTL 86400
+@       IN      SOA     ns1.nilmasso.edu. root.nilmasso.edu. (
+                        2016102601      ; Serial
+                        3600            ; Refresh
+                        1800            ; Retry
+                        604800          ; Expire
+                        86400 )         ; Negative Cache TTL
+;
+@       IN      NS      ns1.nilmasso.edu.
+@       IN      A 
+@       IN      PTR     ns1.nilmasso.edu.
+5       IN      PTR     www.nilmasso.edu.
+20      IN      PTR     webmail.nilmasso.edu.
+55      IN      PTR     mail.nilmasso.edu.
+133     IN      PTR     olot.massonil.edu.
+166     IN      PTR     ripoll.massonil.edu.
+199     IN      PTR     figueres.massonil.edu.
 
-    Add-DnsServerResourceRecord -ZoneName massonil.edu -Name A -A -IPv4Address
+b)
+dig -x
 
-    configurem el TTL
-
-    Set-DnsServerResourceRecord -ZoneName massonil.edu -Name A -TTL 6
-
+c)
+dig ns1.nilmasso.edu
 
 
-    j Captura de la consulta dels servidors de correu pel vostre domini utilitzant una comanda client per consola. 0,5 punts.
-
-    k Captura de la consulta sobre blanes.cognomnom.edu utilitzant una comanda client per consola. 0,5 punts.
-
-C:\Users\massonil>nslookup -type=mx massonil.edu 

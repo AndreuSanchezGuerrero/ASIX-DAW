@@ -1,61 +1,69 @@
-Consulta documentació sobre la comanda ROBOCOPY i contesta les següents preguntes:
+RSYNC
 
-    1. Amb robocopy configura una comanda per copiar tot el contingut de les carpetes d’usuaris (les unitats Z:) del teu servidor principal a una carpeta situada en altra partició. La còpia haurà d’incloure paràmetres per copiar les carpetes buides i tots els marcadors de seguretat d’arxius i de carpetes (propietari, llista ACL, data i hora,...)
-    2. Volem modificar la comanda de Pr1 per fer que a la carpeta on es guarda la còpia de seguretat desapareguin els fitxers que s’han esborrat de l’origen des de l’última còpia realitzada.
-    3. Volem modificar els paràmetres de la Pr2 i fer que la comanda copiï la informació a una partició ubicada en altre PC.
-    4. Comprova el paràmetre /Z amb la comanda de Pr3. Posa exemples i captures on es vegi clarament el seu resultat
-    5. Afegeix a la comanda de Pr4 el paràmetre /RH. Per a què aprofita? Si arriba al temps límit i no ha acabat encara de fer la còpia, acaba de copiar-ho o ho suspèn? Demostra-ho
-    6. Afegeix a la comanda de Pr4 els paràmetres /MON i /MOT. Explica com funcionen aquests modificadors. Quin ús pots trobar a ells? Posa un exemple.
-    7. Sobre els paràmetres anteriors, per saber a què es consideren “canvi” i a què no, emplena la següent taula:
-Accions
-Considerat canvi?
-Llegir el fitxer
+ 1 Monta el següent arbre de carpetes i arxius (mkdir i touch)
+Sapalomera (Carpeta pare)
+-Direccio (Carpeta)
+	-Documents.txt (chmod 700)
+	-Nomines.txt (chmod 700)
+-Professors
+	-Notes.pdf (chmod 700)
+	-Shrek4.mp4 (chmod 755)
+	-Valorant.exe (chmod 777)
+-Alumnes
+	-ExamenUF4Sistemes.docx (chmod 007)
+	-WhatsappWeb.html (chmod 777)
+    2 Comparteix la carpeta Sapalomera mitjançant samba 💃🏿 (vull una captura conforme esta compartida)
+    3 En un altre màquina completament diferent copia la carpeta a l’arrel del disc de la màquina del destí si pots (/) amb mode verbose, recursiu (-r) i comprimeix les dades dels fitxers al compartir
+    4 Compara els permisos de les dues carpetes, si han canviat els permisos, fes la comanda per què no es modifiquin
+    5 Ara fes la copia amb els mateixos paràmetres però en la carpeta (/SapaEncriptat) encriptada, del client destí.
+    6 Fes una copia remota amb els paràmetres -vazh excloent els fitxers “.txt” en la carpeta (/NoTreballem)
+    7 Fes un cron per sincronitzar dues carpetes amb tots els arxius mitjançant rsync amb els paràmetres que tu vulguis cada minut. Pots utilitzar el rsync a les dues màquines. (/SapaSincronitzat) Fes una demostració real fent canvis a una màquina i veient si es modifica tot el que fas a l’altre.
 
-Canviar nom del fitxer
+Ex 1
+cd /
+mkdir Sapalomera
+mkdir Sapalomera/Direccio
+mkdir Sapalomera/Professors
+mkdir Sapalomera/Alumnes
+touch Sapalomera/Direccio/Documents.txt
+touch Sapalomera/Direccio/Nomines.txt
+touch Sapalomera/Professors/Notes.pdf
+touch Sapalomera/Professors/Shrek4.mp4
+touch Sapalomera/Professors/Valorant.exe
+touch Sapalomera/Alumnes/ExamenUF4Sistemes.docx
+touch Sapalomera/Alumnes/WhatsappWeb.html
+chmod 700 Sapalomera/Direccio/Documents.txt
+chmod 700 Sapalomera/Direccio/Nomines.txt
+chmod 700 Sapalomera/Professors/Notes.pdf
+chmod 755 Sapalomera/Professors/Shrek4.mp4
+chmod 777 Sapalomera/Professors/Valorant.exe
+chmod 007 Sapalomera/Alumnes/ExamenUF4Sistemes.docx
+chmod 777 Sapalomera/Alumnes/WhatsappWeb.html
 
-Canviar longitud del fitxer
+Change the owner of /sapalomera to nil
+chown nil /sapalomera
+Ex2 
+Compartir carpeta Sapalomera
 
-Canviar data/hora de modificació
+Ex3
+La copiem al directori / de la maquina 2
+rsync -rvz /Sapalomera/ host2:/Sapalomera/
 
-Canviar llista ACL
+Ex4
+ls -l /Sapalomera/
+rsync -avz /Sapalomera/ host2:/Sapalomera/
 
-Canviar propietari del fitxer
+Ex5
+rsync -avz --encrypt /Sapalomera/ host2:/SapalomeraEncriptat/
 
-Canviar atributs del sistema
+Ex6
+rsync -vazh --exclude="*.txt" /Sapalomera/ host2:/NoTreballem/
 
-Canviar atributs estesos
+Ex7
+Obrim cron
+crontab -e
+Fem el cron
+*/1 * * * * rsync -avz nil:nil-Standard-PC-i440FX-PIIX-1996:/Sapalomera/ /home/nil/SapaSincronitzat/
+Actibem el cron
+systemctl restart cronie
 
-Sobreescriure el fitxer
-
-
-1. Amb robocopy copiem C:Users/Unitats a D:
-robocopy \\UF4NMASSO\Unitats D:\Unitats /E /COPYALL /DCOPY:DAT
-
-2. Amb robocopy copiem C:Users/Unitats a D: i esborrem els arxius que no hi són a C:
-robocopy \\UF4NMASSO\Unitats D:\Unitats /E /COPYALL /DCOPY:DAT /PURGE
-
-3. Amb robocopy copiem C:Users/Unitats a D: i esborrem els arxius que no hi són a C: i copiem els arxius a un altre PC
-robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE
-
-4. Amb robocopy copiem C:Users/Unitats a D: i esborrem els arxius que no hi són a C: i copiem els arxius a un altre PC i copiem els arxius que no hi són a C: i esborrem els arxius que no hi són a C: i copiem els arxius a un altre PC
-robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z
-Cancelem la comanda anterior:
-robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z /R:0 /W:0
-
-Afegeix a la comanda de Pr4 el paràmetre /RH. Per a què aprofita? Si arriba al temps límit i no ha acabat encara de fer la còpia, acaba de copiar-ho o ho suspèn? Demostra-ho
-Posem el rh de 23 a 23:20
-robocopy \\UF4NMASSO\Unitats \\UF4NMASSO2\Unitats /E /COPYALL /DCOPY:DAT /PURGE /Z /RH:23:00-23:20 
-
-Sobre els paràmetres anteriors, per saber a què es consideren “canvi” i a què no, emplena la següent taula:
-
-Accions
-Considerat canvi?
-Llegir el fitxer: No
-Canviar nom del fitxer: No
-Canviar longitud del fitxer: No
-Canviar data/hora de modificació: Si
-Canviar llista ACL: Si
-Canviar propietari del fitxer: Si
-Canviar atributs del sistema: Si
-Canviar atributs estesos: Si
-Sobreescriure el fitxer: Si
