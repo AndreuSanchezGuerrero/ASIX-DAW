@@ -30,30 +30,53 @@ Per acabar, heu de configurar el Windows Server i la Ubuntu Server per tal que n
 
 nomcognom = nilmasso
 cognomnom = massonil
-x = 35
+X = 35
 
 a)
 nano /etc/bind/named.conf.local
 
+#Primer fem la directa
+
+zone "nilmasso.edu" {
+        type master;
+        file "/var/cache/bind/db.nilmasso.edu";
+};
 zone "172.25.35.in-addr.arpa" {
         type master;
-        file "/var/cache/db.172.25.35.in-addr.arpa";
-        allow-transfer { none; };
+        file "/var/cache/bind/db.35.25.172";
 };
 
-nano /var/cache/db.172.25.35.in-addr.arpa
+Ara creem la zona directa i la inversa
 
-$TTL 86400
+nano /var/cache/bind/db.nilmasso.edu
+
+$TTL 6h
 @       IN      SOA     ns1.nilmasso.edu. root.nilmasso.edu. (
-                        2016102601      ; Serial
-                        3600            ; Refresh
-                        1800            ; Retry
-                        604800          ; Expire
-                        86400 )         ; Negative Cache TTL
+                        2016101901 ; Serial
+                        6h ; Refresh
+                        1h ; Retry
+                        1w ; Expire
+                        1h ) ; Minimum TTL
 ;
 @       IN      NS      ns1.nilmasso.edu.
-@       IN      A 
-@       IN      PTR     ns1.nilmasso.edu.
+www     IN      A       172.25.35.5
+webmail IN      A       172.25.35.20
+mail    IN      A       172.25.35.55
+olot    IN      A       172.25.35.133
+ripoll  IN      A       172.25.35.166
+figueres        IN      A   172.25.35.199
+
+nano /var/cache/bind/db.35.25.172
+
+$TTL 6h
+@       IN      SOA     ns1.nilmasso.edu. root.nilmasso.edu. (
+                        2016101901 ; Serial
+                        6h ; Refresh
+                        1h ; Retry
+                        1w ; Expire
+                        1h ) ; Minimum TTL
+;
+@       IN      NS      ns1.nilmasso.edu.
 5       IN      PTR     www.nilmasso.edu.
 20      IN      PTR     webmail.nilmasso.edu.
 55      IN      PTR     mail.nilmasso.edu.
@@ -61,10 +84,6 @@ $TTL 86400
 166     IN      PTR     ripoll.massonil.edu.
 199     IN      PTR     figueres.massonil.edu.
 
-b)
-dig -x
+Apliquem els canvis de DNS al nostre ubuntu Server
 
-c)
-dig ns1.nilmasso.edu
-
-
+/etc/init.d/bind9 restart
