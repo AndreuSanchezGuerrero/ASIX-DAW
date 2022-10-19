@@ -1,0 +1,50 @@
+table{
+    border-collapse: collapse;
+}
+
+td{
+    border: 1px solid;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+}
+
+.webs{
+    background-color: greenyellow;
+}
+
+.hardware{
+    background-color: pink;
+}
+
+.scripts{
+    background-color: lightgreen;
+}
+
+.aso{
+    background-color: brown;
+}
+
+.seguretat{
+    background-color: lightsalmon;
+}
+
+.serveis{
+    background-color: turquoise;
+}
+
+.tutoria{
+    background-color: green;
+}
+
+.sistemes{
+    background-color: yellow;
+}
+
+.projecte{
+    background-color: lightblue;
+}
+
+.border{
+    border: 0ch;
+}

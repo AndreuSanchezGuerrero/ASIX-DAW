@@ -1,0 +1,42 @@
+/*Creem el css per al <div class='circle'>*/
+.circle {
+    width: 31px;
+    height: 31px;
+    border-radius: 31px;
+    background-color: #eee;
+    display: inline-block;
+    margin: 0 25px 25px 0;
+}
+
+
+html {
+    animation: scroll 70s linear infinite;
+    background: url("https://images.unsplash.com/photo-1465146633011-14f8e0781093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3450&q=80"), #111111;
+    color: #eee;
+    height: auto;
+    min-width: 360px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+}
+
+@keyframes scroll {
+    100% {
+        background-position: 0px -3000px;
+    }
+}
+
+head, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+    color: #eee;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+}
