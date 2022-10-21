@@ -16,16 +16,22 @@ Total operands sumats: 8-->
             function suma(){
                 $suma=0;
                 $num_args = func_num_args();
+                $sortida = "";
                 if ($num_args==0){
                     echo "ERROR";
                 }else{
                     for ($i=0;$i<$num_args;$i++){
-                        $suma=$suma+func_get_arg($i);
+                        while ($i <= $num_args-1){
+                            $sortida .= func_get_arg($i) . " + ";
+                        }
+                        $suma = $suma+func_get_arg($i);
                     }
+                    echo "La suma de $sortida és $suma<br>";
                     echo "La suma és $suma";
                 }
             }
             suma(5,10,5,8,2,4,6,5);
         ?>
+        <a href="index.php" class="t"><button>Tornar</button></a>
     </body>
 </html>

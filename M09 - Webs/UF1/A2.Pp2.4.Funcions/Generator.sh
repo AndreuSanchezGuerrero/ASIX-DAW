@@ -44,11 +44,12 @@ EOF
 for (( i=1; i<=$exercisis; i++ ))
 do
     cat << EOF >> index.php
-    <a href="Ex$i.php"><button>Exercici $i</button></a>
+            <a href="Ex$i.php"><button>Exercici $i</button></a>
 EOF
 done
-
+#Afegim un boto per tornar a la pagina principal
 cat << EOF >> index.php
+        <a href="index.php"><button>Tornar</button></a>
         </body>
     </html>
 EOF

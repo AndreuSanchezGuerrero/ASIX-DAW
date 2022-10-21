@@ -42,23 +42,27 @@ Fes una funció que et demani quina operació vols fer (de moment el valor el po
                 $modul=$a%$b;
                 echo "El mòdul entre $a i $b és $modul";
             }
-            switch ($operacio){
-                case 1:
-                    suma($a,$b);
-                    break;
-                case 2:
-                    resta($a,$b);
-                    break;
-                case 3:
-                    producte($a,$b);
-                    break;
-                case 4:
-                    divisio($a,$b);
-                    break;
-                case 5:
-                    modul($a,$b);
-                    break;
+            function operacio($operacio,$a,$b){
+                switch($operacio){
+                    case 1:
+                        suma($a,$b);
+                        break;
+                    case 2:
+                        resta($a,$b);
+                        break;
+                    case 3:
+                        producte($a,$b);
+                        break;
+                    case 4:
+                        divisio($a,$b);
+                        break;
+                    case 5:
+                        modul($a,$b);
+                        break;
+                }
             }
+            operacio($operacio,$a,$b);
         ?>
+        <a href="index.php" class="t"><button>Tornar</button></a>
     </body>
 </html>

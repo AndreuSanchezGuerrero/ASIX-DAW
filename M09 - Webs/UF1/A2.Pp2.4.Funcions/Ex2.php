@@ -15,15 +15,20 @@ Per provar-ho des del programa principal feu tres crides a PrimersValors, amb el
     <body>
         <?php
             function EsPrimer($num){
-                $esPrimer=true;
-                for($i=2;$i<$num;$i++){
-                    if($num%$i==0){
-                        $esPrimer=false;
+                $cont = 0;
+                for($i = 1; $i <= $num; $i++){
+                    if($num % $i == 0){
+                        $cont++;
                     }
                 }
-                return $esPrimer;
+                if($cont == 2){
+                    return true;
+                }else{
+                    return false;
+                }
             }
             function PrimersValors($num1,$num2){
+                echo "Els números primers entre $num1 i $num2 són: ";
                 for($i=$num1;$i<=$num2;$i++){
                     if(EsPrimer($i)){
                         echo "$i ";
@@ -36,5 +41,6 @@ Per provar-ho des del programa principal feu tres crides a PrimersValors, amb el
             echo "<br>";
             PrimersValors(30,125);
         ?>
+        <a href="index.php" class="t"><button>Tornar</button></a>
     </body>
 </html>
