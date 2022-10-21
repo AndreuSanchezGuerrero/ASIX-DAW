@@ -1,6 +1,3 @@
-
-
-#Fem lo anterior pero utilitzant cat
 echo "Quants exercisis vols generar?"
 read exercisis
 for (( i=1; i<=$exercisis; i++ ))
@@ -21,6 +18,7 @@ do
         </head>
         <body>
             <?php
+
             ?>
         </body>
     </html>
@@ -41,16 +39,16 @@ cat << EOF >> index.php
             <title>Exercisis</title>
         </head>
         <body>
-            <?php
-            for (( i=1; i<=$exercisis; i++ ))
-            do
-                echo "<a href='Ex$i.php'>Exercici $i</a><br>";
-            done
-            ?>
+EOF
+
+for (( i=1; i<=$exercisis; i++ ))
+do
+    cat << EOF >> index.php
+    <a href="Ex$i.php"><button>Exercici $i</button></a>
+EOF
+done
+
+cat << EOF >> index.php
         </body>
     </html>
 EOF
-
-
-
-
