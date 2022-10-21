@@ -13,12 +13,12 @@ do
             <meta charset="UTF-8">
             <link rel="stylesheet" type="text/css" href="CSS.css">
             <title>Exercici $i</title>
-            <h1>Exercici $i</h1>
             <title>Exercisi $i</title>
         </head>
         <body>
+            <h1>Exercici $i</h1>
             <?php
-
+            
             ?>
         </body>
     </html>
