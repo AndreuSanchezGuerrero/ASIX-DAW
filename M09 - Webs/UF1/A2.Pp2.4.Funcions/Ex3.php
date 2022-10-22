@@ -21,13 +21,14 @@ Total operands sumats: 8-->
                     echo "ERROR";
                 }else{
                     for ($i=0;$i<$num_args;$i++){
-                        while ($i <= $num_args-1){
-                            $sortida .= func_get_arg($i) . " + ";
+                        $sortida .= func_get_arg($i);
+                        if ($i<$num_args-1){
+                            $sortida .= "+";
                         }
                         $suma = $suma+func_get_arg($i);
                     }
-                    echo "La suma de $sortida és $suma<br>";
-                    echo "La suma és $suma";
+                    echo "$sortida = $suma<br>";
+                    echo "Total operands sumats: $num_args";
                 }
             }
             suma(5,10,5,8,2,4,6,5);
