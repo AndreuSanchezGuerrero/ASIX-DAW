@@ -24,30 +24,30 @@ error("Missatge de correu retornat”);-->
     </head>
     <body>
         <?php
-            $nivellLog=3;
+            $nivellLog = 3;
             function info($missatge){
                 global $nivellLog;
-                if ($nivellLog>=3){
-                    echo "[INFO] $missatge";
+                if($nivellLog >= 3){
+                    echo "<p class=info> [INFO] $missatge </p>";
                 }
             }
             function warning($missatge){
                 global $nivellLog;
-                if ($nivellLog>=2){
-                    echo "[WARNING] $missatge";
+                if($nivellLog >= 2){
+                    echo "<p class=warning> [WARNING] $missatge </p>";
                 }
             }
             function error($missatge){
                 global $nivellLog;
-                if ($nivellLog>=1){
-                    echo "[ERROR] $missatge";
+                if($nivellLog >= 1){
+                    echo "<p class=error> [ERROR] $missatge </p>";
                 }
             }
             info("Servidor iniciat correctament.");
             info("Consum de cpu ok.");
             warning("Consum de cpu elevat.");
             error("Missatge de correu retornat.");
-            info("Consum de cpu ok.");
         ?>
+        <a href="index.php" class="t"><button>Tornar</button></a>
     </body>
 </html>

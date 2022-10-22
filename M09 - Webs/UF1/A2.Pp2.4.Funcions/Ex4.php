@@ -10,16 +10,17 @@
     </head>
     <body>
         <?php
-            $decimal=31;
             function decimalABinari($decimal){
-                $binari="";
-                while ($decimal>0){
-                    $binari=$binari.$decimal%2;
-                    $decimal=$decimal/2;
+                $binari = "";
+                while($decimal > 0){
+                    $binari = $decimal % 2 . $binari;
+                    $decimal = floor($decimal / 2);
                 }
-                echo "El nombre decimal $decimal en binari és $binari";
+                echo "El número binari és: " . $binari;
             }
-            decimalABinari($decimal);
+            $decimal = 31;
+            echo decimalABinari($decimal);
         ?>
+        <a href="index.php" class="t"><button>Tornar</button></a>
     </body>
 </html>
