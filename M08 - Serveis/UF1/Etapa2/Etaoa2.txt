@@ -59,6 +59,8 @@ $TTL 6h
                         1h ) ; Minimum TTL
 ;
 @       IN      NS      ns1.nilmasso.edu.
+@       IN      A       172.25.35.15
+ns1     IN      A       172.25.35.15
 www     IN      A       172.25.35.5
 webmail IN      A       172.25.35.20
 mail    IN      A       172.25.35.55
@@ -87,3 +89,7 @@ $TTL 6h
 Apliquem els canvis de DNS al nostre ubuntu Server
 
 /etc/init.d/bind9 restart
+
+Per configurar el Windows Server, hem d'entrar a la consola de DNS i afegir el nostre servidor DNS com a servidor DNS Forwarder amb la comanda:
+
+dnscmd /config /serverlevelplugindll \\nilmasso.edu\DNS\dnsserver.dll

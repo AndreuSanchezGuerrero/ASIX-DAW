@@ -1,0 +1,65 @@
+
+ASIX – M8 – SXI | IES SA PALOMERA | CURS 22-23
+Novament doncs, llancem la petició anterior, però ara, contra un dels autoritatius que ens han
+indicat els root-servers.
+En aquest cas, ens diu que pel rang 79.0.0.0/8 cal consultar uns altres servidors DNS
+autoritatius. Us haurien de sonar, ja que a xarxes us van explicar com funciona la distribució
+d’IPs públiques sota el protocol IPv4, amb els diferents RIR (Regional Internet Registry) que
+regulen la distribució d’IPs.
+Aquí farem una mica de trampes, tot i que hauria de funcionar de la mateixa manera, i farem la
+petició al del RIPE, que és el RIR europeu. Ho fem aquí perquè la IP que he donat d’exemple és
+una IP domèstica de Movistar.
+Novament doncs, llancem la petició:
+Avancem una mica mes dins l’adreçament IP i ara ja ens parla del subrang 79.158.0.0/16, i els
+seus corresponents DNS autoritatius.
+Per demostrar-vos que pertany a Movistar, podeu fer el whois sobre el domini rima-tde.net.
+Si tornem a fer la petició contra un dels dos autoritatius que ens han donat obtenim el següent:
+ASIX – M8 – SXI | IES SA PALOMERA | CURS 22-23
+En aquest cas, ja hem obtingut una resposta (Answer Section) confirmant els autoritatius
+assignats.
+Aquesta IP doncs, està associada a un PTR tal com 244.red-79-158-205.dynamicip.rima-tde.net,
+que en aquest cas, si hi fem ping, obtenim resposta.
+Ara doncs, si fem la petició directa, ens ha de tornar la IP en qüestió, tal com veieu que passa a
+la imatge següent:
+Hem de tenir clar però que no sempre (molt sovint no passa) el servidor autoritatiu de la zona
+de domini és el mateix que a la inversa. Imagineu que registreu un domini (serveisasix.com per
+exemple) i el seu autoritatiu a Internet està a la IP pública 1.2.3.4. Vosaltres fareu d’autoritatiu
+per la directa, però la IP 1.2.3.4 és d’un ISP, que tindrà assignada l’autoritat per definir les
+inverses del seu bloc d’IPs. El que si que ha de ser coherent és la resposta a la directa i a la
+inversa, de forma que en aquest cas, hauríeu de parlar amb l’ISP perquè us assignes la inversa al
+vostre nom de domini.
+Ho podeu comprovar per exemple en cas de mail.tossademar.com. Si llanceu una consulta DNS
+sobre el valor del nom de domini us resol el següent:
+ASIX – M8 – SXI | IES SA PALOMERA | CURS 22-23
+Si busquem els autoritatius del domini veurem que són:
+Ara anem doncs a fer la petició d’inversa.
+Veiem que la resposta coincideix. Està ben configurat. Però, qui ens ha donat aquesta
+informació? Tornem a fer les dues preguntes, però als autoritatius del domini.
+Primer llancem la petició sobre el subdomini mail.tossademar.com.
+
+dig 
+
+I després la petició d’inversa sobre la IP, ens tots dos casos, a dns1.ddgi.cat.
+Tal com veieu, la pregunta directa sobre els autoritatius funciona correctament, però la
+pregunta inversa sobre el mateix autoritatiu respon amb els root-servers, com és això?
+En aquest cas, el servidor dns1.ddgi.cat és un servidor autoritatiu que no treballa en mode
+recursiu, només iteratiu, per tant, si no és l’autoritatiu a la pregunta, respondrà que no la sap o
+dirà on es pot anar a buscar. I, tal com heu vist prèviament, sempre que busquem algun domini
+o IP el punt de partida han de ser els root-servers.
+ASIX – M8 – SXI | IES SA PALOMERA | CURS 22-23
+Així doncs, tornem a fer la pregunta però aquest cop a un dels root-servers.
+Aquest ha baixat un nivell als dominis (recordeu que les adreces van amb l’extensió ‘arpa’) i ens
+torna a dir el mateix, que ho preguntem a uns altres NS. Fem la pregunta:
+I seguim baixant pels nivells de l’arbre de dominis. Fixeu-vos que ara ens diu que preguntem per
+80.in-addr.arpa i no pas per in-addr.arpa, tal com fèiem abans, fet que ens confirma que hem
+baixat un nivell. Tornem a fer la pregunta:
+I comprovem que hem tornat a baixar, en aquest cas, dos nivells de cop, i finalment, la darrera
+pregunta:
+On aquí ja ens apareix el camp Answer Section, i comprovem que l’autoritatiu és diferent, ja que
+la IP és d’un proveïdor i per tant té uns DNS autoritatius, i el domini ho és per un altre, i té els
+seus autoritatius de domini.
+Tal com dèiem abans però, que passa amb les IPs privades? Son IPs vàlides dins el protocol IPv4
+per tant haurien d’estar tipificades dins l’espai de noms. Anem a comprovar-ho utilitzant la IP
+privada més típica, 192.168.1.1.
+Fem la petició al root-servers, i ens retorna els autoritatius de in-addr.arpa. Després, ens passarà
+cap als dels RIRs.
