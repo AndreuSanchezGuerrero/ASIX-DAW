@@ -48,7 +48,7 @@
                     );
                     break;
             }
-            printr($jugadors);
+            print($jugadors);
         ?>
     </body>
 </html>

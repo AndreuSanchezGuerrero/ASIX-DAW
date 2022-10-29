@@ -17,8 +17,8 @@
         <?php
             $tempsFor = 0;
             $tempsWhile = 0;
-            $tempsForMin = 0;
-            $tempsWhileMin = 0;
+            $tempsForMin = 1000;
+            $tempsWhileMin = 1000;
             $tempsForMax = 0;
             $tempsWhileMax = 0;
             $tempsForMitjana = 0;
