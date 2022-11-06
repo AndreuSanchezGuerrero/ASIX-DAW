@@ -1,0 +1,89 @@
+Seguim amb el projecte i en aquesta segona etapa ens basarem principalment a la configuració d’una zona reversa pel vostre rang particular d’IPs, fer-hi comprovacions i treballar amb alguns modes de configuració del servei DNS. 
+Així doncs, el primer que caldrà fer és definir la reversa per la vostra zona 172.25.X.0/16, i com servidor DNS autoritatiu on crear-la utilitzarem la Ubuntu Server. 
+    a) Per tal que funcioni, haureu d’indicar-li al BIND que sigui autoritatiu i primari per la zona DNS corresponent pel vostre rang de xarxa. Adjunteu una captura amb el valor d’executar la comanda [sudo cat /etc/bind/named.conf.local | grep . | grep -v ^// ]. 1 punt. 
+Un cop fet, caldrà preparar el fitxer de zona amb el seu corresponent contingut. Per això caldrà que tingueu en compte que haureu de configurar el SOA, excepte la part de option-slaves, que la podeu deixar amb els valors numèrics per defecte. 
+Pel SOA, el seu autoritatiu ha de ser ns1.nomcognom.edu i el correu el vostre, i com a NS també només ha de constar ns1.nomcognom.edu. 
+A nivell d’entrades PTR cal que genereu les següents: 
+    •  www.nomcognom.edu: 172.25.X.5 
+    • webmail.nomcognom.edu: 172.25.X.20 
+    • mail.nomcognom.edu: 172.25.X.55 
+    • olot.cognomnom.edu: 172.25.X.133 
+    • ripoll.cognomnom.edu: 172.25.X.166 
+    • figueres.cognomnom.edu: 172.25.X.199 
+on evidentment substituïu la X pel vostre rang assignat, i nomcognom, i cognomnom pels vostres en cada cas. 
+    b) Adjunteu una captura amb els valors del fitxer de zona reversa. 2 punts. 
+Un cop activat, tocarà fer comprovacions de funcionament. 
+    c) Adjunteu una captura de la consulta del registre SOA  per la vostra reversa utilitzant la comanda ‘dig’. 1 punt.  
+
+    d) També adjunteu una captura de la consulta del valor 172.25.X.199. Utilitzeu la comanda que vulgueu. 1 punt. 
+Ara treballarem amb el Windows. No té massa sentit que allà hi hagi la zona inversa novament creada, i ara mateix només hem definit un únic NS pel que no pot actuar de secundari. Així doncs, quan se li facin peticions sobre la reversa, no les resoldrà. 
+No obstant, cal que configureu el Windows perquè tingui el servei DNS de la Ubuntu Server com a forwarding i així les consultes que rebi sobre les reserves les passarà al Linux i hauria d’obtenir-ne resposta.  
+    e) Adjunteu doncs una captura del Windows Server conforme té la IP de la Ubuntu Server com a servidor on reenviar les peticions DNS. 1 punt. 
+Per demostrar que funciona correctament, caldrà que feu una comprovació en dos parts. Per una banda activeu el tcpdump a la Ubuntu Server per tal que faci d’sniffer sobre el port DNS i per l’altra feu una consulta DNS al Windows Server. 
+    f) Així doncs, adjunteu dues captures: la primera, des de la Ubuntu Server, llançant la comanda [sudo tcpdump -i any -n port 53 and udp], que permetrà veure el trànsit DNS que passi per la Ubuntu, i l’altra, un nslookup al Windows Server per tal de consultar la IP 172.25.X.166. Evidentment, la de Linux ha de mostrar el contingut de dades que genera la consulta client al Windows. 1,5 punts. 
+
+    g) Tot seguit, adjunteu una captura de la comanda ‘dig’ consultant el nom DNS ns1.nomcognom.edu a la Ubuntu Server. 1 punt.  
+Per acabar, heu de configurar el Windows Server i la Ubuntu Server per tal que no responguin peticions que no tinguin ells com autoritatives (per tant als dominis actius i la reversa si), com per exemple, si pregunteu sobre sapalomera.cat. Us adjunto un parell de captures conforme el que us hauria de sortir quan ho tingueu realitzat. 
+
+
+    h) Adjunteu les explicacions i captures corresponents del que heu canviat, configurat, activat, etc. per tal de que els servidors DNS es comportin de la manera indicada. 1,5 punts. 
+
+nomcognom = nilmasso
+cognomnom = massonil
+X = 35
+
+a)
+nano /etc/bind/named.conf.local
+
+#Primer fem la directa
+
+zone "nilmasso.edu" {
+        type master;
+        file "/var/cache/bind/db.nilmasso.edu";
+};
+zone "172.25.35.in-addr.arpa" {
+        type master;
+        file "/var/cache/bind/db.35.25.172";
+};
+
+Ara creem la zona directa i la inversa
+
+nano /var/cache/bind/db.nilmasso.edu
+
+$TTL 6h
+@       IN      SOA     ns1.nilmasso.edu. root.nilmasso.edu. (
+                        2016101901 ; Serial
+                        6h ; Refresh
+                        1h ; Retry
+                        1w ; Expire
+                        1h ) ; Minimum TTL
+;
+@       IN      NS      ns1.nilmasso.edu.
+www     IN      A       172.25.35.5
+webmail IN      A       172.25.35.20
+mail    IN      A       172.25.35.55
+olot    IN      A       172.25.35.133
+ripoll  IN      A       172.25.35.166
+figueres        IN      A   172.25.35.199
+
+nano /var/cache/bind/db.35.25.172
+
+$TTL 6h
+@       IN      SOA     ns1.nilmasso.edu. root.nilmasso.edu. (
+                        2016101901 ; Serial
+                        6h ; Refresh
+                        1h ; Retry
+                        1w ; Expire
+                        1h ) ; Minimum TTL
+;
+@       IN      NS      ns1.nilmasso.edu.
+5       IN      PTR     www.nilmasso.edu.
+20      IN      PTR     webmail.nilmasso.edu.
+55      IN      PTR     mail.nilmasso.edu.
+133     IN      PTR     olot.massonil.edu.
+166     IN      PTR     ripoll.massonil.edu.
+199     IN      PTR     figueres.massonil.edu.
+
+Apliquem els canvis de DNS al nostre ubuntu Server
+
+/etc/init.d/bind9 restart
