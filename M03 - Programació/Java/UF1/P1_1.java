@@ -129,6 +129,7 @@ public class P1_1 {
                 break;
             default:
                 System.out.println("Error: el codi de l'escut ha de ser F1, K2, R1 o V3.");
+                break;
         }
     }
 }

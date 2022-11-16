@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch P1_1",
+            "request": "launch",
+            "mainClass": "P1_1",
+            "projectName": "ASIX-DAW_88d9fae2"
+        },
+        {
+            "type": "java",
+            "name": "Launch P1_2",
+            "request": "launch",
+            "mainClass": "P1_2",
+            "projectName": "ASIX-DAW_88d9fae2"
+        },
+        {
             "type": "bashdb",
             "request": "launch",
             "name": "Bash-Debug (simplest configuration)",
