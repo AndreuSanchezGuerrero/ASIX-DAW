@@ -12,7 +12,6 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="CSS.css">
         <title>Exercici 3</title>
-        <title>Exercisi 3</title>
     </head>
     <body>
         <h1>Exercici 3</h1>
