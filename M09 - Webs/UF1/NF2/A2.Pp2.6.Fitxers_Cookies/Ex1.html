@@ -1,0 +1,27 @@
+    <!-- Crea una plana web d’accés, hi ha d’haver un formulari on poder-hi afegir usuaris (si no estem entrats) o accedir-hi directament demanant l’usuari i la contrasenya. Els usuaris han d’estar guardats en un fitxer usuaris31.txt amb el següent format:
+usuari1=password1
+usuari2=password2
+...
+Finalment si és el primer cop que entrem a la pàgina en els darrers 30 segons ens ha de donar la benvinguda i que ens digui ben tornats altrament... És valorarà la utilització de funcions i arrays en la resolució de l’exercici així com la utilització d’estils en arxiu CSS. (2.5p).-->
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" type="text/css" href="CSS.css">
+            <title>Exercici 1</title>
+        </head>
+        <body>
+            <h1>Exercici 1</h1>
+            <form action="Ex1.php" method="post">
+                <label for="user">Usuari:</label>
+                <input type="text" name="user" id="user" required>
+                <label for="password">Contrasenya:</label>
+                <input type="password" name="password" id="password" required>
+                <input type="radio" name="action" value="login" id="login" checked>
+                <label for="login">Login</label>
+                <input type="radio" name="action" value="register" id="register">
+                <label for="register">Register</label>
+                <input type="submit" value="Enviar">
+            </form>
+        </body>
+    </html>

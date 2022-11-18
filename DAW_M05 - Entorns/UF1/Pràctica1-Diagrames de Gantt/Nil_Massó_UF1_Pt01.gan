@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2022-11-18" view-index="0" gantt-divider-location="441" resource-divider-location="300" version="3.2.3246" locale="ca_ES">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2022-12-08" view-index="0" gantt-divider-location="442" resource-divider-location="300" version="3.2.3246" locale="ca_ES">
     <description/>
     <view zooming-state="default:0" id="gantt-chart">
-        <field id="tpd3" name="Name" width="200" order="0"/>
-        <field id="tpd4" name="Begin date" width="75" order="1"/>
-        <field id="tpd5" name="End date" width="75" order="2"/>
+        <field id="tpd3" name="Nom" width="200" order="0"/>
+        <field id="tpd4" name="Inici" width="75" order="1"/>
+        <field id="tpd5" name="Finalització" width="75" order="2"/>
         <field id="tpc0" name="Description" width="91" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="color.recent">
@@ -39,27 +39,27 @@
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
             <taskproperty id="tpc0" name="Description" type="custom" valuetype="text" defaultvalue=""/>
         </taskproperties>
-        <task id="2" name="TascaA" color="#8cb6ce" meeting="false" start="2022-11-22" duration="5" complete="0" thirdDate="2022-12-08" thirdDate-constraint="0" expand="true">
+        <task id="2" name="TascaA" color="#8cb6ce" meeting="false" start="2022-11-28" duration="5" complete="0" thirdDate="2022-12-08" thirdDate-constraint="0" expand="true">
             <depend id="3" type="3" difference="0" hardness="Strong"/>
             <depend id="4" type="2" difference="0" hardness="Rubber"/>
-            <task id="10" name="A1" color="#ff0800" meeting="false" start="2022-11-22" duration="3" complete="0" thirdDate="2022-11-22" thirdDate-constraint="0" expand="true"/>
-            <task id="12" name="A2" color="#ff0015" meeting="false" start="2022-11-25" duration="2" complete="0" thirdDate="2022-11-25" thirdDate-constraint="0" expand="true"/>
+            <task id="10" name="A1" color="#ff0800" meeting="false" start="2022-11-28" duration="3" complete="0" thirdDate="2022-11-22" thirdDate-constraint="0" expand="true"/>
+            <task id="12" name="A2" color="#ff0015" meeting="false" start="2022-12-01" duration="2" complete="0" thirdDate="2022-11-25" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="1" name="Objectiu" color="#8cb6ce" meeting="true" start="2022-12-23" duration="0" complete="0" thirdDate="2022-09-21" thirdDate-constraint="0" expand="true"/>
-        <task id="3" name="TascaB" color="#2ec030" meeting="false" start="2022-11-25" duration="2" complete="0" thirdDate="2022-12-08" thirdDate-constraint="0" expand="true"/>
-        <task id="4" name="TascaC" color="#ff0800" meeting="false" start="2022-12-06" duration="9" complete="0" thirdDate="2022-11-21" thirdDate-constraint="0" expand="true">
+        <task id="1" name="Objectiu" color="#8cb6ce" meeting="true" start="2022-12-29" duration="0" complete="0" thirdDate="2022-09-21" thirdDate-constraint="0" expand="true"/>
+        <task id="3" name="TascaB" color="#2ec030" meeting="false" start="2022-12-01" duration="2" complete="0" thirdDate="2022-12-08" thirdDate-constraint="0" expand="true"/>
+        <task id="4" name="TascaC" color="#ff0800" meeting="false" start="2022-12-12" duration="9" complete="0" thirdDate="2022-11-21" thirdDate-constraint="0" expand="true">
             <depend id="5" type="3" difference="0" hardness="Strong"/>
         </task>
-        <task id="5" name="TascaD" color="#0cff00" meeting="false" start="2022-12-12" duration="5" complete="0" thirdDate="2022-11-21" thirdDate-constraint="0" expand="true"/>
-        <task id="6" name="TascaE" color="#0617ee" meeting="false" start="2022-11-29" duration="1" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true">
+        <task id="5" name="TascaD" color="#0cff00" meeting="false" start="2022-12-16" duration="5" complete="0" thirdDate="2022-11-21" thirdDate-constraint="0" expand="true"/>
+        <task id="6" name="TascaE" color="#0617ee" meeting="false" start="2022-12-05" duration="1" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true">
             <depend id="7" type="1" difference="0" hardness="Strong"/>
         </task>
-        <task id="7" name="TascaF" color="#8cb6ce" meeting="false" start="2022-11-29" duration="5" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true">
-            <task id="13" name="F1" color="#fff800" meeting="false" start="2022-11-29" duration="4" complete="0" thirdDate="2022-11-29" thirdDate-constraint="0" expand="true"/>
-            <task id="14" name="F2" color="#e5ff00" meeting="false" start="2022-12-05" duration="1" complete="0" thirdDate="2022-12-05" thirdDate-constraint="0" expand="true"/>
+        <task id="7" name="TascaF" color="#8cb6ce" meeting="false" start="2022-12-05" duration="5" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true">
+            <task id="13" name="F1" color="#fff800" meeting="false" start="2022-12-05" duration="4" complete="0" thirdDate="2022-11-29" thirdDate-constraint="0" expand="true"/>
+            <task id="14" name="F2" color="#e5ff00" meeting="false" start="2022-12-09" duration="1" complete="0" thirdDate="2022-12-05" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="8" name="TascaG" color="#0cff00" meeting="false" start="2022-12-06" duration="4" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true"/>
-        <task id="9" name="TascaH" color="#0319f5" meeting="false" start="2022-11-30" duration="3" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true"/>
+        <task id="8" name="TascaG" color="#0cff00" meeting="false" start="2022-12-12" duration="4" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true"/>
+        <task id="9" name="TascaH" color="#0319f5" meeting="false" start="2022-12-06" duration="3" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Recurs1" function="Default:0" contacts="" phone=""/>

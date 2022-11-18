@@ -1,0 +1,26 @@
+    <!-- Crea una pàgina senzilla amb html de nom loginXX.html que contingui un formulari on es demani el nom, el XX i un password (així com el botó d'enviament), de tal manera que quan li fem un clic, la informació s'envia a una pàgina loginXX.php que mostra el nom i la XX en color blau i amb tipus títol (H2) i el password subratllat amb mida lletra 16. És valorarà la utilització de funcions en la resolució de l’exercici i la utilització d’estils en arxiu CSS. (2.0p).-->
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" type="text/css" href="CSS.css">
+            <title>Exercici 1</title>
+            <title>Exercisi 1</title>
+        </head>
+        <body>
+            <h1>Exercici 1</h1>
+            <form action="login31.php" method="post">
+                <label for="nom">Nom:</label>
+                <input type="text" name="nom" id="nom" required>
+                <br>
+                <label for="XX">XX:</label>
+                <input type="text" name="XX" id="XX" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+                <br>
+                <input type="submit" value="Enviar">
+            </form>
+            <a href="index.php" class="t"><button>Tornar</button></a>
+        </body>
+    </html>
