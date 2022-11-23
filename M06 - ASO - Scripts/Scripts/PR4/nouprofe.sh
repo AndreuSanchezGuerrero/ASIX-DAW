@@ -41,4 +41,3 @@ done
 #Mostrem l'usuari creat
 echo "Usuari creat correctament"
 id $1
-

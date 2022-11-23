@@ -1,0 +1,9 @@
+Quins són els elements lèxics d’un llenguatge com ara el Java.
+1. Els noms de les classes, mètodes, variables, etc.
+2. Els noms dels paquets.
+3. Els noms dels fitxers.
+4. Els noms dels mòduls.
+
+Quina és la diferència entre Compilar i Debugar? En quin dels dos casos ens farien falta les llibreries?
+La diferència entre compilar i debugar és que la primera és el procés de traducció del codi font a codi objecte i la segona és el procés de trobar i corregir els errors del codi font. 
+En el cas de compilar no ens faria falta les llibreries, ja que aquest procés només tradueix el codi font a codi objecte, però en el cas de debugar sí ens faria falta les llibreries, ja que aquest procés necessita les llibreries per trobar i corregir els errors del codi font.
