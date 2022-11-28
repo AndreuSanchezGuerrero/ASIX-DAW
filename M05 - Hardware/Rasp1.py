@@ -1,9 +1,11 @@
 #Fem el codi per a que el led es pari i es torni a encendre cada 3 segons
 import RPi.GPIO as GPIO
 import time
+import telepot as tp
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
 GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+bot = tp.Bot('5971083063:AAGMt8xb5-FlM8kToSlxreo9ow0o1sA3Q-c') 
 
 def encendreLed():
     GPIO.output(18, True)
@@ -43,14 +45,20 @@ def PWM():
     pwm_led.start(100)
     i = 0
     try:
-        while GPIO.input(23) == True:
-            i = i + 1
-            pwm_led.ChangeDutyCycle(i)
-            time.sleep(0.1)
-        else:
-            i = i - 1
-            pwm_led.ChangeDutyCycle(i)
-            time.sleep(0.1)
+        while True:
+            print (i)
+            if GPIO.input(23) == True:
+                i = i + 1
+                if i == 11:
+                    i = 10
+                pwm_led.ChangeDutyCycle(i)
+                time.sleep(0.1)
+            else:
+                i = i - 1
+                if i == -1:
+                    i = 0
+                pwm_led.ChangeDutyCycle(i)
+                time.sleep(0.1)
     except KeyboardInterrupt:
         GPIO.output(18, False)
         menu()
@@ -59,17 +67,32 @@ def PWM():
 def alarma():
     try:
         while True:
-            if GPIO.input(23) == False:
-                print("Polsador premut")
-                GPIO.output(18, True)
-                os.system("mutt -s 'Porta oberta' -a /home/pi/Desktop/alarma.txt --")
-            else:
-                print("Polsador no premut") 
-                GPIO.output(18, False)
-            time.sleep(0.5)
+            if GPIO.input(23) == False: #Porta Oberta
+                bot.sendMessage(668520827,'Porta Oberta')
+                time.sleep(3)
     except KeyboardInterrupt:
         GPIO.output(18, False)
         menu()
+
+#Mode per a transformar les comandes del bot de telegram en funcions
+def handle(msg):
+    chat_id = msg['chat']['id']
+    command = msg['text']
+    print('Received: %s' % msg)
+    if command == 'on':
+        encendreLed()
+        bot.sendMessage(chat_id, "Led encès")
+    elif command == 'off':
+        apagarLed()
+        bot.sendMessage(chat_id, "Led apagat")
+
+def telegram():
+    bot.message_loop(handle)
+    print(bot.getMe())
+    MessageLoop(bot, handle).run_as_thread()
+    print('Listening ...')
+    while 1:
+        time.sleep(10)
 
 #Fem el menu
 def menu():
@@ -79,6 +102,7 @@ def menu():
     print("4. PolSador")
     print("5. PWM")
     print("6. Alarma")
+    print("7. Telegram")
     print("8. Sortir")
     opcio = int(input("Tria una opcio: "))
     if opcio == 1:
@@ -93,6 +117,8 @@ def menu():
         PWM()
     elif opcio == 6:
         alarma()
+    elif opcio == 7:
+        telegram()
     elif opcio == 8:
         GPIO.cleanup()
         exit()
