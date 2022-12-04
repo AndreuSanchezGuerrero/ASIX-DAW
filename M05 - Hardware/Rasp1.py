@@ -47,7 +47,7 @@ def PWM():
     try:
         while True:
             print (i)
-            if GPIO.input(23) == True:
+            if GPIO.input(23) == False:
                 i = i + 1
                 if i == 11:
                     i = 10
@@ -87,12 +87,48 @@ def handle(msg):
         bot.sendMessage(chat_id, "Led apagat")
 
 def telegram():
-    bot.message_loop(handle)
     print(bot.getMe())
     MessageLoop(bot, handle).run_as_thread()
     print('Listening ...')
     while 1:
         time.sleep(10)
+
+#Controlar un motor DC
+def motor():
+    try:
+        M1enable = 17
+        M1sentitA = 27
+        M1sentitB = 22
+        freq_pwm = 100
+        GPIO.setup(M1enable, GPIO.OUT)
+        GPIO.setup(M1sentitA, GPIO.OUT)
+        GPIO.setup(M1sentitB, GPIO.OUT)
+        #inicialitzem el PWM
+        pwm_motor = GPIO.PWM(M1enable, freq_pwm)
+        #Preguntem cap a on volem que vagi el motor
+        direccio=input("Cap a on vols que vagi el motor? (A/B): ")
+        #Preguntem la velocitat
+        velocitat=int(input("Quina velocitat vols que vagi el motor? (0-100): "))
+        while True:
+            try:
+                if direccio=="A":
+                    GPIO.output(M1sentitA,GPIO.HIGH)
+                    GPIO.output(M1sentitB,GPIO.LOW)
+                elif direccio=="B":
+                    GPIO.output(M1sentitA,GPIO.LOW)
+                    GPIO.output(M1sentitB,GPIO.HIGH)
+                else:
+                    print("Direccio incorrecta")
+                    motor()
+                pwm_motor.start(velocitat)
+            except KeyboardInterrupt:
+                GPIO.output(M1sentitA,GPIO.LOW)
+                GPIO.output(M1sentitB,GPIO.LOW)
+                pwm_motor.stop()
+                motor()
+    except KeyboardInterrupt:
+        gpio.cleanup()
+        menu()
 
 #Fem el menu
 def menu():
@@ -103,7 +139,8 @@ def menu():
     print("5. PWM")
     print("6. Alarma")
     print("7. Telegram")
-    print("8. Sortir")
+    print("8. Motor")
+    print("9. Sortir")
     opcio = int(input("Tria una opcio: "))
     if opcio == 1:
         encendreLed()
@@ -120,6 +157,8 @@ def menu():
     elif opcio == 7:
         telegram()
     elif opcio == 8:
+        motor()
+    elif opcio == 9:
         GPIO.cleanup()
         exit()
     else:
