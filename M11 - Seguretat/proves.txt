@@ -1,0 +1,209 @@
+    • A l’hora d’avaluar i qualificar el treball es tindran en compte els aspectes estètics, de correctesa lingüística  (sintàctica i ortogràfica) a més del que s’hagi comentat al cicle formatiu sobre la redacció de documentació tècnica i manuals.
+
+    • El mòdul professional pertany a uns estudis orientats al món laboral, cosa que fa que un cop complerts els requisits mínims la nota resultant serà condicionada per la quantitat i qualitat del treball individual realitzat per cada alumne.
+
+• Recordeu crear una portada i un índex.
+Enllaços:
+WireGuard
+https://www.wireguard.com/install/
+
+https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/ 
+https://enclaveinformatico.com/configurar-una-vpn-con-wireguard/
+https://www.cyberciti.biz/faq/ubuntu-20-04-set-up-wireguard-vpn-server/#Enable_and_start_WireGuard
+https://www.redeszone.net/tutoriales/vpn/wireguard-vpn-configuracion/
+https://clouding.io/hc/es/articles/360013528839-C%C3%B3mo-instalar-WireGuard-VPN-en-Ubuntu
+LucidChart
+
+Pràctica 5 – Realitzar una xarxa privada virtual (VPN) amb WireGuard.
+Fes els exercicis següents. Contesteu directament sota dels enunciats. Poseu-hi captures de pantalla si ho considereu necessari.
+
+Recordeu a citar TOTES les fonts utilitzades
+
+Xarxes Privades Virtuals (VPN).
+
+Una xarxa privada virtual o VPN (Virtual Private Network) és una xarxa privada que s’estén a diferents punts remots mitjançant l’ús d’infraestructures públiques de transport (com per exemple, Internet).
+
+Així, un usuari (una sucursal de l’organització, un teletreballador, un representant comercial…) connectat a través d’Internet a la xarxa corporativa de l’organització, establint un túnel VPN, pot funcionar com si estigués dins de l’organització a tots els efectes de connectivitat.
+
+La característica que converteix la connexió “pública” en “privada” és el que s’anomena un túnel, terme referit a que únicament ambdós extrems són capaços de veure el que es transmet pel túnel, convenientment xifrat i protegit de la resta d’Internet. La tecnologia de túnel xifra i encapsula els protocols de xarxa que s’utilitzen en els extrems sobre el protocol IP. D’aquesta manera podem operar com si es tractés d’un enllaç dedicat convencional, de forma transparent per a l’usuari.
+
+WireGuard és una senzilla aplicació que us permetrà experimentar amb una VPN i establir túnels IP segurs. Hi ha versions per a Windows, macOS, Linux, Android, iOS,...
+ 
+Teòricament proporciona un rendiment millor que fer una VPN utilitzant el protocol IPsec i OpenVPN. Treballa a nivell3 de la capa de la OSI, per tant a nivell d’adreça IP. 
+També facilita molt la configuració de la seguretat que es fa servir.
+
+Per a realitzar aquesta pràctica podeu consultar aquests enllaços per a entendre la seva configuració i funcionament.
+
+Per instal·lar-lo:
+https://www.wireguard.com/install/
+
+https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/ 
+https://enclaveinformatico.com/configurar-una-vpn-con-wireguard/
+
+How to set up WireGuard VPN server on Ubuntu 20.04 - nixCraft (cyberciti.biz)
+https://www.redeszone.net/tutoriales/vpn/wireguard-vpn-configuracion/
+https://clouding.io/hc/es/articles/360013528839-C%C3%B3mo-instalar-WireGuard-VPN-en-Ubuntu
+
+Exercici 1: Configuració d’un servidor WireGuard (2 punts)
+
+Realitzeu la configuració d’un servidor WireGuard utilitzant una màquina virtual de Linux.
+
+Aquesta màquina seria la que es trobaria a la zona perimètrica i per tant estaria connectada tant a la xarxa pública com a la xarxa local que estem protegint. Per tant tindrà dues interfícies de xarxa: en una hi haurà una adreça “pública” i l’altra tindrà una adreça privada, d’una LAN.
+
+
+La xarxa local podria ser per exemple del tipus 192.168.1.0/24
+Aquesta màquina tindria tots els ports tancats excepte un port habilitat per a accedir al servei de WireGuard i establir les VPN amb les màquines externes permeses. Per defecte WireGuard utilitza el port 51820.
+El que farà serà crear una interfície virtual que us donarà accés a la xarxa privada virtual (per exemple una adreça de la 192.168.2.0/24).
+Per aquesta primera part de la pràctica, poseu una interfície de xarxa en mode NAT i una interfície de xarxa en bridge host-only i així es veurà amb el vostre host o amb una altra màquina virtual que també pugui estar en bridge host-only
+
+A partir de la informació continguda als enllaços que us he proporcionat, realitzeu la configuració d’aquesta interfície virtual:
+    • Haureu de crear les claus privada i pública del servidor, establir la seva adreça a la VPN i el port d’escolta. 
+    • Més tard també hi haureu d’afegir les claus públiques dels clients permesos i si cal una llista d’IPs externes permeses.
+
+Documenteu el procés seguit:
+
+    • escriviu les comandes utilitzades. 
+    • Escriviu la configuració utilitzada, els fitxers que heu fet servir i el contingut del fitxer de configuració del servidor (wg0.conf).
+    • Mostreu l’estat de la connexió i amb ifconfig la nova interfície. 
+
+Recordeu a posar-me les captures de tot lo necessari i les justificacions que creieu. Si heu d’afegir algun plànol de xarxa amb els hosts i les IPs, recordeu que podeu fer servir eines com el LucidChart.
+
+
+Exercici 2: Configuració d’un client Windows de WireGuard (2 punts)
+
+Realitzeu la configuració d’un client WireGuard utilitzant una màquina virtual o el vostre host de Windows. Aquesta màquina seria la que es trobaria a Internet i necessitaria entrar remotament a la xarxa protegida. En la nostra prova (per ex. mode bridge host-only) ha de tenir una adreça de la mateixa xarxa que la interfície “pública” del servidor WireGuard, ja que s’hi ha de poder connectar.  El client de WireGuard li generarà les dues claus pel xifrat, la IP a la VPN i després de connectar-se al servidor (en aquest cas una IP de la xarxa que comparteixen en mode bridge host-only amb la màquina virtual del servidor), una interfície amb una IP de la xarxa privada virtual (per ex 192.168.2.0/24). A partir d’aquest moment ja es poden comunicar de manera segura els elements de la VPN utilitzant IPs d’aquesta xarxa virtual (en l’exemple seria la 192.168.2.0/24). La clau pública l’ha de conèixer el servidor VPN.
+Documenteu el procés seguit i el contingut de la configuració del client. 
+
+    • Mostreu el contingut de la configuració del client
+    • Mostreu com heu modificat el fitxer de configuració del servidor
+    • Mireu també què surt al Log quan us connecteu al servidor
+    • Mostreu amb ipconfig la nova interfície al client 
+    • Feu un ping a la IP privada (VPN) del servidor i del servidor cap al client. 
+Recordeu a posar-me les captures de tot lo necessari i les justificacions que creieu. Si heu d’afegir algun plànol de xarxa amb els hosts i les IPs, recordeu que podeu fer servir eines com el LucidChart.
+
+
+En aquesta  part, connectareu la VPN amb la vostra xarxa interna, i configurareu els clients per a que encaminin per la VPN tot el trànsit que hagi d’anar a la xarxa interna, de manera que semblarà que el client estigui directament connectat a la xarxa interna.
+
+
+
+Exercici 3: Accés a un servidor WireGuard des de l’exterior (4 punts)
+
+En una situació real, el servidor WireGuard estarà a una xarxa pública i no segura com internet (per exemple amb una adreça pública com 147.161.163.142) . Però també tindrà una altra targeta de xarxa (NIC) amb una adreça de xarxa local, per exemple de la xarxa 192.168.1.0/24 . I a part d’això tindrà la IP de la VPN, per exemple 192.168.2.1 de la xarxa VPN 192.168.2.0/24. La vostra configuració només admetrà connexions exteriors per accedir a la IP pública pel port que hàgiu destinat a escoltar les peticions de Wireguard. La màquina no acceptarà altres peticions públiques, per tant, no es podrà accedir a la resta de la xarxa interna. 
+
+A casa vostra, les màquines no tenen una IP pública sinó que estareu darrera un router domèstic i aneu amb NAT. Haureu de configurar el vostre router de manera que faci un Port Forwarding (PAT estàtic). Les peticions que es rebin pel port que trieu, es desviaran a una adreça IP no pública de la vostra xarxa local, o sigui a la vostra màquina virtual amb Wireguard i pel port que trieu, en l’exemple que hem fet, el destí seria el 51820.
+
+Això es configura mitjançant el router.
+
+
+
+
+
+El meu servidor està a la 192.168.1.166 de la meva LAN i escolta pel port 51820. Aquesta màquina virtual tindria tots els ports tancats excepte un port habilitat per a accedir al servei de WireGuard i establir les VPN amb les màquines externes permeses. Per defecte WireGuard utilitza el port 51820.
+
+Les peticions per un port XXX a la meva IP pública, el meu router les envia a al port 192.168.1.166:51820  Això vol dir que puc connectar-me a la meva VPN des de qualsevol lloc del món si se la meva IP pública i el port que tinc obert.
+Aquí no tenim una connexió externa. Simularem aquesta topologia de xarxa afegint una xarxa interna a la màquina virtual del servidor Wireguard i allà posant-hi una altra màquina virtual, així simularem una xarxa interna no accessible des del vostre host, per exemple la 172.16.0.0/16 . Des del vostre host heu de poder accedir al servidor Wireguard (comparteixen xarxa bridge only-host), però no podeu arribar a l’altra màquina de la xarxa interna. Quan el configureu com a client de la VPN, llavors hi tindreu accés a través de la IP de la VPN, i el wireguard us enrutarà cap a la xarxa interna
+
+Servidor VPN amb Wireguard : 
+    • interfície de xarxa bridge only host
+    • interfície de xarxa interna
+Client de xarxa local : 
+    • interfície de xarxa interna
+El vostre host:
+    • xarxa bridge only host i client VPN Wireguard
+En primer lloc cal habilitar l’enrutament al servidor de Wireguard. Necessiteu unes línies com aquestes al fitxer de configuració del servidor.
+
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+
+On diu eth0 hi heu de posar la interfície que us connecta amb la xarxa interna, en el meu exemple la interfície que té una adreça IP de la xarxa 172.16.0.0/16. A la pròxima UF veurem què volen dir aquestes línies. 
+
+També cal activar l’enrutament al servidor echo 1 > /proc/sys/net/ipv4/ip_forward
+Si voleu que l’enrutament sigui permanent, cal editar /etc/sysctl.conf i afegir-hi net.ipv4.ip_forward = 1
+Amb  sysctl -p els canvis són efectius al moment.
+
+Heu de configurar el client VPN de la màquina de la xarxa interna per a que capturi tot el tràfic que volem enviar a la VPN i a la xarxa interna (recordeu, teòricament no accessible: 172.16.0.0/16 des del vostre host). En el nostre cas hauria de capturar el tràfic cap a 192.168.2.0/24 i 172.16.0.0/16
+
+Documenteu el procés seguit i el contingut de la configuració del servidor i el client de la xarxa interna. 
+
+    • Mostreu el contingut de la configuració del servidor
+    • Mostreu el contingut de la configuració del client. Que quedi clar el tràfic què captureu.
+    • Mireu també què surt al Log quan us connecteu al servidor
+    • Mostreu amb ipconfig la nova interfície al client 
+    • Feu un ping a la IP privada (VPN) del servidor i del servidor cap al client. 
+    • Feu un ping des del vostre host a la IP del client a la xarxa interna
+
+Exercici 4: Configuració d’un client mòbil de WireGuard (2 punts)
+
+Realitzeu la configuració d’un client WireGuard utilitzant un mòbil o una tablet que estigui connectada a la mateixa xarxa que el servidor VPN. Poseu el servidor en mode bridge, per exemple. Quan es crea el client, es creen les seves claus privada i pública. La clau pública l’ha de conèixer el servidor VPN i l’ha de tenir al fitxer de configuració.
+
+El client de WireGuard li generarà, després de connectar-se a la IP del servidor, una interfície amb una IP de la xarxa privada virtual (per ex 192.168.2.0/24). A partir d’aquest moment ja es poden comunicar de manera segura els elements de la VPN. Creeu una connexió a una IP de la VPN per a comprovar que funciona bé.
+També volem accedir a la màquina que està a la xarxa interna, per tant heu de configurar el client per a que capturi tot el tràfic que volem enviar a la VPN i a la xarxa interna (teòricament no accessible: 172.16.0.0/16). En el meu cas hauria de capturar el tràfic cap a 192.168.2.0/24 i 172.16.0.0/16
+
+Documenteu el procés seguit i el contingut de la configuració del client. 
+
+    • Mostreu el contingut de la configuració del client
+    • Mostreu com heu modificat el fitxer de configuració del servidor
+    • Mireu també què surt al Log quan us connecteu al servidor
+    • Feu un ping a la IP privada (VPN) del servidor i del servidor cap al client. 
+    • Feu un ping des del client mòbil a la IP del client a la xarxa interna
+
+Recordeu a posar-me les captures de tot lo necessari i les justificacions que creieu. Si heu d’afegir algun plànol de xarxa amb els hosts i les IPs, recordeu que podeu fer servir eines com el LucidChart.
+
+
+//Exercici 1
+
+apt update && apt upgrade -y
+apt install wireguard -y
+#Obrim el port 51820 al firewall
+apt install ufw -y
+ufw allow 51820/udp
+#Creem la carpeta per a les claus
+mkdir /etc/wireguard/keys
+#Creem les claus
+wg genkey | tee /etc/wireguard/keys/server_privatekey | wg pubkey > /etc/wireguard/keys/server_publickey
+#Mostrem les claus:
+cat /etc/wireguard/keys/server_privatekey
+cat /etc/wireguard/keys/server_publickey
+#Creem el fitxer de configuració del servidor
+nano /etc/wireguard/wg0.conf
+#Afegim el contingut del fitxer de configuració del servidor
+[Interface]
+Address =
+ListenPort = 51820
+PrivateKey =
+
+[Peer]
+PublicKey =
+AllowedIPs =
+
+#Activem el servei
+systemctl enable wg-quick@wg0
+systemctl start wg-quick@wg0
+#Comprovem que funciona
+wg show
+#Comprovem que funciona
+ping
+#Comprovem que funciona
+ifconfig wg0
+
+//Exercici 2: Configurem un Windows
+
+#Descarreguem el client de WireGuard
+https://www.wireguard.com/install/
+#Instal·lem el client de WireGuard
+#Fem add empty tunel
+#S'ens crea automaticament una clau privada i una clau publica
+#Copiem la clau publica
+#Anem al servidor i afegim la clau publica al fitxer de configuració del servidor
+[Peer]
+PublicKey = 
+AllowedIPs =
+#Anem al servidor i reiniciem el servei
+systemctl restart wg-quick@wg0
+#Anem al client i afegim la clau publica del servidor al fitxer de configuració del client
+[Peer]
+PublicKey =
+AllowedIPs =
+Endpoint =
+#Anem al client windows i reiniciem el servei
+

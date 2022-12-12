@@ -1,13 +1,11 @@
-
+#Fem el codi per a que el led es pari i es torni a encendre cada 3 segons
 import RPi.GPIO as GPIO
 import time
-import telepot
+import telepot as tp
+import telepot.loop as loop
 
 def encendreLed():
-    try:
-        GPIO.output(18, True)
-    except KeyboardInterrupt:
-        menu()
+    GPIO.output(18, True)
 
 def apagarLed():
     GPIO.output(18, False)
@@ -20,6 +18,7 @@ def parpadejarLed():
             GPIO.output(18, False)
             time.sleep(3)
     except KeyboardInterrupt:
+        GPIO.output(18, False)
         menu()
 
 def modepolsador():
@@ -33,8 +32,11 @@ def modepolsador():
                 GPIO.output(18, False)
             time.sleep(0.5)
     except KeyboardInterrupt:
+        GPIO.output(18, False)
         menu()
 
+
+#A partir de l’exercici anterior, modificar el guió perquè el led s’encengui gradualment, recordar utilitzar PWM, posar el codi del guió python 
 def PWM():
     pwm_led = GPIO.PWM(18, 100)
     pwm_led.start(100)
@@ -55,21 +57,35 @@ def PWM():
                 pwm_led.ChangeDutyCycle(i)
                 time.sleep(0.1)
     except KeyboardInterrupt:
+        GPIO.output(18, False)
         menu()
 
-def alarma():
-    #Demanem el chat_id de l'usuari
-    chat_id = input("Introdueix el chat_id: ")
-    #Demanem el token del bot
-    bot = input("Introdueix el token: ")
+#Simular una alarma amb un polsador, que equivaldria a un sensor de control d’estat d’una porta(oberta o tancada) i que quan la porta estigui oberta envií un telegram, mutt, avisant que la porta s’ha obert. 
+def handle(msg):
+    chat_id = msg['chat']['id']
+    command = msg['text']
+    print('Received: %s' % msg)
+    if command == '/start':
+        bot.sendMessage(chat_id, "Bot encès")
     try:
         while True:
             if GPIO.input(23) == False: #Porta Oberta
                 bot.sendMessage(chat_id,'Porta Oberta')
                 time.sleep(3)
     except KeyboardInterrupt:
+        GPIO.output(18, False)
         menu()
 
+
+def alarma(bot):
+    print(bot.getMe())
+    loop.MessageLoop(bot, handle).run_as_thread()
+    print('Listening ...')
+    while 1:
+        time.sleep(10)
+
+
+#Controlar un motor DC
 def motor():
     try:
         M1enable = 17
@@ -117,6 +133,7 @@ def menu():
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(18, GPIO.OUT)
     GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    bot = tp.Bot('5971083063:AAGMt8xb5-FlM8kToSlxreo9ow0o1sA3Q-c') 
     print("1. Encendre led")
     print("2. Apagar led")
     print("3. Parpadejar led")
@@ -137,7 +154,7 @@ def menu():
     elif opcio == 5:
         PWM()
     elif opcio == 6:
-        alarma()
+        alarma(bot)
     elif opcio == 7:
         motor()
     elif opcio == 8:

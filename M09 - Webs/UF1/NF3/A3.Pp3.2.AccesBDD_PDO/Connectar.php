@@ -2,9 +2,9 @@
     #Fem uns funcio per a obrir i tancar la connexió a la base de dades
     function connectar(){
         #Variables de connexió
-        $servername = "localhost";
-        $username = "user";
-        $password = "aplicacions";
+        $servername = "192.168.122.59";
+        $username = "perepi";
+        $password = "pastanaga";
         $dbname = "incidencies";
         try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

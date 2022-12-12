@@ -11,6 +11,7 @@ Exercici 1: (1.0p) Crea una base de dades per tal de poder “guardar” les dad
 		Correu Sol·licitant (String)
 		Descripció de la incidència
 */
+DROP DATABASE IF EXISTS incidencies;
 CREATE DATABASE incidencies;
 USE incidencies;
 CREATE TABLE incidencies(

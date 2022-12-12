@@ -27,7 +27,7 @@ while ($opcio -ne 7) {
                 Write-Host $i
             }
         }
-        #Contem x numero de primers de 0 a infinit
+
         2 {  
             $numero = Read-Host "Introdueix un numero"
             $primers = 0
@@ -96,23 +96,35 @@ while ($opcio -ne 7) {
                 $paraulaMostrar[$i] = "_"
             }
             $intent = 0
+            $lletraDit = @()
             while ($intent -lt 7) {
                 Write-Host "Intent: " $intent
+                Write-Host "Lletres: " $lletraDit
                 Write-Host $paraulaMostrar
                 $lletra = Read-Host "Introdueix una lletra"
                 $lletra = $lletra.ToUpper()
                 $trobat = $false
-                for ($i = 0; $i -lt $paraula.Length; $i++) {
-                    if ($paraula[$i] -eq $lletra) {
-                        $paraulaMostrar[$i] = $lletra
-                        $trobat = $true
+                if ($lletraDit -contains $lletra) {
+                    Write-Host "Ja has dit aquesta lletra"
+                    $intent++
+                } else {
+                    $lletraDit += $lletra
+                    for ($i = 0; $i -lt $paraula.Length; $i++) {
+                        if ($paraula[$i] -eq $lletra) {
+                            $paraulaMostrar[$i] = $lletra
+                            $trobat = $true
+                        }
+                    }
+                    if ($trobat -eq $false) {
+                        $intent++
                     }
                 }
-                if ($trobat -eq $false) {
-                    $intent++
+                if ($paraulaMostrar -notcontains "_") {
+                    Write-Host "Has encertat"
+                    break
                 }
-                if ($paraulaMostrar -eq $paraula) {
-                    Write-Host "Has encertat la paraula"
+                if ($paraula -eq $paraulaMostrar) {
+                    Write-Host "Has encertat"
                     break
                 }
             }
