@@ -1,0 +1,62 @@
+Exercici 2: El Firewall personal de Linux (UFW) (5 punts)
+El UFW (uncomplicated firewall) permet activar-lo o desactivar-lo, posar la política per defecte com a permissiva o restrictiva, permetre/denegar/rebutjar/limitar l’accés i habilitar/deshabilitar el log (/var/log/ufw.log) 
+
+A partir d’aquí, feu servir una màquina (virtual o no) amb Linux a la que hi tingueu accés des del vostre host. En aquesta màquina hi instal·leu serveis com un servidor Apache i un servidor de base de dades amb el XAMP i un servidor FTP.
+
+A continuació, implementeu aquestes regles al UFW  i proveu-les des del vostre host i la màquina virtual. Inseriu les comandes de la configuració de les regles i la demostració des del vostre host o remot. Inseriu captura del log de cada exercici per a demostrar que funciona correctament. I les captures que demostren que els serveis funcionen o no.
+
+
+
+    • Bloquegeu les peticions que entren cap al port 80  (0,5 punts)
+    • Refuseu les peticions que entren cap al port 80 (0,5 punts)
+    • Bloquegeu les peticions que entren cap al port del servidor de BBDD (0,5 punts)
+    • No permeteu accedir a l’Ubuntu amb SSH (0,5 punts)
+    • No permeteu realitzar un Telnet cap a una altra màquina (0,5 punts)
+    • Bloquegeu les peticions que entren al servidor FTP (0,5 punts)
+    • Bloquegeu només l’accés al port 80 fetes des de la IP del vostre host. Un altre host si que hi ha de poder accedir (0,5 punts)
+    • No permeteu la connexió de sortida cap a les webs que facin servir http (sense certificat web ni encriptació) (0,5 punts)
+    • No accepteu peticions de PING. Amb UFW no hi ha una regla directa, però podeu investigar un work-around per a aconseguir-ho. Com es faria? (1 punt)
+
+Primer instalem tots el serveis per a fer les comprovacions
+sudo  apt install apache2 mysql-server openssh-server proftpd telnet ufw -y
+
+Comprovem que tots els serveis estan actius
+sudo systemctl status apache2
+sudo systemctl status mysql
+sudo systemctl status ssh
+sudo systemctl status proftpd
+sudo systemctl status telnet
+
+#Comprovem que el UFW està desactivat
+sudo ufw status
+sudo ufw enable
+sudo ufw status
+
+#Mostrem les regles per defecte
+sudo ufw default allow incoming
+sudo ufw default allow outgoing
+
+#Suposant q no hem canviat el valor per defecte dels ports
+Activem el log del UFW
+sudo ufw logging on 
+
+#Obrim el log i fem q es mostri en temps real
+sudo tail -f /var/log/ufw.log
+
+#Bloquejem les peticions que entren cap al port 80
+sudo ufw deny 80/tcp
+sudo ufw default allow incoming
+
+sudo ufw reject in 80/tcp  
+sudo ufw deny in 3306/tcp
+#sudo ufw deny in 22/tcp
+sudo ufw deny out 23/tcp
+sudo ufw deny in 21/tcp
+sudo ufw deny 80/tcp from 
+sudo ufw deny out http
+
+#Bloquejem les peticions de ping entrants
+sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+
+
+

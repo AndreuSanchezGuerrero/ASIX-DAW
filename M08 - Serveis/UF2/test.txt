@@ -1,0 +1,189 @@
+#Examen
+
+Quina de les següents directives NO és vàlida dins Apache per configurar un valor de PHP: 
+
+
+Trieu-ne una:
+a.
+
+php_value
+b.
+
+php_admin_value
+c.
+
+php_admin_flag
+d.
+
+php_flag
+
+#Solució
+b
+
+
+Les CA no poden ser mai autosignades, sempre han de ser 'oficials' 
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Fals
+
+L’URI (Uniform Resource Identifier o identificador uniforme de recursos) és el mecanisme d’identificació de recursos universal
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+l servei web incorpora mecanismes bàsics per verificar els usuaris que volen accedir a àrees restringides
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+
+El protocol HTTP indica les redireccions a partir dels codis 4xx de forma que aixÃ­ indica al client que ha de realitzar una acciÃ³ addicional per completar la peticiÃ³ original. 
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+
+A la capa de lògica de l'aplicació en una arquitectura multicapa s'hi defineixen els processos de control i operacions per donar servei
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+Un CSR (Certificate Sign Request) serveix per generar un certificat HTTPS per tal que el firmi una entitat certificadora (CA) 
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+Les configuracions que s’apliquen a un .htaccess son diferents de les que es poden aplicar a una directiva de VirtualHost
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+
+En el mode passiu és el servidor qui inicia la comunicació per establir el canal de dades 
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Fals
+
+
+El canal de dades del protocol FTP gestiona el contingut dels fitxers 
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Fals
+
+
+El canal de dades gestiona el contingut dels fitxers, la seva transferència. 
+Trieu-ne una:
+Vertader
+Fals  
+
+#Solució
+Vertader
+
+
+El protocol FTP és independent del sistema operatiu 
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+
+Segons l'error que apareix podem dir que: 
+
+Respuesta: 550-
+Respuesta: Win32 error:
+Respuesta: error details: File system denied the access
+Error: Error crítico de transferencia de archivo
+
+Trieu-ne una:
+a.
+
+L'error és degut a un problema de permisos o limitacions del sistema de fitxers del servidor
+b.
+Cap de les respostes és correcta 
+c.
+
+
+L'error és degut a un problema de permisos o limitacions del servei FTP 
+d.
+
+L'error és degut a un error durant el procés de transferència 
+
+#Solució
+a
+
+
+El protocol FTP treballa dins el model client/servidor a través del port 21 del servidor, per on gestiona les comandes i el contingut de les transferències dels fitxers. 
+Trieu-ne una:
+Vertader
+Fals 
+
+#Solució
+Vertader
+
+
+Dins el servei FTP de Windows Server, i considerant en català els noms de les opcions disponibles, a quina opció del servei hem d'anar per tal d'habilitar l'accés dels usuaris anònims?  
+Trieu-ne una:
+a.
+
+Restriccions d’accés per IP
+b.
+
+Autenticació
+c.
+
+Regles d’autorització FTP
+d.
+
+Filtrat de sol·licituds FTP
+
+#Solució
+c
+
+
+Quina de les següents afirmacions és falsa? 
+Trieu-ne una:
+a.
+
+Al servei FTP existeixen dos modes de treball: actiu i passiu 
+
+b.
+
+Al mode actiu és el servidor qui inicia la comunicació pel canal de dades
+c.
+
+El canal de control gestiona el contingut dels fitxers 
+d.
+
+Al mode passiu es treballa per defecte es treballa pel port 21 a nivell de canal de control 
+
+#Solució
+c
