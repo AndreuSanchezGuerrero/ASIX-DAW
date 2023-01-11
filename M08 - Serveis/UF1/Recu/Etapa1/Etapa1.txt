@@ -1,0 +1,61 @@
+Partint dels exercicis del NF, i per tant, considerant que teniu la instal·lació base del servei DNS al Windows Server (amb el rol DNS) i a la Ubuntu Server (amb el BIND), toca convertir-los en servidors autoritatius per allotjar les zones de dos dominis, un per servidor. 
+A nivell de xarxa, caldrà que treballeu amb un adaptador en mode ‘xarxa NAT’ amb la xarxa preconfigurada del mòdul i que utilitzeu el vostre rang 172.25.X.0/16. 
+Per començar, amb la Ubuntu Server, configureu el servei DNS perquè sigui autoritatiu pel domini nomcognom.edu (en el meu cas doncs, davidbancells.edu). Si algú coincideix en noms i cognoms, feu servir el segon cognom, o alguna altra variant, i els que teniu accents o caràcters com ñ al cognom, feu-ho de forma senzilla (sense accents, una ñ enlloc d’una n, etc.). 
+La zona haurà de tenir configurat: 
+    • Els seus servidors autoritatius seran A.sapalomera.cat i B.sapalomera.cat (imaginem doncs que A.sapalomera.cat  és la vostra màquina virtual Ubuntu Server i B.sapalomera.cat el Windows Server, pel que heu de substituir A pel valor del hostname que teniu a la ubuntu server i B pel que teniu al Windows Server. Per exemple, en el meu cas, A.sapalomera.cat seria us-dbt.sapalomera.cat). 
+    • A nivell de SOA, l’adreça de gestió del domini és el vostre correu @sapalomera.cat. (ex: dbancells@sapalomera.cat).   
+    • Dos servidors de correu, amb prioritats 5 i 10 respectivament, que seran mail.nomcognom.edu i webmail.nomcognom.edu.
+    • Les entrades de registres RR corresponents a:
+        ◦ www.nomcognom.edu: 172.25.X.5
+        ◦ mail.nomcognom.edu: 172.25.X.55
+        ◦ webmail.nomcognom.edu: 172.25.X.20
+        ◦ girona.nomcognom.edu ALIAS de mail.nomcognom.edu.
+        ◦ barcelona.nomcognom.edu ALIAS de webmail.nomcognom.edu.
+        ◦ lleida.nomcognom.edu: multi-homed a 172.25.X.65 i 172.25.X.75. 
+        ◦ tarragona.nomcognom.edu ALIAS de www.nomcognom.edu. 
+Pel SOA heu de posar els valors corresponents. Pels canvis numèrics, us heu d’inventar els registres de opcions-slaves, però NO poden ser els mateixos que venen per defecte, i evidentment, han de ser coherents. 
+El TTL general del domini han de ser 6h si el vostre nom acaba en vocal i 12h si el vostre nom acaba en consonant. 
+Evidentment teniu a disposició les diferents eines de comandes per comprovar, abans de presentar, que tot funciona correctament. Recordeu a mirar els logs si hi ha problemes. Amb les preguntes que es faran no hi ha totes les proves que demostren que tot funciona, però heu de tenir en compte que ha de funcionar tot. Llegiu bé i feu les proves addicionals necessàries per tal d’assegurar-vos que tot funciona tal com es demana i que no us deixeu cap part directament especificada. 
+Si necessiteu comprovar la correcció de la sintaxi de la zona, investigueu sobre la comanda named-checkzone, que us pot ajudar. Com a client penseu que podeu utilitzar el propi Ubuntu Server parametritzant correctament les comandes de consulta. 
+Per demostrar i entregar aquesta part responeu les següents preguntes:
+    a Quins canvis i fitxers heu tocat dins de /etc/bind per tal de que el servidor sigui l’autoritatiu i respongui per nomcognom.edu? Adjunteu també captures dels canvis dins els fitxers si s’escau. 1 punt. 
+
+    b Adjunteu una captura dels valors del fitxer de zona de nomcognom.edu i la seva ruta dins el sistema de fitxers. 2 punts. 
+Cat /var/cache/bind/bd.davidvancells.edu
+    c Amb la comanda ‘DIG’ consulteu quins son els NS pel vostre domini nomcognom.edu. 0,5 punts. 
+Estant a /bind : Dig ns davidvancells.edu @localhost
+
+    d Amb una comanda client de consulta DNS, la que vulgueu, consulteu els valors de girona.nomcognom.edu i adjunteu-ne la captura corresponent. 0,5 punts.
+
+    e Amb una comanda client de consulta DNS, la que vulgueu, consulteu els valors de lleida.nomcognom.edu i adjunteu-ne la captura corresponent. 0,5 punts.
+
+    f Tal com heu vist, hem assignat com a NS dos servidors que son externs al domini nomcognom.edu. A quins servidors hauríem d’entrar per poder definir les nostres entrades A i B sota sapalomera.cat? Expliqueu-ho i demostreu amb consultes client i les seves corresponents captures. 0,5 punts. 
+
+A nivell de Windows Server, seguint la línia anterior, configurarem el servidor perquè sigui autoritatiu del domini cognomnom.edu (en el meu cas doncs, bancellsdavid.edu). Si hi ha coincidències o caràcters estranys, seguiu els mateixos canvis que heu fet amb el domini de la Ubuntu Server. 
+La zona haurà de tenir configurat: 
+    • Els seus servidors autoritatius seran A.cognomnom.edu i B.cognomnom.edu, on A és el hostname del servidor Windows, i primari del domini, i B el hostname de la Ubuntu Server. (exemple A.cognomnom.edu -> ws-dbt.bancellsdavid.edu).  
+    • L’adreça de gestió del domini és el vostre correu @sapalomera.cat.  
+    • Dos servidors de correu, amb prioritats 25 i 50 respectivament, que seran mail.cognomnom.edu i correu.cognomnom.edu.
+    • Les entrades de :
+        ◦ www.cognomnom.edu: 172.25.X.200
+        ◦ figueres.cognomnom.edu: 172.25.X.199
+        ◦ ripoll.cognomnom.edu: 172.25.X.166
+        ◦ olot.cognomnom.edu: 172.25.X.133
+        ◦ blanes.cognomnom.edu: ALIAS de www.cognomnom.edu.
+Pel SOA i el TTL general, si el vostre cognom acaba en vocal, els valors han de ser un múltiple de 3, i si acaba en consonant, de 2. Igualment però, han de ser uns valors mínimament coherents (no val 2 o 3 segons, per exemple), i diferents dels valors que venen per defecte. 
+S’han de poder resoldre totes les entrades DNS vinculades al domini. Si en alguna no s’ha especificat IP, us la inventeu sempre dins del vostre rang. 
+Recordeu que teniu a disposició les diferents eines de comandes per comprovar, ja siguin sota Windows o Linux, que tot funciona correctament. 
+Per demostrar i entregar aquesta darrera part responeu les següents preguntes:
+    g Captura del SOA configurat pel domini dins del Windows Server i també una altra del SOA consultat amb la comanda client nslookup. 1,5 punts.
+
+    h Captura de la zona DNS des del Windows DNS Server. 2 punts. 
+
+    i Captura amb la comanda ‘DIG’ des de consola per saber els autoritatius del vostre domini cognomnom.edu. 0,5 punts. 
+
+    j Captura de la consulta dels servidors de correu pel vostre domini utilitzant una comanda client per consola. 0,5 punts.
+
+    k Captura de la consulta sobre blanes.cognomnom.edu utilitzant una comanda client per consola. 0,5 punts.
+
+
+
+a) 

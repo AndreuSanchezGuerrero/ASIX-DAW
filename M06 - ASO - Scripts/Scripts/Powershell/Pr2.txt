@@ -1,0 +1,229 @@
+Es tracta de fer un mòdul de cmdlets personalitzats pel manteniment i consulta de l’Active Directory d’un Centre Educatiu. 
+
+El mòdul es dirà ADPropi.psm1 i s’haurà de desar a la carpeta on el sistema té els mòduls de PowerShell. 
+
+A la màquina que el tinguis instal·lat, si no és un Server, necessitaràs tenir el RSAT, que incorpora el mòdul de activedirectory. 
+
+Necessitaràs també un AD, pot ser la mateixa màquina. 
+
+Tots els cmdlets han d’estar degudament documentats, de tal forma que si fem get-help “Nomcmdlet”, ens surti una ajuda exmplicant el cmdlet i amb algun exemple si cal. 
+
+Per tal de poder aplicar directives de grup de manera senzilla, cada grup d’usuaris té associat una UO 
+
+gESO1A => ou=ESO1A, ou=ESO1 , ou=ESO, ou=Alumnes, dc=XYZ, dc=net 
+
+... 
+
+gASIX2A => ou=ASIX2A, ou=ASIX2 , ou=ASiX, ou=Alumnes, dc=XYZ, dc=net 
+
+gMates=> ou=Mates, ou=Professors, dc=XYZ, dc=net 
+
+... 
+
+Cmdlets 
+
+Get-Usuaris 
+
+Paràmetres Obligatoris: Grup 
+
+Funcionalitat: Retornarà tots els usuaris que pertanyin al grup indicat 
+
+Get-Alumnes 
+
+Paràmetres Opcionals: Grup, ha de validar-lo en un Set de valors possibles. 
+
+Funcionalitat: Retornarà tots els alumnes que pertanyin al grup indicat(predefinit). Ens haurà de retornar els noms dels alumnes, el mail i el telèfon. El llistat ha d’estar ordenat alfabèticament per: Cognom1, Cognom2, Nom 
+
+Si no l’indiquem el grup, agafarà com a grup predeterminat gAlumnes. 
+
+New-Alumne 
+
+Paràmetres Obligatoris: NomCompte, Nom, Cognoms, Grup al que pertany( p.e.: ESO1A) ha de ser predefint, Password. 
+
+Paràmetres Opcionals: Descripció. 
+
+Funcionalitat: Ha de crear l’alumne a la OU que toqui, i afegir-lo al grup que toqui. Ha d’activar el compte, i indicar que el password mai caduca. 
+
+New-Profe 
+
+Paràmetres Obligatoris: NomCompte, Nom, Cognoms, Departament al que pertany ha de ser predefinit, email. 
+
+Paràmetres Opcionals: Descripció 
+
+Funcionalitat: Ha de crear el professor a la OU que toqui, i afegir-lo al Departament que toqui. Ha d’activar el compte, i indicar que el password mai caduca. S’ha d’inventar un password de longitud 8 amb lletres i números. Una vegada creat el professor, l’ha d’enviar un email indicant-li el nom de compte i el password que té. Ens hem de guardar el email al AD. 
+
+Get-UsuariState 
+
+Paràmetres Obligatoris: NomCompte 
+
+Funcionalitat: Retornarà un dels següents valors: Enabled, Disabled, Null. Retornarà Null si l’usuari no existeix, en cas que existeixis ens dirà si està actiu o no. 
+
+Create-Alumnes 
+
+Paràmetres Obligatoris: RutaCSV 
+
+Funcionalitat: li passarem una ruta on ha d’haver un fitxer CSV amb dades d’alumnes. Per cada alumne comprovarà l’estat. Si està actiu, no farà rés, si està No actiu, simplement l’Activarà, i si és Null, farà un New-Alumne 
+
+Create-Professors 
+
+Paràmetres Obligatoris: RutaCSV 
+
+Funcionalitat: li passarem una ruta on ha d’haver un fitxer CSV amb dades de professors. Per cada professor comprovarà l’estat. Si està actiu, no farà rés, si està No actiu, simplement l’Activarà, i si és Null, farà un New-Professor. 
+
+Create-Professor/New-Professor v2 
+
+Podràs comprovar que cada vegada que el mètode anterior crea un professor nou et demana les credencials del server smtp. Millora New-Professor i canvia Create-Professors perquè només et demani una vegada les credencials. 
+
+
+Resolució:
+
+Preparacions:
+1. Crear un nou mòdul de PowerShell, anomenat ADPropi.psm1
+2. Copiar la carpeta ADPropi a la carpeta de mòduls de PowerShell (C:\Windows\System32\WindowsPowerShell\v1.0\Modules)
+3.Reiniciar PowerShell
+
+
+contingut de ADPropi.psm1:
+
+function Get-Usuaris {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Grup
+    )
+    $Usuaris = Get-ADGroupMember -Identity $Grup
+    return $Usuaris
+}
+
+function Get-Alumnes {
+    param(
+        [Parameter(Mandatory=$false)]
+        [ValidateSet("gESO1A","gESO1B","gESO2A","gESO2B","gESO3A","gESO3B","gASIX1A","gASIX1B","gASIX2A","gASIX2B","gASIX3A","gASIX3B")]
+        [string]$Grup = "gAlumnes"
+    )
+    $Alumnes = Get-ADGroupMember -Identity $Grup
+    $Alumnes | Sort-Object -Property Name | Select-Object Name, EmailAddress, TelephoneNumber
+}
+
+function New-Alumne {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$NomCompte,
+        [Parameter(Mandatory=$true)]
+        [string]$Nom,
+        [Parameter(Mandatory=$true)]
+        [string]$Cognoms,
+        [Parameter(Mandatory=$true)]
+        [ValidateSet("gESO1A","gESO1B","gESO2A","gESO2B","gESO3A","gESO3B","gASIX1A","gASIX1B","gASIX2A","gASIX2B","gASIX3A","gASIX3B")]
+        [string]$Grup,
+        [Parameter(Mandatory=$true)]
+        [string]$Password,
+        [Parameter(Mandatory=$false)]
+        [string]$Descripcio = ""
+    )
+    $OU = $Grup.Substring(1, $Grup.Length - 1)
+    $OU = $OU.Substring(0, $OU.Length - 1)
+    $OU = "ou=" + $OU + ",ou=Alumnes,dc=XYZ,dc=net"
+    $User = New-ADUser -Name $NomCompte -GivenName $Nom -Surname $Cognoms -SamAccountName $NomCompte -Path $OU -AccountPassword (ConvertTo-SecureString $Password -AsPlainText -Force) -Enabled $true -PasswordNeverExpires $true -Description $Descripcio
+    Add-ADGroupMember -Identity $Grup -Members $User
+}
+
+function New-Profe {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$NomCompte,
+        [Parameter(Mandatory=$true)]
+        [string]$Nom,
+        [Parameter(Mandatory=$true)]
+        [string]$Cognoms,
+        [Parameter(Mandatory=$true)]
+        [ValidateSet("gASIX","gESO","gInformatica","gMatematica","gMusica","gEduFisica")]
+        [string]$Departament,
+        [Parameter(Mandatory=$true)]
+        [string]$Email,
+        [Parameter(Mandatory=$false)]
+        [string]$Descripcio = ""
+    )
+    $OU = "ou=" + $Departament + ",ou=Professors,dc=XYZ,dc=net"
+    $Password = [System.Web.Security.Membership]::GeneratePassword(8, 2)
+    $User = New-ADUser -Name $NomCompte -GivenName $Nom -Surname $Cognoms -SamAccountName $NomCompte -Path $OU -AccountPassword (ConvertTo-SecureString $Password -AsPlainText -Force) -Enabled $true -PasswordNeverExpires $true -Description $Descripcio -EmailAddress $Email
+    $SMTPServer = "smtp.XYZ.net"
+    $SMTPPort = 25
+    $SMTPFrom = "
+
+function Get-UsuariState {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$NomCompte
+    )
+    $User = Get-ADUser -Identity $NomCompte -Properties Enabled
+    if ($User -eq $null) {
+        $UserState = "Null" 
+    } else {
+        if ($User.Enabled -eq $true) {
+            $UserState = "Enabled"
+        } else {
+            $UserState = "Disabled"
+        }
+    }
+    return $UserState
+}
+
+function Create-Alumnes {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$RutaCSV
+    )
+    $CSV = Import-Csv $RutaCSV
+    foreach ($Alumne in $CSV) {
+        $UserState = Get-UsuariState -NomCompte $Alumne.NomCompte
+        if ($UserState -eq "Enabled") {
+            Write-Host "L'alumne $Alumne.NomCompte ja existeix i està actiu"
+        } elseif ($UserState -eq "Disabled") {
+            Enable-ADAccount -Identity $Alumne.NomCompte
+            Write-Host "L'alumne $Alumne.NomCompte ja existeix i s'ha activat"
+        } else {
+            New-Alumne -NomCompte $Alumne.NomCompte -Nom $Alumne.Nom -Cognoms $Alumne.Cognoms -Grup $Alumne.Grup -Password $Alumne.Password -Descripcio $Alumne.Descripcio
+            Write-Host "S'ha creat l'alumne $Alumne.NomCompte"
+        }
+    }
+}
+
+function Create-Professors {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$RutaCSV
+    )
+    $CSV = Import-Csv $RutaCSV
+    foreach ($Profe in $CSV) {
+        $UserState = Get-UsuariState -NomCompte $Profe.NomCompte
+        if ($UserState -eq "Enabled") {
+            Write-Host "El professor $Profe.NomCompte ja existeix i està actiu"
+        } elseif ($UserState -eq "Disabled") {
+            Enable-ADAccount -Identity $Profe.NomCompte
+            Write-Host "El professor $Profe.NomCompte ja existeix i s'ha activat"
+        } else {
+            New-Profe -NomCompte $Profe.NomCompte -Nom $Profe.Nom -Cognoms $Profe.Cognoms -Departament $Profe.Departament -Email $Profe.Email -Descripcio $Profe.Descripcio
+            Write-Host "S'ha creat el professor $Profe.NomCompte"
+        }
+    }
+}
+
+function Create-ProfessorsV2 {
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$RutaCSV
+    )
+    $CSV = Import-Csv $RutaCSV
+    foreach ($Profe in $CSV) {
+        $UserState = Get-UsuariState -NomCompte $Profe.NomCompte
+        if ($UserState -eq "Enabled") {
+            Write-Host "El professor $Profe.NomCompte ja existeix i està actiu"
+        } elseif ($UserState -eq "Disabled") {
+            Enable-ADAccount -Identity $Profe.NomCompte
+            Write-Host "El professor $Profe.NomCompte ja existeix i s'ha activat"
+        } else {
+            New-Profe -NomCompte $Profe.NomCompte -Nom $Profe.Nom -Cognoms $Profe.Cognoms -Departament $Profe.Departament -Email $Profe.Email -Descripcio $Profe.Descripcio
+            Write-Host "S'ha creat el professor $Profe.NomCompte"
+        }
+    }
+}

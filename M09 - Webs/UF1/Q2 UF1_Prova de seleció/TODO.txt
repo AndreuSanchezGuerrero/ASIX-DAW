@@ -1,0 +1,5 @@
+Securitzar mes el login de l’aplicació pq no es pugui tornar a ntrar posant la url
+Taula amb totes les puntuacions
+Canviar les coses de la conexió
+Si fa record mostrar pantalla mes xukla
+Mostrar contador amb el temps

@@ -47,16 +47,42 @@ sudo tail -f /var/log/ufw.log
 sudo ufw deny 80/tcp
 sudo ufw default allow incoming
 
-sudo ufw reject in 80/tcp  
+sudo ufw reject in 80/tcp 
+
 sudo ufw deny in 3306/tcp
+#configurem mysql per donar access desde extern  a la BBDD
+sudo mysql -u root -p
+mysql> use mysql;
+mysql> update user set host='%' where user='root'; 
+mysql> flush privileges;
+mysql> exit
+
+#Fem la resta de configs necessaries per a que el mysql funcioni
+sudo mysql_secure_installation
+sudo systemctl restart mysql
+
+
+
+
+
 #sudo ufw deny in 22/tcp
 sudo ufw deny out 23/tcp
+#Comprovem q el telnet cap a fora esta tancat
+telnet 
+
 sudo ufw deny in 21/tcp
 sudo ufw deny 80/tcp from 
 sudo ufw deny out http
 
-#Bloquejem les peticions de ping entrants
-sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+#Bloquejem les peticions de ping entrants iptables
+nano /etc/ufw/before.rules
+#Afegim les següents linies
+-A ufw-before-input -p icmp --icmp-type echo-request -j DROP
+-A ufw-before-output -p icmp --icmp-type echo-request -j DROP
 
 
 
+
+
+mirar ip windows
+ipconfig /all
