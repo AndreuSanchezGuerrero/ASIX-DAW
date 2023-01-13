@@ -1,5 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "UF2/Pràctica 2 - Generar JavaDoc/src"
+        "UF2/Pràctica 2 - Generar JavaDoc/src",
+        "UF2/exam_JavaDoc_UF2_enunciat/src"
     ]
 }
