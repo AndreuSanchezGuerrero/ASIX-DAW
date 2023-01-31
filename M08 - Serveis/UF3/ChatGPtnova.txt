@@ -1,0 +1,84 @@
+Màquina 4 
+
+A l’etapa anterior la vam deixar preparada per gestionar un entorn LAMP, de forma que tindrem els mínims requeriments per acollir la instal·lació del MUA de tipus webmail, implementat amb la solució Roundcube (https://roundcube.net/).  
+
+Aquest projecte és una solució de correu web gratuïta i de codi obert amb una interfície d'usuari semblant a un escriptori que és fàcil d'instal·lar/configurar.  
+
+Caldrà que instal·leu la versió estable 1.6.0 en mode complet, que podeu trobar als links:  
+
+https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz o via https://ja.cat/kIJhD 
+
+A nivell web, no us compliqueu la vida i poseu els fitxers del webmail a /var/www/html/webmail/ així serà accessible via http://IP_màquina4/webmail/.  
+
+Per instal·lar-lo i configurar-lo porta un instal·lador via web, que podeu utilitzar accedint a la subcarpeta /installer/.  
+
+Haureu d’anar complint els requeriments mínims que requereix l’aplicació i al final us generarà una configuració que podreu descarregar i posar a la carpeta de configuració del webmail. També via web trobareu un apartat que us inicialitzarà la base de dades necessària.   
+
+Així doncs, durant la instal·lació i configuració haureu d’adjuntar diferents captures.  
+
+A l’apartat 1 de la instal·lació (Check environment) heu d’adjuntar una captura on es vegi la URL, i que els apartats ‘Checking PHP version’ i ‘Checking PHP extensions’ (només els required) estan tots a OK. 0,5 punts. 
+
+ 
+
+A l’apartat 3 de la instal·lació (Test Config) cal mostrar una captura on es vegi la URL, i que els apartats “Check config file”, “Check if directories are writable”, “Check DB config” i “Test filetype detection” estan tots a OK. 0,5 punts. 
+
+ 
+
+Un cop estigui en funcionament, mostrar la pantalla d’inici on es demana usuari i contrasenya per entrar. Compte, aquí també cal que es demani el servidor al qual volem connectar, ja que utilitzarem un webmail que ens servirà per entrar tant als comptes de la màquina 1 com de la 3. A la captura s’ha de veure la URL. 0,5 punts. 
+
+ 
+
+També heu de mostrar una captura conforme heu eliminat l’instal·lador i per tant no s’hi pot accedir via web per tal d’evitar canvis a les configuracions no desitjades. Mostreu conforme a la URL http://IP_màquina4/webmail/ ens retorna un HTTP 404.  0,25 punts. 
+
+ 
+
+Feu login amb un usuari i adjunteu una captura conforme es veu la versió de Roundcube que esteu utilitzant. 0,25 punts. 
+
+ 
+
+Feu login via webmail amb totes les bústies creades (les 2/3 del hmailserver i les 2 del postfix+dovecot) i un cop fet, adjunteu la captura del log que es troba dins la ruta d’arxius del webmail on constaran els logins realitzats. Reviseu que ho hàgiu activat a la configuració. 0,5 punts. 
+
+
+
+solució:
+Desgarreguem el link amb wget
+wget https://github.com/roundcube/roundcubemail/releases/download/1.6.0/roundcubemail-1.6.0-complete.tar.gz o via https://ja.cat/kIJhD 
+
+Descomprimim el fitxer
+tar -xvf roundcubemail-1.6.0-complete.tar.gz
+
+Copiem el directori a la carpeta html
+cp -r roundcubemail-1.6.0 /var/www/html/webmail
+
+Accedim a la carpeta webmail
+cd /var/www/html/webmail
+
+Accedim a la carpeta installer
+cd installer
+
+Accedim a la carpeta web
+
+http://172.25.35.10/webmail/installer/
+
+    Salta error: 
+[Wed Jan 25 17:05:45.362426 2023] [php:error] [pid 1422] [client 172.25.50.100:34702] PHP Fatal error:  Uncaught Error: Call to undefined function mb_internal_encoding() in /var/www/html/webmail/program/lib/Roundcube/bootstrap.php:86\nStack trace:\n#0 /var/www/html/webmail/program/include/iniset.php(78): require_once()\n#1 /var/www/html/webmail/installer/index.php(43): require('...')\n#2 {main}\n  thrown in /var/www/html/webmail/program/lib/Roundcube/bootstrap.php on line 86
+
+Solucionem amb:
+
+apt-get install php-mbstring
+
+Instalem tots els paquets necessaris de php8.1
+
+apt-get install php8.1 php8.1-mysql php8.1-xml php-imagick php8.1-curl php8.1-gd php8.1-intl php8.1-mbstring php8.1-zip php8.1-bcmath php8.1-ldap php8.1-xmlrpc php8.1-soap php8.1-imap php8.1-readline php8.1-opcache php8.1-fpm php8.1-cli php8.1-common php8.1-cgi php8.1-bz2 php8.1-zip php8.1-mysql php8.1-xml php8.1-curl php8.1-gd php8.1-intl php8.1-mbstring php8.1-zip php8.1-bcmath php8.1-ldap php8.1-xmlrpc php8.1-soap php8.1-imap php8.1-readline php8.1-opcache php8.1-fpm php8.1-cli php8.1-common php8.1-cgi php8.1-bz2 php8.1-zip
+ Reiniciem:
+systemctl restart php*
+systemctl restart apache2
+
+
+Solucionem:
+date.timezone:  NOT OK(not set)
+
+nano /etc/php/8.1/fpm/php.ini
+
+date.timezone = Europe/Madrid
+
