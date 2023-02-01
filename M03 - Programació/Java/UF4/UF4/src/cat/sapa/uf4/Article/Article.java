@@ -1,8 +1,13 @@
-package cat.sapa.uf4;
+package cat.sapa.uf4.Article;
 
-/*3 - Classe Cistella
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
+import java.util.Scanner;
 
-Crea la classe Cistella amb els atributs:
+/*3 - Classe Article
+
+Crea la classe Article amb els atributs:
 
     codi: string (4 caràcters),
     descripcio: string,
@@ -21,7 +26,7 @@ Els setters han de verificar que les dades siguin correctes. Si no ho són, no a
 El mètode toString() ha de retornar un string amb el format codi : descripcio : preuFinal.
 El preu final s'ha de mostrar en el format local (2 decimals separats per coma i el símbol de l'€: 12,50 €).
 
-Crea també una classe TestCistella amb un mètode main() que tingui un array per guardar 5 articles.
+Crea també una classe TestArticle amb un mètode main() que tingui un array per guardar 5 articles.
 Ha de tenir un mètode per demanar les dades d'aquests articles a l'usuari.
 Si alguna dada no és correcta o es produeix algun error, no s'ha de crear l'article ni afegir-lo a l'array.
 
@@ -29,14 +34,14 @@ Afegeix en aquesta classe un mètode per sumar i mostrar el total dels articles 
 
 És molt recomanable utilitzar la introducció automàtica de dades des d'un arxiu per fer les proves! */
 
-public class Cistella {
+public class Article {
     private String codi;
     private String descripcio;
     private int unitats;
     private float preu;
     private int iva;
 
-    public Cistella(String codi, String descripcio, int unitats, float preu, int iva) {
+    public Article(String codi, String descripcio, int unitats, float preu, int iva) {
         this.codi = codi;
         this.descripcio = descripcio;
         this.unitats = unitats;
@@ -96,6 +101,51 @@ public class Cistella {
     public String toString() {
         return codi + " : " + descripcio + " : " + String.format("%.2f €", getPreuFinal());
     }
+
+    public void setCodi(String codi) {
+        this.codi = codi;
+    }
+
+    public void setDescripcio(String descripcio) {
+        this.descripcio = descripcio;
+    }
 }
 
-public class TestCistella
+class TestArticle {
+    private static Article[] articles = new Article[5];
+
+    public static void main(String[] args) {
+        llegeixFitxer();
+        mostraTotal();
+    }
+
+    private static void llegeixFitxer() {
+        try {
+            Scanner scanner = new Scanner(new File("src/cat/sapa/uf4/Article/dadesArticles.txt"));
+            int i = 0;
+            while (scanner.hasNextLine() && i < articles.length) {
+                String[] dades = scanner.nextLine().split(";");
+                if (dades.length == 5) {
+                    Article article = new Article(dades[0], dades[1], Integer.parseInt(dades[2]), Float.parseFloat(dades[3]), Integer.parseInt(dades[4]));
+                    articles[i] = article;
+                    i++;
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("No s'ha pogut trobar el fitxer dadesArticles.txt");
+        }
+    }
+
+    private static void mostraTotal() {
+        DecimalFormat df = new DecimalFormat("#.00");
+        float total = 0;
+        for (Article Article : articles) {
+            if (Article != null) {
+                System.out.println(Article);
+                total += Article.getPreuFinal();
+            }
+        }
+        System.out.println("Total: " + df.format(total) + " €");
+    }
+}

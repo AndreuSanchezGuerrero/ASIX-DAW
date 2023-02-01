@@ -1,4 +1,4 @@
-package cat.sapa.uf4;
+package cat.sapa.uf4.Persona;
 import java.time.LocalDate;
 
 public class Persona {
@@ -111,17 +111,6 @@ public class Persona {
         Persona.numPersones = numPersones;
     }
 
-    public static Persona creador(String nif, String nom, String dataNaixement) {
-        Persona persona = null;
-        try {
-            persona = new Persona(nif, nom, dataNaixement);
-            numPersones++;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return persona;
-    }
-
     private boolean comprovarNif(String nif) {
         boolean correcte = false;
         if (nif.length() == 9) {
@@ -152,12 +141,23 @@ public class Persona {
 
     class TestPersona {
         public static void main(String[] args) {
-            Persona persona1 = Persona.creador("1A345678A", "Pere", "01-01-2000");
-            Persona persona2 = Persona.creador("12345678A", "Pere", "01-01-2000");
-            Persona persona3 = Persona.creador("12345678A", "Pere", "01-01-2000");
+            Persona persona1 = creador("1A345678A", "Pere", "01-01-2000");
+            Persona persona2 = creador("12345678A", "Pere", "01-01-2000");
+            Persona persona3 = creador("12345678A", "Pere", "01-01-2000");
             System.out.println(persona1.getEdat());
             System.out.println(persona2.getEdat());
             System.out.println(Persona.getNumPersones());
+        }
+
+        public static Persona creador(String nif, String nom, String dataNaixement) {
+            Persona persona = null;
+            try {
+                persona = new Persona(nif, nom, dataNaixement);
+                numPersones++;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            return persona;
         }
     }
 }
