@@ -121,7 +121,7 @@ class TestArticle {
 
     private static void llegeixFitxer() {
         try {
-            Scanner scanner = new Scanner(new File("src/cat/sapa/uf4/Article/dadesArticles.txt"));
+            Scanner scanner = new Scanner(new File("UF4/src/cat/sapa/uf4/Article/dadesArticles.txt"));
             int i = 0;
             while (scanner.hasNextLine() && i < articles.length) {
                 String[] dades = scanner.nextLine().split(",");
