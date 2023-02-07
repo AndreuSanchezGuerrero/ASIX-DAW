@@ -124,7 +124,7 @@ class TestArticle {
             Scanner scanner = new Scanner(new File("src/cat/sapa/uf4/Article/dadesArticles.txt"));
             int i = 0;
             while (scanner.hasNextLine() && i < articles.length) {
-                String[] dades = scanner.nextLine().split(";");
+                String[] dades = scanner.nextLine().split(",");
                 if (dades.length == 5) {
                     Article article = new Article(dades[0], dades[1], Integer.parseInt(dades[2]), Float.parseFloat(dades[3]), Integer.parseInt(dades[4]));
                     articles[i] = article;
