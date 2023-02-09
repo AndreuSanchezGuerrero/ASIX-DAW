@@ -1,3 +1,3 @@
-CODI1,Descripció article 1,10,10.0,21
-CODI2,Descripció article 2,20,5.0,5
-CODI3,Descripció article 3,30,15.0,4
+CODI1,Descripció article 1,10,10.0,-5
+CODI2,Descripció article 2,20,-1,5
+CODI3,Descripció article 3,0.1,15.0,4
