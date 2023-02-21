@@ -16,11 +16,12 @@ public class TriangleEquilater extends PoligonRegular {
         costat = base;
         nCostats = 3;
     }
-    private double calculaArea() {
+
+    protected double calculaArea() {
         return (costat * costat * Math.sin(Math.PI / 3)) / 2;
     }
-    }
-    private String toString() {
+
+    public String toString() {
         return "Triangle Equilater: " + costat + " " + calculaArea() + " " + calculaPerimetre();
     }
 }

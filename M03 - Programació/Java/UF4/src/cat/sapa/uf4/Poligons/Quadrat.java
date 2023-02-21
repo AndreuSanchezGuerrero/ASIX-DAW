@@ -17,7 +17,7 @@ public class Quadrat extends PoligonRegular {
         return (costat * costat);
     }
 
-    private String toString() {
+    public String toString() {
         return "Quadrat: " + costat + " " + calculaArea() + " " + calculaPerimetre();
     }
 }
