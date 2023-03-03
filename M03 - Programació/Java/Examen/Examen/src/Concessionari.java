@@ -1,20 +1,14 @@
-//Class COncessionari
+
 public class Concessionari {
-    //Array de cotxes
     private static Cotxe[] cotxes = new Cotxe[8];
-    //Variable que guarda el numero de cotxes
     private static int numCotxes = 0;
 
     //Metode per afegir cotxes
     public static void afegirCotxe(Cotxe c) throws Exception {
-        //Si el numero de cotxes es igual a la longitud de l'array
         if (numCotxes == cotxes.length) {
-            //Llançem una excepcio
             throw new Exception("No caben més cotxes");
         }
-        //Afegim el cotxe a l'array
         cotxes[numCotxes] = c;
-        //Incrementem el numero de cotxes
         numCotxes++;
     }
 
