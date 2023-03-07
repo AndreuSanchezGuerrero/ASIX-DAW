@@ -1,82 +1,3 @@
-Es tracta de fer un mòdul de cmdlets personalitzats pel manteniment i consulta de l’Active Directory d’un Centre Educatiu. 
-
-El mòdul es dirà ADPropi.psm1 i s’haurà de desar a la carpeta on el sistema té els mòduls de PowerShell. 
-
-A la màquina que el tinguis instal·lat, si no és un Server, necessitaràs tenir el RSAT, que incorpora el mòdul de activedirectory. 
-
-Necessitaràs també un AD, pot ser la mateixa màquina. 
-
-Tots els cmdlets han d’estar degudament documentats, de tal forma que si fem get-help “Nomcmdlet”, ens surti una ajuda exmplicant el cmdlet i amb algun exemple si cal. 
-
-Per tal de poder aplicar directives de grup de manera senzilla, cada grup d’usuaris té associat una UO 
-
-gESO1A => ou=ESO1A, ou=ESO1 , ou=ESO, ou=Alumnes, dc=XYZ, dc=net 
-
-... 
-
-gASIX2A => ou=ASIX2A, ou=ASIX2 , ou=ASiX, ou=Alumnes, dc=XYZ, dc=net 
-
-gMates=> ou=Mates, ou=Professors, dc=XYZ, dc=net 
-
-... 
-
-Cmdlets 
-
-Get-Usuaris 
-
-Paràmetres Obligatoris: Grup 
-
-Funcionalitat: Retornarà tots els usuaris que pertanyin al grup indicat 
-
-Get-Alumnes 
-
-Paràmetres Opcionals: Grup, ha de validar-lo en un Set de valors possibles. 
-
-Funcionalitat: Retornarà tots els alumnes que pertanyin al grup indicat(predefinit). Ens haurà de retornar els noms dels alumnes, el mail i el telèfon. El llistat ha d’estar ordenat alfabèticament per: Cognom1, Cognom2, Nom 
-
-Si no l’indiquem el grup, agafarà com a grup predeterminat gAlumnes. 
-
-New-Alumne 
-
-Paràmetres Obligatoris: NomCompte, Nom, Cognoms, Grup al que pertany( p.e.: ESO1A) ha de ser predefint, Password. 
-
-Paràmetres Opcionals: Descripció. 
-
-Funcionalitat: Ha de crear l’alumne a la OU que toqui, i afegir-lo al grup que toqui. Ha d’activar el compte, i indicar que el password mai caduca. 
-
-New-Profe 
-
-Paràmetres Obligatoris: NomCompte, Nom, Cognoms, Departament al que pertany ha de ser predefinit, email. 
-
-Paràmetres Opcionals: Descripció 
-
-Funcionalitat: Ha de crear el professor a la OU que toqui, i afegir-lo al Departament que toqui. Ha d’activar el compte, i indicar que el password mai caduca. S’ha d’inventar un password de longitud 8 amb lletres i números. Una vegada creat el professor, l’ha d’enviar un email indicant-li el nom de compte i el password que té. Ens hem de guardar el email al AD. 
-
-Get-UsuariState 
-
-Paràmetres Obligatoris: NomCompte 
-
-Funcionalitat: Retornarà un dels següents valors: Enabled, Disabled, Null. Retornarà Null si l’usuari no existeix, en cas que existeixis ens dirà si està actiu o no. 
-
-Create-Alumnes 
-
-Paràmetres Obligatoris: RutaCSV 
-
-Funcionalitat: li passarem una ruta on ha d’haver un fitxer CSV amb dades d’alumnes. Per cada alumne comprovarà l’estat. Si està actiu, no farà rés, si està No actiu, simplement l’Activarà, i si és Null, farà un New-Alumne 
-
-Create-Professors 
-
-Paràmetres Obligatoris: RutaCSV 
-
-Funcionalitat: li passarem una ruta on ha d’haver un fitxer CSV amb dades de professors. Per cada professor comprovarà l’estat. Si està actiu, no farà rés, si està No actiu, simplement l’Activarà, i si és Null, farà un New-Professor. 
-
-Create-Professor/New-Professor v2 
-
-Podràs comprovar que cada vegada que el mètode anterior crea un professor nou et demana les credencials del server smtp. Millora New-Professor i canvia Create-Professors perquè només et demani una vegada les credencials. 
-
-
-Resolució:
-
 Preparacions:
 1. Crear un nou mòdul de PowerShell, anomenat ADPropi.psm1
 2. Copiar la carpeta ADPropi a la carpeta de mòduls de PowerShell (C:\Windows\System32\WindowsPowerShell\v1.0\Modules)
@@ -148,7 +69,12 @@ function New-Profe {
     $User = New-ADUser -Name $NomCompte -GivenName $Nom -Surname $Cognoms -SamAccountName $NomCompte -Path $OU -AccountPassword (ConvertTo-SecureString $Password -AsPlainText -Force) -Enabled $true -PasswordNeverExpires $true -Description $Descripcio -EmailAddress $Email
     $SMTPServer = "smtp.XYZ.net"
     $SMTPPort = 25
-    $SMTPFrom = "
+    $SMTPFrom = "admin@smtp.XYZ.net"
+    $SMTPTo = $Email
+    $SMTPSubject = "Creació de compte"
+    $SMTPBody = "Hola $Nom $Cognoms, la teva contrasenya és $Password"
+    Send-MailMessage -From $SMTPFrom -To $SMTPTo -Subject $SMTPSubject -Body $SMTPBody -SmtpServer $SMTPServer -Port $SMTPPort
+}
 
 function Get-UsuariState {
     param(
