@@ -6,6 +6,9 @@ public class Aliment extends Producte {
         if (calories < 0) {
             throw new Exception("Les calories no poden ser negatives");
         }
+        if (calories > 1000) {
+            throw new Exception("Les calories no poden ser superiors a 1000");
+        }
         this.calories = calories;
         this.beguda = beguda;
     }
@@ -22,7 +25,11 @@ public class Aliment extends Producte {
         return beguda;
     }
     public double pvp() {
-        return super.pvp() * 1.21;
+        if (beguda) {
+            return super.pvp() * 1.21;
+        } else {
+            return super.pvp() * 1.10;
+        }
     }
     public String getInfo() {
         return super.getInfo() + "\n Calories: " + calories + "\n Drink: " + beguda;

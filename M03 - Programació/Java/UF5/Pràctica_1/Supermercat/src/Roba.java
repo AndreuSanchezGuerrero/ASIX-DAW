@@ -1,6 +1,7 @@
 public class Roba extends Producte {
     private String color;
     private char talla;
+
     public Roba(String nom, double preu, String color, char talla) throws Exception {
         super(nom, preu);
         if (color == null || color.isEmpty()) {

@@ -1,12 +1,13 @@
 public class Producte {
     private String nom;
     private double preu;
+
     public Producte(String nom, double preu) throws Exception {
         if (nom == null || nom.isEmpty()) {
             throw new Exception("El nom no pot ser null o buit");
         }
-        if (preu < 0) {
-            throw new Exception("El preu no pot ser negatiu");
+        if (preu < 1) {
+            throw new Exception("El preu no pot ser inferior a 1");
         }
         this.nom = nom;
         this.preu = preu;
@@ -25,7 +26,7 @@ public class Producte {
     }
     public void setPreu(double preu) throws Exception {
         if (preu < 0) {
-            throw new Exception("El preu no pot ser negatiu");
+            throw new Exception("El preu no pot ser inferior a 1");
         }
         this.preu = preu;
     }
