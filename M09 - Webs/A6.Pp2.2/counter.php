@@ -1,0 +1,64 @@
+<?php
+/*
+Plugin Name: Hour Counter
+Description: A plugin to count hours worked
+Version: 1.0
+Author: Nil Massó
+*/
+
+function hour_counter_shortcode() {
+    global $wpdb;
+    
+    // Get total hours from database
+    $total_hours = $wpdb->get_var("SELECT total_hours FROM " . $wpdb->prefix . "hours" . " WHERE id = 1");
+    // Check for timer start and stop
+    if (isset($_POST['start'])) {
+        update_option('hour_counter_start', time());
+    } elseif (isset($_POST['stop'])) {
+        $start_time = get_option('hour_counter_start');
+        if ($start_time) {
+            $end_time = time();
+            $hours = ($end_time - $start_time) / 3600;
+            $total_hours += $hours;
+            $wpdb->replace($wpdb->prefix . 'hours', array('total_hours' => $total_hours) + array('id' => 1));
+            delete_option('hour_counter_start');
+        }
+    }    
+    
+    // Display hour counter
+    $output = '<h2>Hour Counter</h2>';
+    $output .= '<p>Total hours: ' . number_format($total_hours, 2) . '</p>';
+    $output .= '<form method="post">';
+    if (get_option('hour_counter_start')) {
+        $output .= '<input type="submit" name="stop" value="Stop">';
+    } else {
+        $output .= '<input type="submit" name="start" value="Start" onclick="setInterval(updateTime, 1000)">';
+    }
+    $output .= '</form>';
+
+    return $output;
+}
+add_shortcode('hour-counter', 'hour_counter_shortcode');
+
+// Create hours table on plugin activation
+function hour_counter_activate() {
+    global $wpdb;
+    
+    $table_name = $wpdb->prefix . 'hours';
+    
+    $charset_collate = $wpdb->get_charset_collate();
+    
+    $sql = "CREATE TABLE if not exists $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        total_hours float(10) NOT NULL,
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+    
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+    
+    $wpdb->insert($table_name, array('total_hours' => 0));
+}
+register_activation_hook(__FILE__, 'hour_counter_activate');
+
+?>
